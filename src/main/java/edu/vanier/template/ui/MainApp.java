@@ -1,6 +1,7 @@
 package edu.vanier.template.ui;
 
 import edu.vanier.template.controllers.MainAppFXMLController;
+import edu.vanier.template.controllers.MainMenuFXMLController;
 import edu.vanier.template.controllers.SceneController;
 import edu.vanier.template.controllers.SecondaryFXMLController;
 import edu.vanier.template.helpers.FxUIHelper;
@@ -25,7 +26,7 @@ import org.slf4j.LoggerFactory;
 public class MainApp extends Application {
 
     // The FXML file name of the primary scene.
-    public static final String MAINAPP_SCENE = "MainApp_layout";
+    public static final String MAINAPP_SCENE = "mainMenu";
     // The FXML file name of the secondary scene.
     public static final String SECONDARY_SCENE = "secondary_layout";
     private final static Logger logger = LoggerFactory.getLogger(MainApp.class);
@@ -44,8 +45,9 @@ public class MainApp extends Application {
         try {
             logger.info("Bootstrapping the application...");
             // Load the scene of the primary stage.
-            Parent root = FxUIHelper.loadFXML(MAINAPP_SCENE, new MainAppFXMLController());
-            scene = new Scene(root, 640, 480);
+            Parent root = FxUIHelper.loadFXML(MAINAPP_SCENE,new MainMenuFXMLController());
+            scene = new Scene(root, 1280, 800);
+            
             // Add the primary scene to the scene-switching controller.
             sceneController = new SceneController(scene);
             sceneController.addScene(MAINAPP_SCENE, root);
