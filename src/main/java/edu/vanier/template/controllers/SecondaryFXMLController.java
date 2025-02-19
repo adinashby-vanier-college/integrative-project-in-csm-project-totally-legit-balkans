@@ -19,7 +19,7 @@ public class SecondaryFXMLController {
     private final static Logger logger = LoggerFactory.getLogger(SecondaryFXMLController.class);
 
     @FXML
-    Button btnSwitchScene;
+    private Button btnSwitchScene;
 
     @FXML
     public void initialize() {

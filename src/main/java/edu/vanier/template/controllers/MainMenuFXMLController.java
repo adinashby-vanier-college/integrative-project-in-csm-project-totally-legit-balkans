@@ -19,13 +19,13 @@ import javafx.scene.shape.Rectangle;
 public class MainMenuFXMLController {
     
     @FXML
-    Rectangle backgroundRec;
+    private Rectangle backgroundRec;
     @FXML
-    Button quitButton;
+    private Button quitButton;
     @FXML
-    Button addFileButton;
+    private Button addFileButton;
     @FXML
-    HBox fileHBox;
+    private HBox fileHBox;
     
     @FXML
     public void initialize(){

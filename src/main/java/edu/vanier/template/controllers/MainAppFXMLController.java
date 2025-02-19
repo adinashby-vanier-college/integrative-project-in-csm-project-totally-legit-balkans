@@ -20,9 +20,9 @@ public class MainAppFXMLController {
     private final static Logger logger = LoggerFactory.getLogger(MainAppFXMLController.class);
 
     @FXML
-    Button btnPlay;
+    private Button btnPlay;
     @FXML
-    Button btnSwitchScene;
+    private Button btnSwitchScene;
 
     @FXML
     public void initialize() {
