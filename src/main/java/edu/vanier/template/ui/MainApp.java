@@ -53,7 +53,7 @@ public class MainApp extends Application {
             sceneController.addScene(MAINMENU_SCENE, root);
             primaryStage.setScene(scene);
             primaryStage.sizeToScene();
-            primaryStage.setTitle("An FX Project Template!");
+            primaryStage.setTitle("Super Space Maker");
             // Request putting this appliation's main window on top of other 
             // already-opened windows upon launching t he app.
             primaryStage.setAlwaysOnTop(true);
