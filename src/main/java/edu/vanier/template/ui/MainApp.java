@@ -26,9 +26,9 @@ import org.slf4j.LoggerFactory;
 public class MainApp extends Application {
 
     // The FXML file name of the primary scene.
-    public static final String MAINAPP_SCENE = "mainMenu";
+    public static final String MAINMENU_SCENE = "mainMenu";
     // The FXML file name of the secondary scene.
-    public static final String SECONDARY_SCENE = "secondary_layout";
+    public static final String MAINAPP_SCENE = "mainApp";
     private final static Logger logger = LoggerFactory.getLogger(MainApp.class);
     private static Scene scene;
     private static SceneController sceneController;
@@ -45,12 +45,12 @@ public class MainApp extends Application {
         try {
             logger.info("Bootstrapping the application...");
             // Load the scene of the primary stage.
-            Parent root = FxUIHelper.loadFXML(MAINAPP_SCENE,new MainMenuFXMLController());
+            Parent root = FxUIHelper.loadFXML(MAINMENU_SCENE,new MainMenuFXMLController());
             scene = new Scene(root, 1280, 800);
             
             // Add the primary scene to the scene-switching controller.
             sceneController = new SceneController(scene);
-            sceneController.addScene(MAINAPP_SCENE, root);
+            sceneController.addScene(MAINMENU_SCENE, root);
             primaryStage.setScene(scene);
             primaryStage.sizeToScene();
             primaryStage.setTitle("An FX Project Template!");
@@ -76,18 +76,18 @@ public class MainApp extends Application {
      */
     public static void switchScene(String fxmlFileName) {
         try {
-            if (fxmlFileName.equals(MAINAPP_SCENE)) {
+            if (fxmlFileName.equals(MAINMENU_SCENE)) {
                 // No need to register the primary scene as it 
                 // was already done in the start method.                
                 sceneController.activateScene(fxmlFileName);
 
-            } else if (fxmlFileName.equals(SECONDARY_SCENE)) {
+            } else if (fxmlFileName.equals(MAINAPP_SCENE)) {
                 if (!sceneController.sceneExists(fxmlFileName)) {
                     // Instantiate the corresponding FXML controller if the 
                     // specified scene is being loaded for the frist time.
-                    SecondaryFXMLController controller = new SecondaryFXMLController();
+                    MainAppFXMLController controller = new MainAppFXMLController();
                     Parent root = FxUIHelper.loadFXML(fxmlFileName, controller);
-                    sceneController.addScene(SECONDARY_SCENE, root);
+                    sceneController.addScene(MAINAPP_SCENE, root);
                 }
                 // The scene has been previously added, we active it.
                 sceneController.activateScene(fxmlFileName);

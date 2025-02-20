@@ -4,6 +4,7 @@
  */
 package edu.vanier.template.controllers;
 
+import edu.vanier.template.ui.MainApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -34,12 +35,13 @@ public class MainMenuFXMLController {
     
     @FXML
     private void onQuit(ActionEvent event) {
-        System.out.println("testing");
+        System.out.println("testing1");
     }
     
     @FXML
     private void onAddFile(ActionEvent event) {
-        System.out.println("testing");
+        MainApp.switchScene(MainApp.MAINAPP_SCENE);
+        System.out.println("testing2");
     }
     
 }
