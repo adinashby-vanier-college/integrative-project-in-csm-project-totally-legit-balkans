@@ -5,10 +5,15 @@
 package edu.vanier.template.controllers;
 
 import edu.vanier.template.ui.MainApp;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -42,6 +47,32 @@ public class MainMenuFXMLController {
     private void onAddFile(ActionEvent event) {
         MainApp.switchScene(MainApp.MAINAPP_SCENE);
         System.out.println("testing2");
+        //newSelectorButton(new File test);
     }
     
+      private Button newSelectorButton(File fileToLoad) {
+        Button newSelectorButton = new Button(fileToLoad.getName());
+
+        try {
+            int endIndexOfRawName = fileToLoad.getAbsolutePath().length();// - FileHelper.SIMULATION_FILE_EXTENSION.length();
+            String iconFileName = fileToLoad.getAbsolutePath().substring(0, endIndexOfRawName);// + FileHelper.SIMULATION_ICON_EXTENSION;
+            FileInputStream iconInputStream = new FileInputStream(iconFileName);
+            ImageView imageView = new ImageView(new Image(iconInputStream));
+            imageView.setPreserveRatio(true);
+            imageView.setFitHeight(100);
+            imageView.setFitWidth(150);
+
+            newSelectorButton.setGraphic(imageView);
+        } catch (FileNotFoundException ex) {
+            System.out.println("Icon for scene '" + fileToLoad.getName() + "' does not exist!");
+        }
+
+        newSelectorButton.setOnAction(e -> {
+            //SceneManager.loadSimulationScene(fileToLoad);
+            //hide();
+        });
+
+        newSelectorButton.setContentDisplay(ContentDisplay.TOP);
+        return newSelectorButton;
+    }
 }
