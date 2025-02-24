@@ -13,7 +13,25 @@ public class Vector2 {
         this.y = y;
     }
 
-    public Vector2 addEquals(Vector2 other) {
+    public Vector2 of(double num1, double num2) {
+        return null; // Method not implemented
+    }
+
+    public Vector2 ofAngle(double firstAngle, double secondAngle) {
+        return null; // Method not implemented
+    }
+
+    public Vector2 negateAssign() {
+        this.x = -this.x;
+        this.y = -this.y;
+        return this;
+    }
+
+    public Vector2 negate() {
+        return new Vector2(-this.x, -this.y);
+    }
+
+    public Vector2 addAssign(Vector2 other) {
         this.x += other.x;
         this.y += other.y;
         return this;
@@ -23,8 +41,46 @@ public class Vector2 {
         return new Vector2(x + other.x, y + other.y);
     }
 
+    public Vector2 subtractAssign(Vector2 other) {
+        this.x -= other.x;
+        this.y -= other.y;
+        return this;
+    }
+
+    public Vector2 subtract(Vector2 other) {
+        return new Vector2(x - other.x, y - other.y);
+    }
+
+    public double magnitude() {
+        return Math.sqrt(x * x + y * y);
+    }
+
+    public double sqrMagnitude() {
+        return 0.0; // Method not implemented
+    }
+
+    public Vector2 normalized() {
+        return null; // Method not implemented
+    }
+
+    public Vector2 project(Vector2 other) {
+        return null; // Method not implemented
+    }
+
+    public Vector2 multiplyAssign(Vector2 other) {
+        this.x *= other.x;
+        this.y *= other.y;
+        return this;
+    }
+
     public Vector2 multiply(double value) {
         return new Vector2(x * value, y * value);
+    }
+
+    public Vector2 divideAssign(Vector2 other) {
+        this.x /= other.x;
+        this.y /= other.y;
+        return this;
     }
 
     public Vector2 divide(double value) {
