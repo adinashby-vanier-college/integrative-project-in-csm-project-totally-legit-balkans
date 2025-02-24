@@ -4,7 +4,7 @@
  */
 package edu.vanier.template.controllers;
 
-import edu.vanier.template.ui.MainApp;
+//import edu.vanier.template.ui.MainApp;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -45,7 +45,7 @@ public class MainMenuFXMLController {
     
     @FXML
     private void onAddFile(ActionEvent event) {
-        MainApp.switchScene(MainApp.MAINAPP_SCENE);
+        //MainApp.switchScene(MainApp.MAINAPP_SCENE);
         System.out.println("testing2");
         //newSelectorButton(new File test);
     }
