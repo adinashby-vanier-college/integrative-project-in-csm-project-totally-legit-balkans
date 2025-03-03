@@ -5,6 +5,7 @@
 package edu.vanier.template.controllers;
 
 //import edu.vanier.template.ui.MainApp;
+import edu.vanier.superspace.Main;
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.Scenes;
 import java.io.File;
@@ -37,7 +38,7 @@ public class MainMenuFXMLController {
     
     @FXML
     public void initialize(){
-        backgroundRec.setFill(new ImagePattern(new Image(getClass().getResource("/images/mainMenuBackground.png").toExternalForm())));
+        backgroundRec.setFill(new ImagePattern(new Image(Main.class.getResource("/images/mainMenuBackground.png").toExternalForm())));
     }
     
     @FXML
