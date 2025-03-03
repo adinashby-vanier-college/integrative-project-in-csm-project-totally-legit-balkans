@@ -5,7 +5,7 @@ import lombok.Setter;
 
 public class RenderDimensions {
     @Getter @Setter private static double applicationTargetWidth = 1280;
-    @Getter @Setter private static double applicationTargetHeight = 900;
+    @Getter @Setter private static double applicationTargetHeight = 800;
     @Getter @Setter private static double applicationMinWidth = 1200;
-    @Getter @Setter private static double applicationMinHeight = 950;
+    @Getter @Setter private static double applicationMinHeight = 750;
 }

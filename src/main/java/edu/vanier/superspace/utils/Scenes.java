@@ -4,7 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum Scenes {
-    MAIN_MENU("");
+    MAIN_MENU("mainMenu"),
+    MAIN_APP("mainApp");
 
     private final String filepath;
 
