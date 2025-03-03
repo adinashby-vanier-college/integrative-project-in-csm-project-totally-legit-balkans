@@ -130,7 +130,7 @@ public class Vector2 {
      * @return a new instance of a vector keeping the same direction but a length of one
      */
     public Vector2 normalized() {
-        return null; // Method not implemented
+        return new Vector2(x / magnitude(), y / magnitude());
     }
 
     /**
@@ -231,10 +231,10 @@ public class Vector2 {
     }
 
     /**
-     * Calculates the normal of a vector.
+     * Calculates the normal between two vectors.
      * @return a new instance of a vector containing the normal's components
      */
-    public Vector2 normal() {
+    public Vector2 normal(Vector2 other) {
         return null; // Method not implemented
     }
 
