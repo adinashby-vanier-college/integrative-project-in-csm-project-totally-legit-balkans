@@ -3,6 +3,8 @@ package edu.vanier.superspace.mathematics;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Getter
 @Setter
 public class Vector2 {
@@ -48,6 +50,62 @@ public class Vector2 {
      */
     public static Vector2 ofAngle(double angle, double length) {
         return new Vector2(Math.cos(angle), Math.sin(angle)).multiplyAssign(length);
+    }
+
+    /**
+     * Shorthand for the (-1, 0) vector.
+     */
+    public static Vector2 left() {
+        return new Vector2(-1, 0);
+    }
+
+    /**
+     * Shorthand for the (1, 0) vector.
+     */
+    public static Vector2 right() {
+        return new Vector2(1, 0);
+    }
+
+    /**
+     * Shorthand for the (0, 1) vector.
+     */
+    public static Vector2 up() {
+        return new Vector2(0, 1);
+    }
+
+    /**
+     * Shorthand for the (0, -1) vector.
+     */
+    public static Vector2 down() {
+        return new Vector2(0, -1);
+    }
+
+    /**
+     * Shorthand for the (+inf, +inf) vector.
+     */
+    public static Vector2 positiveInfinity() {
+        return new Vector2(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
+    }
+
+    /**
+     * Shorthand for the (-inf, -inf) vector.
+     */
+    public static Vector2 negativeInfinity() {
+        return new Vector2(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
+    }
+
+    /**
+     * Shorthand for the (1, 1) vector.
+     */
+    public static Vector2 one() {
+        return new Vector2(1, 1);
+    }
+
+    /**
+     * Shorthand for the (0, 0) vector.
+     */
+    public static Vector2 zero() {
+        return new Vector2(0, 0);
     }
 
     /**
@@ -117,11 +175,11 @@ public class Vector2 {
     }
 
     /**
-     *
-     * @return
+     * Calculates the square of the magnitude of the vector calling this function.
+     * @return square magnitude of the vector
      */
     public double sqrMagnitude() {
-        return 0.0; // Method not implemented
+        return x * x + y * y;
     }
 
     /**
@@ -130,20 +188,47 @@ public class Vector2 {
      * @return a new instance of a vector keeping the same direction but a length of one
      */
     public Vector2 normalized() {
-        return new Vector2(x / magnitude(), y / magnitude());
+        double magnitude = magnitude();
+        return new Vector2(x / magnitude, y / magnitude);
     }
 
     /**
-     *
-     * @param other
-     * @return
+     * Calculates the vector as a unit vector, meaning it has a length of one unit, but
+     * it keeps the same direction.
+     * @return This vector as a unit vector.
+     */
+    public Vector2 normalize() {
+        double magnitude = magnitude();
+        this.x /= magnitude;
+        this.y /= magnitude;
+    }
+
+    /**
+     * Projects vector onto another.
+     * @param other Vector to project onto.
+     * @return A new vector projected onto the other.
      */
     public Vector2 project(Vector2 other) {
-        return null; // Method not implemented
+        double dotAB = this.dot(other);
+        double dotBB = other.dot(other);
+        return other.multiply(dotAB / dotBB);
     }
 
     /**
-     * Multiplies its components by a given value.
+     * Projects vector onto another.
+     * @param other Vector to project onto.
+     * @return This vector projected onto the other vector.
+     */
+    public Vector2 projectAssign(Vector2 other) {
+        Vector2 projected = project(other);
+        this.x = projected.x;
+        this.y = projected.y;
+        return this;
+    }
+
+
+    /**
+     * Multiplies its components by a given scalar.
      * @param value the value of which the components of the vector will be multiplied by
      * @return the same vector with its components multiplied
      */
@@ -186,19 +271,22 @@ public class Vector2 {
      */
     public Vector2 divide(double value) {
         if (value == 0) {
-            return Vector2.of(0.0, 0.0);
+            return new Vector2();
         }
 
         return new Vector2(x / value, y / value);
     }
 
     /**
-     *
-     * @param value
-     * @return
+     * Clamps the magnitude within the given bound.
+     * @param maxMagnitude Maximum magnitude of the vector.
+     * @return New vector clamped within the given bound.
      */
-    public Vector2 clamp(double value) {
-        return null; // Method not implemented
+    public Vector2 clampMagnitude(double maxMagnitude) {
+        double magnitude = magnitude();
+        if (magnitude <= maxMagnitude) return new Vector2(this.x, this.y);
+
+        return this.multiply(maxMagnitude / magnitude);
     }
 
     /**
@@ -206,8 +294,8 @@ public class Vector2 {
      * @param otherVector the vector to which the distance will be calculated
      * @return the value of the distance
      */
-    public double distance(Vector2 otherVector) {
-        return 0; // Method not implemented
+    public double distanceTo(Vector2 otherVector) {
+        return otherVector.subtract(this).magnitude();
     }
 
     /**
@@ -220,31 +308,52 @@ public class Vector2 {
     }
 
     /**
-     *
-     * @param firstVector
-     * @param secondVector
-     * @param value
-     * @return
+     * Linearly interpolate between two vectors.
+     * @param from Origin vector
+     * @param to Destination vector
+     * @param evaluateAt Scalar between 0 and 1, where 0 is the beginning of the interpolation and 1 is the end.
+     * @return Interpolated vector.
      */
-    public Vector2 slerp(Vector2 firstVector, Vector2 secondVector, double value) {
-        return null; // Method not implemented
+    public static Vector2 lerp(Vector2 from, Vector2 to, double evaluateAt) {
+        Vector2 additionVector = to.subtract(from);
+        return from.add(additionVector.multiply(evaluateAt));
     }
 
     /**
-     * Calculates the normal between two vectors.
+     * Calculates the normal between two vectors (Pointing 90 degrees to the left of the original vector).
      * @return a new instance of a vector containing the normal's components
      */
-    public Vector2 normal(Vector2 other) {
-        return null; // Method not implemented
+    public Vector2 perpendicular(Vector2 other) {
+        return new Vector2(this.y, -this.x);
+    }
+
+    /**
+     * Get the angle of the vector (between -pi and pi radians) relative to the Vector pointing (1, 0).
+     * @return The signed angle of this vector
+     */
+    public double signedAngle() {
+        return Math.atan2(this.y, this.x);
+    }
+
+    /**
+     * Get the angle of the vector (between 0 and pi radians) relative to the Vector pointing (1, 0).
+     * @return The angle of this vector.
+     */
+    public double angle() {
+        return Math.abs(signedAngle());
     }
 
     /**
      * Rotates the vector based on a certain rotation given by the user.
-     * @param rotation the value of the rotation in radians
+     * @param angle the value of the rotation in radians
      * @return a new instance of a vector with the new components after being rotated
      */
-    public Vector2 rotate(double rotation) {
-        return null; // Method not implemented
+    public Vector2 rotate(double angle) {
+        double cos = Math.cos(angle);
+        double sin = Math.sin(angle);
+
+        // Taken from a rotation matrix in 2D space
+        return new Vector2(x * cos - y * sin, x * sin + y * cos);
     }
 
     /**
@@ -254,6 +363,19 @@ public class Vector2 {
      */
     public boolean equals(Vector2 otherVector) {
         return this.x == otherVector.x && this.y == otherVector.y;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Vector2 vector2 = (Vector2) object;
+        return equals(vector2);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 
     /**
