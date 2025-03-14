@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
@@ -37,42 +42,144 @@
         </menus>
       </MenuBar>
    </top>
-   <center>
-      <Pane fx:id="mainPane" prefHeight="552.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
-         <children>
-          <AnchorPane layoutX="-286.0" layoutY="593.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-         </children></Pane>
-   </center>
    <bottom>
-      <TitledPane animated="false" prefHeight="207.0" prefWidth="1280.0" text="Control Bar" BorderPane.alignment="CENTER">
+      <TitledPane prefHeight="207.0" prefWidth="1280.0" style="-fx-background-color: #BEBEBE;" BorderPane.alignment="CENTER">
          <content>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #BEBEBE;">
                <children>
-                  <Button layoutX="83.0" layoutY="56.0" mnemonicParsing="false">
+                  <Button layoutX="36.0" layoutY="56.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="31.0" style="-fx-background-color: transparent;">
                      <graphic>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+                        <ImageView fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/Pause.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="36.0" layoutY="56.0" mnemonicParsing="false">
+                  <Label layoutX="572.0" layoutY="-4.0" prefHeight="54.0" prefWidth="159.0" text="Planet">
+                     <font>
+                        <Font name="Dubai Regular" size="30.0" />
+                     </font></Label>
+                  <Text layoutX="38.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Control Bar">
+                     <font>
+                        <Font name="Dubai Regular" size="30.0" />
+                     </font></Text>
+                  <Text layoutX="408.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mass (kg) =" textAlignment="RIGHT" wrappingWidth="150.466064453125">
+                     <font>
+                        <Font name="Dubai Regular" size="18.0" />
+                     </font></Text>
+                  <Text layoutX="418.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed (m/s) =" textAlignment="RIGHT" wrappingWidth="141.66607666015625">
+                     <font>
+                        <Font name="Dubai Regular" size="18.0" />
+                     </font></Text>
+                  <Label layoutX="572.0" layoutY="45.0" prefHeight="18.0" prefWidth="72.0" text="Mass">
+                     <font>
+                        <Font name="Dubai Regular" size="18.0" />
+                     </font></Label>
+                  <Label layoutX="572.0" layoutY="69.0" prefHeight="10.0" prefWidth="72.0" text="Speed">
+                     <font>
+                        <Font name="Dubai Regular" size="18.0" />
+                     </font></Label>
+                  <Button layoutX="363.0" layoutY="117.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="283.0" style="-fx-background-color: #8C8C8C; -fx-border-color: #000000; -fx-background-radius: 0.25em; -fx-border-radius: 0.25em;" text="Zoom In">
+                     <font>
+                        <Font name="Dubai Regular" size="30.0" />
+                     </font></Button>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="TRANSPARENT" height="178.0" layoutX="721.0" layoutY="14.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" width="458.0" />
+                  <Text layoutX="728.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="270.93670654296875">
+                     <font>
+                        <Font name="Dubai Regular" size="30.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="78.0" layoutY="56.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
                      <graphic>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+                        <ImageView fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/Play.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="129.0" layoutY="56.0" mnemonicParsing="false">
+                  <Button layoutX="114.0" layoutY="58.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
                      <graphic>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+                        <ImageView fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/FF.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
-                  <Label layoutX="432.0" layoutY="14.0" prefHeight="18.0" prefWidth="72.0" text="Planet" />
-                  <Text layoutX="344.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected Planet:" />
-                  <Text layoutX="344.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mass(kg):" textAlignment="RIGHT" wrappingWidth="83.26605224609375" />
-                  <Text layoutX="344.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed(m/s):" textAlignment="RIGHT" wrappingWidth="83.26605224609375" />
-                  <Label layoutX="432.0" layoutY="31.0" prefHeight="18.0" prefWidth="72.0" text="Mass" />
-                  <Label layoutX="432.0" layoutY="47.0" prefHeight="10.0" prefWidth="72.0" text="Speed" />
-                  <Button layoutX="327.0" layoutY="72.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="199.0" text="Zoom In" />
+                  <Text layoutX="364.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected Planet:" wrappingWidth="204.97994995117188">
+                     <font>
+                        <Font name="Dubai Regular" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="731.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Terrus is a planet mostly cover bywater. The planet’s atmosphere ismade of nitrogen. Terrus has organiclife present on it.  " wrappingWidth="438.9366455078125">
+                     <font>
+                        <Font name="Dubai Regular" size="24.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
          </content>
       </TitledPane>
    </bottom>
+   <right>
+      <Pane fx:id="mainPane" prefHeight="552.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+         <children>
+            <TitledPane layoutX="988.0" layoutY="99.0" prefHeight="272.0" prefWidth="313.0" rotate="270.0">
+               <content>
+                  <Pane prefHeight="192.0" prefWidth="209.0" style="-fx-background-color: #BEBEBE;">
+                     <children>
+                        <Text layoutX="176.0" layoutY="132.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Astral Creation" textAlignment="CENTER" wrappingWidth="217.3367919921875">
+                           <font>
+                              <Font name="Dubai Regular" size="30.0" />
+                           </font>
+                        </Text>
+                        <Button layoutX="171.0" layoutY="75.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" rotate="90.0" style="-fx-background-radius: 6em; -fx-border-radius: 6em; -fx-background-color: #D9D9D9; -fx-border-color: #000000;" text="Select an image" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="Dubai Regular" size="16.0" />
+                           </font>
+                        </Button>
+                        <Text layoutX="102.0" layoutY="64.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mass (kg):" textAlignment="RIGHT" wrappingWidth="86.13683319091797">
+                           <font>
+                              <Font name="Dubai Regular" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="70.0" layoutY="62.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed (m/s):" textAlignment="RIGHT" wrappingWidth="89.33677673339844">
+                           <font>
+                              <Font name="Dubai Regular" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="43.0" layoutY="65.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" textAlignment="RIGHT" wrappingWidth="82.13682556152344">
+                           <font>
+                              <Font name="Dubai Regular" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="15.0" layoutY="65.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type:" textAlignment="RIGHT" wrappingWidth="82.13682556152344">
+                           <font>
+                              <Font name="Dubai Regular" size="16.0" />
+                           </font>
+                        </Text>
+                        <TextField alignment="CENTER" layoutX="79.0" layoutY="163.0" prefHeight="16.0" prefWidth="130.0" promptText="Enter values" rotate="90.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #000000;">
+                           <font>
+                              <Font name="Dubai Regular" size="10.0" />
+                           </font>
+                        </TextField>
+                        <TextField alignment="CENTER" layoutX="49.0" layoutY="163.0" prefHeight="16.0" prefWidth="130.0" promptText="Enter values" rotate="90.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #000000;">
+                           <font>
+                              <Font name="Dubai Regular" size="10.0" />
+                           </font>
+                        </TextField>
+                        <TextField alignment="CENTER" layoutX="19.0" layoutY="163.0" prefHeight="16.0" prefWidth="130.0" promptText="Enter values" rotate="90.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #000000;">
+                           <font>
+                              <Font name="Dubai Regular" size="10.0" />
+                           </font>
+                        </TextField>
+                        <ComboBox layoutX="-11.0" layoutY="163.0" prefWidth="130.0" promptText="Gaseous" rotate="90.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #000000;" />
+                     </children>
+                  </Pane>
+               </content>
+            </TitledPane>
+         </children></Pane>
+   </right>
 </BorderPane>
