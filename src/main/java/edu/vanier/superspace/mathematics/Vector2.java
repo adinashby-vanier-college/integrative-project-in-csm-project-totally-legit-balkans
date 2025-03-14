@@ -201,6 +201,7 @@ public class Vector2 {
         double magnitude = magnitude();
         this.x /= magnitude;
         this.y /= magnitude;
+        return this;
     }
 
     /**
