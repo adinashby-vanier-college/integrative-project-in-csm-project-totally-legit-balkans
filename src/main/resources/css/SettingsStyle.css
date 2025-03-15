@@ -1,0 +1,13 @@
+.border-pane{
+    -fx-background-color: #BEBEBE;
+}
+
+.button-path{
+    -fx-background-color: #BEBEbE;
+    -fx-text-fill: #ffffff;
+    -fx-border-width: 1em;
+}
+
+.button-back{
+    -fx-background-color: transparent;
+}
