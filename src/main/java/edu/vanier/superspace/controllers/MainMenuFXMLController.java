@@ -1,7 +1,5 @@
 package edu.vanier.superspace.controllers;
 
-import edu.vanier.superspace.Application;
-import edu.vanier.template.controllers.MainAppFXMLController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -9,8 +7,11 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * FXML Controller class for the main menu scene.
+ */
 public class MainMenuFXMLController {
-    private final static Logger logger = LoggerFactory.getLogger(MainAppFXMLController.class);
+    private final static Logger logger = LoggerFactory.getLogger(MainMenuFXMLController.class);
     @FXML
     private Button btnQuit;
     @FXML
@@ -19,6 +20,8 @@ public class MainMenuFXMLController {
     private ImageView imgViewBackground;
 
     public void initialize() {
+        logger.info("Initializing MainMenuFXMLController...");
+
         btnQuit.setOnAction(event -> {
             //TODO: Add some animation to the button on hover
             Stage currentStage = (Stage) btnQuit.getScene().getWindow();

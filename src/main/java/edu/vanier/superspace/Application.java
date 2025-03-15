@@ -3,8 +3,6 @@ package edu.vanier.superspace;
 import edu.vanier.superspace.utils.RenderDimensions;
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.Scenes;
-import edu.vanier.template.controllers.MainMenuFXMLController;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.Getter;
 
