@@ -2,6 +2,7 @@ package edu.vanier.superspace.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ public class AstralCreationFXMLController {
     private double mass;
     private double speed;
     private String description;
+    private String type;
     @FXML
     private Button btnImageSelector;
     @FXML
@@ -24,6 +26,8 @@ public class AstralCreationFXMLController {
     private TextField txtFieldSpeed;
     @FXML
     private TextField txtFieldDescription;
+    @FXML
+    private ComboBox<String> cmbType;
 
     public void initialize() {
         logger.info("Initializing AstralCreationFXMLController...");
@@ -31,6 +35,13 @@ public class AstralCreationFXMLController {
         btnImageSelector.setOnMouseDragged(event -> {
             addAstralBody();
         });
+
+        cmbType.getItems().addAll(
+                "Gaseous",
+                "Ice",
+                "Ocean",
+                "Terrestrial"
+        );
     }
 
     public void addAstralBody() {
@@ -41,6 +52,7 @@ public class AstralCreationFXMLController {
             mass = Double.parseDouble(txtFieldMass.getText());
             speed = Double.parseDouble(txtFieldSpeed.getText());
             description = txtFieldDescription.getText();
+            type = cmbType.valueProperty().get();
             imagePath = btnImageSelector.getBackground().getImages().getFirst().getImage().getUrl();
         } catch (Exception e) {
             System.out.println("Exceptions to be handled...");

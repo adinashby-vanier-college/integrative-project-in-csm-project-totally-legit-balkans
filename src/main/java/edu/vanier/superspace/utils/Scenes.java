@@ -8,7 +8,8 @@ public enum Scenes {
     MAIN_APP("mainApp"),
     ASTRAL_CREATION("mainApp_astralCreation"),
     CONTROL_BAR("mainApp_controlBar"),
-    MENU_BAR("mainApp_menuBar");
+    MENU_BAR("mainApp_menuBar"),
+    SETTINGS("settingsMenu");
 
     private final String filepath;
 
