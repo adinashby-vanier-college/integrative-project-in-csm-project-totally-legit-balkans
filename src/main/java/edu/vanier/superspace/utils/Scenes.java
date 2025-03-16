@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import lombok.Getter;
 
 import java.util.function.Function;
+import javafx.scene.shape.Rectangle;
 
 @Getter
 public enum Scenes {
@@ -17,7 +18,7 @@ public enum Scenes {
             new Simulation();
         }
         AnchorPane p = new AnchorPane();
-        p.setStyle("-fx-background-color:orangered;");
+        p.setStyle("-fx-background-color:white;");
         pane.setCenter(p);
         pane.setTop(SceneManagement.loadPartial(Partials.MENU_BAR));
         pane.setBottom(SceneManagement.loadPartial(Partials.CONTROL_BAR));
