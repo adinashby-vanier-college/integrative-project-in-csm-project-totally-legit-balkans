@@ -9,7 +9,11 @@ public class SaveManager {
     @Getter
     private static String lastSaveFilepath;
 
-    private static void save() {
+    public static void save() {
+
+    }
+
+    public static void saveAs() {
 
     }
 
@@ -17,11 +21,15 @@ public class SaveManager {
 
     }
 
+    public static void load() {
+
+    }
+
     private static void load(String filepath) {
 
     }
 
-    private static void clear() {
+    public static void clear() {
 
     }
 

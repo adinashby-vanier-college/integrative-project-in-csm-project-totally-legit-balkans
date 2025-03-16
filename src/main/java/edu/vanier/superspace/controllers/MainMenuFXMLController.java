@@ -1,5 +1,7 @@
 package edu.vanier.superspace.controllers;
 
+import edu.vanier.superspace.utils.SceneManagement;
+import edu.vanier.superspace.utils.Scenes;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -37,5 +39,7 @@ public class MainMenuFXMLController {
         //TODO: Implement the creation of a file for a simulation
         //TODO: Buttons for each simulation that the user has
         logger.info("Adding a simulation...");
+
+        SceneManagement.loadScene(Scenes.SIMULATION);
     }
 }

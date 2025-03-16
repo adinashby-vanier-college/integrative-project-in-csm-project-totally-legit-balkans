@@ -4,24 +4,24 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 
-<MenuBar style="-fx-background-color: BEBEBE;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<MenuBar fx:controller="edu.vanier.superspace.controllers.MenuBarFXMLController" style="-fx-background-color: BEBEBE;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <menus>
       <Menu mnemonicParsing="false" text="File">
          <items>
-            <MenuItem mnemonicParsing="false" text="Edit" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As..." />
-            <MenuItem mnemonicParsing="false" text="Exit" />
+            <MenuItem onAction="#onEdit" mnemonicParsing="false" text="Edit" />
+            <MenuItem onAction="#onSave" fx:id="saveButton" mnemonicParsing="false" text="Save" />
+            <MenuItem onAction="#onSaveAs" fx:id="saveAsButton" mnemonicParsing="false" text="Save As..." />
+            <MenuItem onAction="#onExit" mnemonicParsing="false" text="Exit" />
          </items>
       </Menu>
       <Menu mnemonicParsing="false" text="Settings">
          <items>
-            <MenuItem mnemonicParsing="false" text="Preferences" />
+            <MenuItem onAction="#onRequestPreferencesMenu" mnemonicParsing="false" text="Preferences" />
          </items>
       </Menu>
       <Menu mnemonicParsing="false" text="Debug">
          <items>
-            <MenuItem mnemonicParsing="false" text="View" />
+            <MenuItem onAction="#onDebugView" mnemonicParsing="false" text="View" />
          </items>
       </Menu>
    </menus>

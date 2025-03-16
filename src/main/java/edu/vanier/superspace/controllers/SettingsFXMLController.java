@@ -1,5 +1,7 @@
 package edu.vanier.superspace.controllers;
 
+import edu.vanier.superspace.utils.SceneManagement;
+import edu.vanier.superspace.utils.Scenes;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -55,6 +57,7 @@ public class SettingsFXMLController {
     @FXML
     private void onBackButtonClicked() {
         logger.info("Back to the simulation...");
+        SceneManagement.loadScene(Scenes.SIMULATION, false);
     }
 
     @FXML
