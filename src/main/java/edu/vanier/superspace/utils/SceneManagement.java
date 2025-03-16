@@ -1,6 +1,7 @@
 package edu.vanier.superspace.utils;
 
 import edu.vanier.superspace.Application;
+import edu.vanier.superspace.controllers.MainMenuFXMLController;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
