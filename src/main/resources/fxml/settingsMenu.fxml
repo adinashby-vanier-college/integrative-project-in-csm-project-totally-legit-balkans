@@ -14,26 +14,26 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1280.0" styleClass="border-pane" stylesheets="@../css/SettingsStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.SettingsFXMLController">
    <top>
-      <AnchorPane prefHeight="108.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="108.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnBack" layoutX="-11.0" layoutY="-16.0" mnemonicParsing="false" onAction="#onBackButtonClicked" prefHeight="82.0" prefWidth="127.0" styleClass="button-back" text="Back" underline="true">
+            <Button fx:id="btnBack" layoutX="-11.0" layoutY="-16.0" mnemonicParsing="false" onAction="#onBackButtonClicked" prefHeight="82.0" prefWidth="154.0" styleClass="button-back" text="Back" underline="true">
                <font>
-                  <Font name="Dubai Light" size="33.0" />
+                  <Font size="39.0" />
                </font>
             </Button>
-            <Text layoutX="225.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
+            <Text layoutX="480.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
                <font>
-                  <Font size="42.0" />
+                  <Font size="50.0" />
                </font>
             </Text>
          </children>
       </AnchorPane>
    </top>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="1165.0" BorderPane.alignment="CENTER">
          <children>
-            <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#d9d9d9" height="279.0" layoutX="17.0" stroke="BLACK" strokeType="INSIDE" width="567.0" />
-            <GridPane layoutX="25.0" layoutY="12.0" prefHeight="262.0" prefWidth="554.0">
+            <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#d9d9d9" height="610.0" layoutX="17.0" stroke="BLACK" strokeType="INSIDE" width="1250.0" />
+            <GridPane layoutX="25.0" layoutY="12.0" prefHeight="600.0" prefWidth="1165.0">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.79998779296875" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.79998779296875" minWidth="10.0" prefWidth="100.0" />
@@ -41,13 +41,18 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.79998779296875" minWidth="10.0" prefWidth="29.600000000000023" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.79998779296875" minWidth="10.0" prefWidth="83.19999999999999" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.40000000000003" minWidth="10.0" prefWidth="72.79996337890628" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.40000000000003" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.40000000000003" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="102.39996337890625" minWidth="10.0" prefWidth="71.20003662109377" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="57.60001411437988" minHeight="10.0" prefHeight="30.600008010864258" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="46.40000801086426" minHeight="3.1999858856201158" percentHeight="0.0" prefHeight="26.599991989135745" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="46.40000801086426" minHeight="3.1999858856201158" percentHeight="0.0" prefHeight="26.599991989135745" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="46.40000801086426" minHeight="3.1999858856201158" percentHeight="0.0" prefHeight="26.599991989135745" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="25.60001220703125" minHeight="4.799993896484374" percentHeight="0.0" prefHeight="4.799993896484374" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="56.00000610351562" minHeight="3.1999858856201158" percentHeight="0.0" prefHeight="26.599991989135745" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="56.00000610351562" minHeight="3.1999858856201158" percentHeight="0.0" prefHeight="26.599991989135745" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="56.00000610351562" minHeight="3.1999858856201158" percentHeight="0.0" prefHeight="26.599991989135745" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="15.600012207031241" minHeight="10.0" prefHeight="10.000006103515616" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="30.79999389648438" minHeight="10.0" prefHeight="30.79999389648438" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="14.59998168945313" minHeight="4.199987792968756" prefHeight="4.199987792968756" vgrow="SOMETIMES" />
@@ -62,110 +67,128 @@
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="General:">
                      <font>
-                        <Font name="Dubai Regular" size="42.0" />
+                        <Font size="65.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Menu Background Image:" textAlignment="RIGHT" wrappingWidth="278.19215393066406" GridPane.rowIndex="1">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Menu Background Image:" textAlignment="RIGHT" wrappingWidth="428.4550323486328" GridPane.rowIndex="3">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="33.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Simulation Background Image:" textAlignment="RIGHT" wrappingWidth="279.2288818359375" GridPane.rowIndex="3">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Simulation Background Image:" textAlignment="RIGHT" wrappingWidth="429.49176025390625" GridPane.rowIndex="6">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="33.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Animation:" GridPane.rowIndex="5">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Animation:" GridPane.rowIndex="9">
                      <font>
-                        <Font name="Dubai Regular" size="42.0" />
+                        <Font size="65.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Style of the Astral Paths:" textAlignment="RIGHT" wrappingWidth="278.19215393066406" GridPane.rowIndex="7">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Style of the Astral Paths:" textAlignment="RIGHT" wrappingWidth="489.7749481201172" GridPane.rowIndex="11">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="38.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Thickness of the Astral Paths:" textAlignment="RIGHT" wrappingWidth="278.19215393066406" GridPane.rowIndex="8">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Thickness of the Astral Paths:" textAlignment="RIGHT" wrappingWidth="489.63124084472656" GridPane.rowIndex="12">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="38.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Theme:" GridPane.rowIndex="10">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Theme:" GridPane.rowIndex="13">
                      <font>
-                        <Font name="Dubai Regular" size="42.0" />
+                        <Font size="65.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Theme:" textAlignment="RIGHT" wrappingWidth="278.19215393066406" GridPane.rowIndex="11">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Theme:" textAlignment="RIGHT" wrappingWidth="278.19215393066406" GridPane.rowIndex="14">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="38.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Font Size:" textAlignment="RIGHT" wrappingWidth="278.19215393066406" GridPane.rowIndex="12">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Font Size:" textAlignment="RIGHT" wrappingWidth="278.19215393066406" GridPane.rowIndex="15">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="38.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Font:" textAlignment="RIGHT" wrappingWidth="278.19215393066406" GridPane.rowIndex="13">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Font:" textAlignment="RIGHT" wrappingWidth="278.19215393066406" GridPane.rowIndex="16">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="38.0" />
                      </font>
                   </Text>
-                  <Button fx:id="btnMenuImagePath" mnemonicParsing="false" onAction="#onMenuImagePathClicked" prefHeight="26.0" prefWidth="126.0" styleClass="button-path" text="Enter a path" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                  <Button fx:id="btnMenuImagePath" mnemonicParsing="false" onAction="#onMenuImagePathClicked" prefHeight="64.0" prefWidth="196.0" styleClass="button-path" text="Enter a path" GridPane.columnIndex="6" GridPane.rowIndex="3">
                      <font>
                         <Font name="Dubai Regular" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnSimImagePath" mnemonicParsing="false" onAction="#onSimImagePathClicked" prefHeight="26.0" prefWidth="126.0" styleClass="button-path" text="Enter a path" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                  <Button fx:id="btnSimImagePath" mnemonicParsing="false" onAction="#onSimImagePathClicked" prefHeight="26.0" prefWidth="126.0" styleClass="button-path" text="Enter a path" GridPane.columnIndex="6" GridPane.rowIndex="6">
                      <font>
                         <Font name="Dubai Regular" size="12.0" />
                      </font>
                   </Button>
-                  <RadioButton fx:id="rdbDashed" mnemonicParsing="false" onAction="#onRdbDashedClicked" text="Dashed" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                  <RadioButton fx:id="rdbDashed" mnemonicParsing="false" onAction="#onRdbDashedClicked" text="Dashed" GridPane.columnIndex="5" GridPane.rowIndex="11">
                      <font>
-                        <Font name="Dubai Regular" size="12.0" />
+                        <Font size="21.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="rdbDotted" mnemonicParsing="false" onAction="#onRdbDottedClicked" prefHeight="18.0" prefWidth="106.0" text="Dotted" GridPane.columnIndex="5" GridPane.rowIndex="7">
+                  <RadioButton fx:id="rdbDotted" mnemonicParsing="false" onAction="#onRdbDottedClicked" prefHeight="18.0" prefWidth="106.0" text="Dotted" GridPane.columnIndex="6" GridPane.rowIndex="11">
                      <font>
-                        <Font name="Dubai Regular" size="12.0" />
+                        <Font size="21.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="rdbFull" mnemonicParsing="false" onAction="#onRdbFullClicked" text="Full" GridPane.columnIndex="6" GridPane.rowIndex="7">
+                  <RadioButton fx:id="rdbFull" mnemonicParsing="false" onAction="#onRdbFullClicked" text="Full" GridPane.columnIndex="7" GridPane.rowIndex="11">
                      <font>
-                        <Font name="Dubai Regular" size="12.0" />
+                        <Font size="21.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="rdbThick" mnemonicParsing="false" onAction="#onRdbThick" text="Thick" GridPane.columnIndex="6" GridPane.rowIndex="8">
+                  <RadioButton fx:id="rdbThick" mnemonicParsing="false" onAction="#onRdbThick" text="Thick" GridPane.columnIndex="7" GridPane.rowIndex="12">
                      <font>
-                        <Font name="Dubai Regular" size="12.0" />
+                        <Font size="21.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="rdbThin" mnemonicParsing="false" onAction="#onRdbThinClicked" text="Thin" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                  <RadioButton fx:id="rdbThin" mnemonicParsing="false" onAction="#onRdbThinClicked" text="Thin" GridPane.columnIndex="5" GridPane.rowIndex="12">
                      <font>
-                        <Font name="Dubai Regular" size="12.0" />
+                        <Font size="21.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="rdbThicknessMedium" mnemonicParsing="false" onAction="#onRdbThicknessMediumClicked" text="Medium" GridPane.columnIndex="5" GridPane.rowIndex="8">
+                  <RadioButton fx:id="rdbThicknessMedium" mnemonicParsing="false" onAction="#onRdbThicknessMediumClicked" text="Medium" GridPane.columnIndex="6" GridPane.rowIndex="12">
                      <font>
-                        <Font name="Dubai Regular" size="12.0" />
+                        <Font size="21.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="rdbLight" mnemonicParsing="false" onAction="#onRdbLightClicked" text="Light" GridPane.columnIndex="4" GridPane.rowIndex="11">
+                  <RadioButton fx:id="rdbLight" mnemonicParsing="false" onAction="#onRdbLightClicked" text="Light" GridPane.columnIndex="4" GridPane.rowIndex="14">
                      <font>
-                        <Font name="Dubai Regular" size="12.0" />
+                        <Font size="21.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="rdbDark" mnemonicParsing="false" onAction="#onRdbDarkClicked" text="Dark" GridPane.columnIndex="5" GridPane.rowIndex="11">
+                  <RadioButton fx:id="rdbDark" mnemonicParsing="false" onAction="#onRdbDarkClicked" text="Dark" GridPane.columnIndex="5" GridPane.rowIndex="14">
                      <font>
-                        <Font name="Dubai Regular" size="12.0" />
+                        <Font size="21.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="rdbSmall" mnemonicParsing="false" onAction="#onRdbSmallClicked" text="Small" GridPane.columnIndex="4" GridPane.rowIndex="12" />
-                  <RadioButton fx:id="rdbFontMedium" mnemonicParsing="false" onAction="#onRdbFontMediumClicked" text="Medium" GridPane.columnIndex="5" GridPane.rowIndex="12" />
-                  <RadioButton fx:id="rdbBig" mnemonicParsing="false" onAction="#onRdbBigClicked" text="Big" GridPane.columnIndex="6" GridPane.rowIndex="12" />
-                  <RadioButton fx:id="rdbCalibri" mnemonicParsing="false" onAction="#onRdbCalibriClicked" text="Calibri" GridPane.columnIndex="4" GridPane.rowIndex="13" />
-                  <RadioButton fx:id="rdbArial" mnemonicParsing="false" onAction="#onRdbArialClicked" text="Arial" GridPane.columnIndex="5" GridPane.rowIndex="13" />
-                  <RadioButton fx:id="rdbDubai" mnemonicParsing="false" onAction="#onRdbDubaiClicked" text="Dubai" GridPane.columnIndex="6" GridPane.rowIndex="13" />
+                  <RadioButton fx:id="rdbSmall" mnemonicParsing="false" onAction="#onRdbSmallClicked" text="Small" GridPane.columnIndex="4" GridPane.rowIndex="15">
+                     <font>
+                        <Font size="21.0" />
+                     </font></RadioButton>
+                  <RadioButton fx:id="rdbFontMedium" mnemonicParsing="false" onAction="#onRdbFontMediumClicked" text="Medium" GridPane.columnIndex="5" GridPane.rowIndex="15">
+                     <font>
+                        <Font size="21.0" />
+                     </font></RadioButton>
+                  <RadioButton fx:id="rdbBig" mnemonicParsing="false" onAction="#onRdbBigClicked" text="Big" GridPane.columnIndex="6" GridPane.rowIndex="15">
+                     <font>
+                        <Font size="21.0" />
+                     </font></RadioButton>
+                  <RadioButton fx:id="rdbCalibri" mnemonicParsing="false" onAction="#onRdbCalibriClicked" text="Calibri" GridPane.columnIndex="4" GridPane.rowIndex="16">
+                     <font>
+                        <Font size="21.0" />
+                     </font></RadioButton>
+                  <RadioButton fx:id="rdbArial" mnemonicParsing="false" onAction="#onRdbArialClicked" text="Arial" GridPane.columnIndex="5" GridPane.rowIndex="16">
+                     <font>
+                        <Font size="21.0" />
+                     </font></RadioButton>
+                  <RadioButton fx:id="rdbDubai" mnemonicParsing="false" onAction="#onRdbDubaiClicked" text="Dubai" GridPane.columnIndex="6" GridPane.rowIndex="16">
+                     <font>
+                        <Font size="21.0" />
+                     </font></RadioButton>
                </children>
                <opaqueInsets>
                   <Insets />
