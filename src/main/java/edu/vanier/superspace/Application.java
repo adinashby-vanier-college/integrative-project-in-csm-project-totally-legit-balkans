@@ -2,6 +2,7 @@ package edu.vanier.superspace;
 
 import edu.vanier.superspace.utils.RenderDimensions;
 import edu.vanier.superspace.utils.SceneManagement;
+import edu.vanier.superspace.utils.Partials;
 import edu.vanier.superspace.utils.Scenes;
 import javafx.stage.Stage;
 import lombok.Getter;

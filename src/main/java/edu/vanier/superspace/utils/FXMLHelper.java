@@ -7,8 +7,8 @@ import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class FXML {
-    private final static Logger LOGGER = LoggerFactory.getLogger(FXML.class);
+public class FXMLHelper {
+    private final static Logger LOGGER = LoggerFactory.getLogger(FXMLHelper.class);
 
     public static Parent loadFXML(String path) {
         return loadFXML(path, null);

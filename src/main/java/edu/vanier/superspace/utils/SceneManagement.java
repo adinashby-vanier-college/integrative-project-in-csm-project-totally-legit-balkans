@@ -1,15 +1,25 @@
 package edu.vanier.superspace.utils;
 
 import edu.vanier.superspace.Application;
-import edu.vanier.superspace.controllers.MainMenuFXMLController;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 
 public class SceneManagement {
-    public static void loadScene(Scenes sceneEnum) {
-        Parent parent = FXML.loadFXML(sceneEnum.getFilepath());
-        Scene scene = new Scene(parent, RenderDimensions.getApplicationTargetWidth(), RenderDimensions.getApplicationTargetHeight());
-        Application.getPrimaryStage().setScene(scene);
+    public static void loadScene(Scenes scene) {
+        SceneManagement.loadScene(scene, true);
+    }
+
+    public static void loadScene(Scenes scene, boolean reload) {
+        BorderPane root = new BorderPane();
+        scene.getInitializer().initialize(root, reload);
+
+        Scene loadedScene = new Scene(root, RenderDimensions.getApplicationTargetWidth(), RenderDimensions.getApplicationTargetHeight());
+        Application.getPrimaryStage().setScene(loadedScene);
         Application.getPrimaryStage().sizeToScene();
+    }
+
+    public static Parent loadPartial(Partials partial) {
+        return FXMLHelper.loadFXML(partial.getFilepath());
     }
 }
