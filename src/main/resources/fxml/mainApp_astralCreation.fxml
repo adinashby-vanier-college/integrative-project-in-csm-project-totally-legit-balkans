@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
@@ -12,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TitledPane prefHeight="285.0" prefWidth="313.0" rotate="270.0" stylesheets="@../css/AstralCreationStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane fx:controller="edu.vanier.superspace.controllers.AstralCreationFXMLController" prefHeight="285.0" prefWidth="313.0" rotate="270.0" stylesheets="@../css/AstralCreationStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <Pane prefHeight="192.0" prefWidth="209.0" styleClass="pane">
          <children>
@@ -21,7 +17,7 @@
                   <Font name="Dubai Regular" size="30.0" />
                </font>
             </Text>
-            <Button id="btnImage" fx:id="btnImageSelector" layoutX="171.0" layoutY="75.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" rotate="90.0" text="Select an image" textAlignment="CENTER" wrapText="true">
+            <Button id="btnImage" fx:id="btnImageSelector" layoutX="171.0" layoutY="75.0" mnemonicParsing="false" onDragDetected="#onMouseDraggedOverImageSelector" prefHeight="90.0" prefWidth="90.0" rotate="90.0" text="Select an image" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Dubai Regular" size="16.0" />
                </font>

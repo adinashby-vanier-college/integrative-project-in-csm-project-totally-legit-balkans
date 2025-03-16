@@ -50,74 +50,91 @@ public class SettingsFXMLController {
 
     public void initialize() {
         logger.info("Initializing SettingsFXMLController...");
+    }
 
-        btnBack.setOnAction(event -> {
-            logger.info("Back to the simulation...");
-        });
+    @FXML
+    private void onBackButtonClicked() {
+        logger.info("Back to the simulation...");
+    }
 
-        btnMenuImagePath.setOnAction(event -> {
-            logger.info("Setting image path for menu...");
-        });
+    @FXML
+    private void onMenuImagePathClicked() {
+        logger.info("Setting image path for menu...");
+    }
 
-        btnSimImagePath.setOnAction(event -> {
-            logger.info("Setting image path for simulation...");
-        });
+    @FXML
+    private void onSimImagePathClicked() {
+        logger.info("Setting image path for simulation...");
+    }
 
-        rdbDashed.setOnAction(event -> {
-            astralPathStyle(true, false, false);
-        });
+    @FXML
+    private void onRdbDashedClicked() {
+        astralPathStyle(true, false, false);
+    }
 
-        rdbDotted.setOnAction(event -> {
-            astralPathStyle(false, true, false);
-        });
+    @FXML
+    private void onRdbDottedClicked() {
+        astralPathStyle(false, true, false);
+    }
 
-        rdbFull.setOnAction(event -> {
-            astralPathStyle(false, false, true);
-        });
+    @FXML
+    private void onRdbFullClicked() {
+        astralPathStyle(false, false, true);
+    }
 
-        rdbThin.setOnAction(event -> {
-            astralPathsThickness(true, false, false);
-        });
+    @FXML
+    private void onRdbThinClicked() {
+        astralPathsThickness(true, false, false);
+    }
 
-        rdbThicknessMedium.setOnAction(event -> {
-            astralPathsThickness(false, true, false);
-        });
+    @FXML
+    private void onRdbThicknessMediumClicked() {
+        astralPathsThickness(false, true, false);
+    }
 
-        rdbThick.setOnAction(event -> {
-            astralPathsThickness(false, false, true);
-        });
+    @FXML
+    private void onRdbThick() {
+        astralPathsThickness(false, false, true);
+    }
 
-        rdbLight.setOnAction(event -> {
-            theme(true, false);
-        });
+    @FXML
+    private void onRdbLightClicked() {
+        theme(true, false);
+    }
 
-        rdbDark.setOnAction(event -> {
-            theme(false, true);
-        });
+    @FXML
+    private void onRdbDarkClicked() {
+        theme(false, true);
+    }
 
-        rdbSmall.setOnAction(event -> {
-            fontSize(true, false, false);
-        });
+    @FXML
+    private void onRdbSmallClicked() {
+        fontSize(true, false, false);
+    }
 
-        rdbFontMedium.setOnAction(event -> {
-            fontSize(false, true, false);
-        });
+    @FXML
+    private void onRdbFontMediumClicked() {
+        fontSize(false, true, false);
+    }
 
-        rdbBig.setOnAction(event -> {
-            fontSize(false, false, true);
-        });
+    @FXML
+    private void onRdbBigClicked() {
+        fontSize(false, false, true);
+    }
 
-        rdbCalibri.setOnAction(event -> {
-            font(true, false, false);
-        });
+    @FXML
+    private void onRdbCalibriClicked() {
+        font(true, false, false);
+    }
 
-        rdbArial.setOnAction(event -> {
-            font(false, true, false);
-        });
+    @FXML
+    private void onRdbArialClicked() {
+        font(false, true, false);
+    }
 
-        rdbDubai.setOnAction(event -> {
-            font(false, false, true);
-        });
+    @FXML
+    private void onRdbDubaiClicked() {
+        font(false, false, true);
     }
 
     private void astralPathStyle(boolean dashed, boolean dotted, boolean full) {

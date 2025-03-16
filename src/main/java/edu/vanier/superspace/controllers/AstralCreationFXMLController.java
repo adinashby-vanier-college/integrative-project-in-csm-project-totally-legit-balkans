@@ -32,16 +32,17 @@ public class AstralCreationFXMLController {
     public void initialize() {
         logger.info("Initializing AstralCreationFXMLController...");
 
-        btnImageSelector.setOnMouseDragged(event -> {
-            addAstralBody();
-        });
-
         cmbType.getItems().addAll(
                 "Gaseous",
                 "Ice",
                 "Ocean",
                 "Terrestrial"
         );
+    }
+
+    @FXML
+    private void onMouseDraggedOverImageSelector() {
+        addAstralBody();
     }
 
     public void addAstralBody() {

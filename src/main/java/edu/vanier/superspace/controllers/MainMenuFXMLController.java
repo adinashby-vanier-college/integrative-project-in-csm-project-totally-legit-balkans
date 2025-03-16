@@ -21,19 +21,21 @@ public class MainMenuFXMLController {
 
     public void initialize() {
         logger.info("Initializing MainMenuFXMLController...");
+    }
 
-        btnQuit.setOnAction(event -> {
-            //TODO: Add some animation to the button on hover
-            Stage currentStage = (Stage) btnQuit.getScene().getWindow();
+    @FXML
+    private void onQuitButtonClicked() {
+        //TODO: Add some animation to the button on hover
+        Stage currentStage = (Stage) btnQuit.getScene().getWindow();
 
-            logger.info("Closing the application...");
-            currentStage.close();
-        });
+        logger.info("Closing the application...");
+        currentStage.close();
+    }
 
-        btnAdd.setOnAction(event -> {
-            //TODO: Implement the creation of a file for a simulation
-            //TODO: Buttons for each simulation that the user has
-            logger.info("Adding a simulation...");
-        });
+    @FXML
+    private void onAddButtonClicked() {
+        //TODO: Implement the creation of a file for a simulation
+        //TODO: Buttons for each simulation that the user has
+        logger.info("Adding a simulation...");
     }
 }
