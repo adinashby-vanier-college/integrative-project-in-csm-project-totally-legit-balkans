@@ -18,7 +18,7 @@ public class MenuBarFXMLController {
 
     @FXML
     private void onEdit(ActionEvent event) {
-        // Load main menu scene
+        SceneManagement.loadScene(Scenes.MAIN_MENU);
     }
 
     @FXML
