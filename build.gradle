@@ -51,6 +51,8 @@ dependencies {
 
     testCompileOnly 'org.projectlombok:lombok:1.18.36'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+    implementation 'com.google.code.gson:gson:2.11.0'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
