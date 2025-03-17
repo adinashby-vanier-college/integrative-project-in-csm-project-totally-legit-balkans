@@ -1,12 +1,15 @@
 package edu.vanier.superspace.controllers;
 
+import edu.vanier.superspace.Application;
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.Scenes;
 import edu.vanier.superspace.utils.SimulationSettings;
+import java.io.File;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.stage.FileChooser;
+import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,17 +65,16 @@ public class SettingsFXMLController {
         SceneManagement.loadScene(Scenes.SIMULATION, false);
     }
 
-    @FXML
+    @FXML @SneakyThrows
     private void onMenuImagePathClicked() {
         logger.info("Setting image path for menu...");
-        FileChooser chooser = new FileChooser();
-        
-        
+        File chosenFile = this.chooseFile();
     }
 
-    @FXML
+    @FXML @SneakyThrows
     private void onSimImagePathClicked() {
         logger.info("Setting image path for simulation...");
+        File chosenFile = this.chooseFile();
     }
 
     @FXML
@@ -172,5 +174,20 @@ public class SettingsFXMLController {
         rdbCalibri.setSelected(calibri);
         rdbArial.setSelected(arial);
         rdbDubai.setSelected(dubai);
+    }
+    
+    @SneakyThrows
+    public File chooseFile(){
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choose a New Image");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg"));
+            return fileChooser.showOpenDialog(Application.getPrimaryStage());
+        } catch (Exception e) {
+            logger.info("No image chosen...");
+        }
+        
+        return null;
     }
 }
