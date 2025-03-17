@@ -35,9 +35,6 @@ public class SimulationTimer extends AnimationTimer {
                 continue;
             }
 
-            componentsToRender.forEach((r) -> {
-                if (r.)
-            });
         }
     }
 }
