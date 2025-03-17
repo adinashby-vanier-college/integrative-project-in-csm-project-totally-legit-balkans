@@ -18,7 +18,7 @@ public enum Scenes {
             new Simulation();
         }
         AnchorPane p = new AnchorPane();
-        p.setStyle("-fx-background-color:white;");
+        p.setStyle("-fx-background-color:transparent;");
         pane.setCenter(p);
         pane.setTop(SceneManagement.loadPartial(Partials.MENU_BAR));
         pane.setBottom(SceneManagement.loadPartial(Partials.CONTROL_BAR));

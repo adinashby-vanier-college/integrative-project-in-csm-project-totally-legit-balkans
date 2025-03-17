@@ -6,8 +6,36 @@
     -fx-background-color: #BEBEbE;
     -fx-text-fill: #ffffff;
     -fx-border-width: 1em;
+    -fx-border-color: #000000;
+    -fx-border-width: 0.05em;
+}
+
+.button-path:hover{
+    -fx-background-color:#cfcccc;
+}
+
+.radio-button .radio{
+    -fx-background-color:#BEBEBE;
+}
+
+.radio-button .radio .dot{
+    -fx-background-color:#BEBEBE;
+    -fx-background-insets: 0;
+}
+
+.radio-button .radio:hover{
+    -fx-background-color:#cfcccc;
+}
+
+.radio-button:selected .radio .dot{
+    -fx-background-color:#000000;
+    -fx-background-insets: 0;
 }
 
 .button-back{
     -fx-background-color: transparent;
+}
+
+.button-back:hover{
+    -fx-text-fill: #ffffff;
 }
