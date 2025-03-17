@@ -22,8 +22,10 @@ public class ComponentSerializer implements JsonSerializer<Component>{
     public JsonElement serialize(Component t, Type type, JsonSerializationContext jsc) {
         JsonObject serialized = new JsonObject();
         serialized.add("Version", jsc.serialize(0));
+        serialized.add("Class Name", jsc.serialize(t.getClass()));
+        serialized.add("Class", jsc.serialize(t));
         
-        return null;
+        return serialized;
     }
     
 }
