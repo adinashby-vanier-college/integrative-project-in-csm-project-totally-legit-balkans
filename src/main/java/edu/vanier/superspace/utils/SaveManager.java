@@ -30,9 +30,10 @@ public class SaveManager {
         saveFileChooser.setTitle("Save Simulation Project");
         File saveLocation = saveFileChooser.showSaveDialog(Application.getPrimaryStage().getOwner());
         saveFileChooser.setInitialDirectory(saveLocation.getParentFile());
+        saveAs(saveFileChooser.showOpenDialog(Application.getPrimaryStage()));
     }
 
-    private static void saveAs(String filepath) {
+    private static void saveAs(File saveFile) {
 
     }
 
