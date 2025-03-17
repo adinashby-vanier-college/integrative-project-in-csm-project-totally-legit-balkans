@@ -28,16 +28,31 @@ public class SimulationTimer extends AnimationTimer {
         lastUpdateTime = now;
 
         double deltaTime = (double)elapsedNanoseconds / 1e9;
-        componentsToTick.forEach((t) -> t.onUpdate(deltaTime));
 
+        tick(deltaTime);
+        draw();
+    }
+
+    private void tick(double deltaTime) {
+        componentsToTick.forEach((t) -> t.onUpdate(deltaTime));
+    }
+
+    private void draw() {
         for (int i = 0; i < linkedSimulation.getCanvases().size(); i++) {
             if (!linkedSimulation.getActiveRenderLayers().contains(RenderLayers.values()[i])) {
                 continue;
             }
 
+            // Peak java moment, for some reason the 'i' above isn't immutable enough.
+            int finalI = i;
             componentsToRender.forEach((r) -> {
-                if (r.)
+                if (!linkedSimulation.getActiveRenderLayers().contains(r.getLayer())) {
+                    return;
+                }
+
+                r.onDraw(linkedSimulation.getCanvases().get(finalI).getGraphicsContext2D());
             });
         }
     }
+
 }
