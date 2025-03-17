@@ -16,11 +16,13 @@ public class Simulation {
 
     private final ArrayList<Entity> entities = new ArrayList<>();
     private String name;
-    private final ArrayList<Renderer> renderers = new ArrayList<>();
+
+    @Getter
     private final ArrayList<Canvas> canvases = new ArrayList<>();
+    @Getter
     private final EnumSet<RenderLayers> activeRenderLayers = EnumSet.of(RenderLayers.LAYER1);
 
-    private final SimulationTime clock = new SimulationTime();
+    private final SimulationTimer clock = new SimulationTimer();
 
     public Simulation() {
         if (Simulation.instance != null) {
@@ -28,6 +30,8 @@ public class Simulation {
         }
 
         Simulation.instance = this;
+
+        clock.setLinkedSimulation(this);
     }
 
     public void Run() {
