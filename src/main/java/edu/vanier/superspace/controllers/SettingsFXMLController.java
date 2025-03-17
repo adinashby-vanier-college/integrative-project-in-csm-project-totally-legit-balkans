@@ -2,9 +2,11 @@ package edu.vanier.superspace.controllers;
 
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.Scenes;
+import edu.vanier.superspace.utils.SimulationSettings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.stage.FileChooser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,7 +51,7 @@ public class SettingsFXMLController {
     private RadioButton rdbArial;
     @FXML
     private RadioButton rdbDubai;
-
+    
     public void initialize() {
         logger.info("Initializing SettingsFXMLController...");
     }
@@ -63,6 +65,9 @@ public class SettingsFXMLController {
     @FXML
     private void onMenuImagePathClicked() {
         logger.info("Setting image path for menu...");
+        FileChooser chooser = new FileChooser();
+        
+        
     }
 
     @FXML

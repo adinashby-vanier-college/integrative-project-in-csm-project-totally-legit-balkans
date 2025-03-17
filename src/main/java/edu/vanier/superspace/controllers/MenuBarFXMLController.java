@@ -1,7 +1,5 @@
 package edu.vanier.superspace.controllers;
 
-import com.sun.javafx.scene.SceneHelper;
-import edu.vanier.superspace.utils.FXMLHelper;
 import edu.vanier.superspace.utils.SaveManager;
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.Scenes;
