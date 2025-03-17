@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<TitledPane prefHeight="324.0" prefWidth="300.0" stylesheets="@../css/AstralCreationStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.AstralCreationFXMLController">
+   <content>
+      <Pane prefHeight="231.0" prefWidth="312.0" styleClass="pane">
+         <children>
+            <Text layoutX="17.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Astral Creation" textAlignment="CENTER" wrappingWidth="263.73675537109375">
+               <font>
+                  <Font name="Dubai Regular" size="40.0" />
+               </font>
+            </Text>
+            <Button id="btnImage" fx:id="btnImageSelector" layoutX="104.0" layoutY="46.0" mnemonicParsing="false" onDragDetected="#onMouseDraggedOverImageSelector" prefHeight="90.0" prefWidth="90.0" text="Select an image" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Dubai Regular" size="16.0" />
+               </font>
+            </Button>
+            <Text layoutX="45.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mass (kg):" textAlignment="RIGHT" wrappingWidth="86.13683319091797">
+               <font>
+                  <Font name="Dubai Regular" size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="43.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed (m/s):" textAlignment="RIGHT" wrappingWidth="89.33677673339844">
+               <font>
+                  <Font name="Dubai Regular" size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="51.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" textAlignment="RIGHT" wrappingWidth="82.13682556152344">
+               <font>
+                  <Font name="Dubai Regular" size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="51.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type:" textAlignment="RIGHT" wrappingWidth="82.13682556152344">
+               <font>
+                  <Font name="Dubai Regular" size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtFieldMass" alignment="CENTER" layoutX="145.0" layoutY="149.0" prefHeight="16.0" prefWidth="130.0" promptText="Enter values" styleClass="text-field">
+               <font>
+                  <Font name="Dubai Regular" size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtFieldSpeed" alignment="CENTER" layoutX="145.0" layoutY="180.0" prefHeight="16.0" prefWidth="130.0" promptText="Enter values" styleClass="text-field">
+               <font>
+                  <Font name="Dubai Regular" size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtFieldDescription" alignment="CENTER" layoutX="145.0" layoutY="212.0" prefHeight="16.0" prefWidth="130.0" promptText="Enter values">
+               <font>
+                  <Font name="Dubai Regular" size="10.0" />
+               </font>
+            </TextField>
+            <ComboBox fx:id="cmbType" layoutX="145.0" layoutY="243.0" prefWidth="130.0" promptText="Choose type" styleClass="combo-box" />
+         </children>
+      </Pane>
+   </content>
+</TitledPane>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<TitledPane stylesheets="@../css/ControlBarStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.ControlBarFXMLController">
+   <content>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="anchor-pane">
+         <children>
+            <Button fx:id="pauseButton" layoutX="36.0" layoutY="56.0" mnemonicParsing="false" onAction="#onPause" prefHeight="38.0" prefWidth="31.0" styleClass="control-button">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/Pause.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label fx:id="planetName" layoutX="572.0" layoutY="-4.0" prefHeight="54.0" prefWidth="159.0" text="Planet">
+               <font>
+                  <Font name="Dubai Regular" size="30.0" />
+               </font>
+            </Label>
+            <Text layoutX="20.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Control Bar">
+               <font>
+                  <Font name="Dubai Regular" size="40.0" />
+               </font>
+            </Text>
+            <Text layoutX="408.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mass (kg) =" textAlignment="RIGHT" wrappingWidth="150.466064453125">
+               <font>
+                  <Font name="Dubai Regular" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="418.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed (m/s) =" textAlignment="RIGHT" wrappingWidth="141.66607666015625">
+               <font>
+                  <Font name="Dubai Regular" size="18.0" />
+               </font>
+            </Text>
+            <Label fx:id="massIndicator" layoutX="572.0" layoutY="45.0" prefHeight="18.0" prefWidth="72.0" text="Mass">
+               <font>
+                  <Font name="Dubai Regular" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="speedIndicator" layoutX="572.0" layoutY="69.0" prefHeight="10.0" prefWidth="72.0" text="Speed">
+               <font>
+                  <Font name="Dubai Regular" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="zoomButton" layoutX="363.0" layoutY="117.0" mnemonicParsing="false" onAction="#onZoom" prefHeight="75.0" prefWidth="283.0" styleClass="zoom-button" text="Zoom In">
+               <font>
+                  <Font name="Dubai Regular" size="30.0" />
+               </font>
+            </Button>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="TRANSPARENT" height="178.0" layoutX="721.0" layoutY="14.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" width="458.0" />
+            <Text layoutX="728.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="270.93670654296875">
+               <font>
+                  <Font name="Dubai Regular" size="30.0" />
+               </font>
+            </Text>
+            <Button fx:id="playButton" layoutX="78.0" layoutY="56.0" mnemonicParsing="false" onAction="#onPlay" styleClass="control-button">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/Play.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="fastForwardButton" layoutX="114.0" layoutY="58.0" mnemonicParsing="false" onAction="#onFastForward" styleClass="control-button">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/FF.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Text layoutX="364.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected Planet:" wrappingWidth="204.97994995117188">
+               <font>
+                  <Font name="Dubai Regular" size="30.0" />
+               </font>
+            </Text>
+            <Text fx:id="description" layoutX="731.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Terrus is a planet mostly cover bywater. The planet’s atmosphere ismade of nitrogen. Terrus has organiclife present on it.  " wrappingWidth="438.9366455078125">
+               <font>
+                  <Font name="Dubai Regular" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </content>
+</TitledPane>
