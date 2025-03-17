@@ -1,0 +1,64 @@
+.root{
+    
+}
+
+.titled-pane{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.titled-pane .title{
+    -fx-background-color:#BEBEBE;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.titled-pane .title:hover{
+    -fx-background-color:#cfcccc;
+}
+
+.text-field{
+    -fx-background-color: #D9D9D9;
+    -fx-border-color: #000000;
+}
+
+.text-field:hover{
+    -fx-background-color: #cfcccc;
+}
+
+.combo-box{
+    -fx-background-color: #D9D9D9;
+    -fx-border-color: #000000;
+}
+
+.combo-box:hover{
+    -fx-background-color: #cfcccc;
+}
+
+.combo-box .list-view .list-cell{
+    -fx-background-color: #D9D9D9;
+}
+
+.combo-box .list-view .list-cell:focused{
+    -fx-background-color: #737373;
+}
+
+.combo-box .list-view .list-cell:hover{
+    -fx-background-color: #cfcccc;
+    -fx-text-fill: #000000;
+}
+
+.pane{
+    -fx-background-color: #BEBEBE;
+}
+
+.button{
+    -fx-border-radius: 6em;
+    -fx-background-radius: 6em;
+    -fx-background-color: #D9D9D9;
+    -fx-border-color: #000000;
+}
+
+.button:hover{
+    -fx-background-color: #cfcccc;
+}
