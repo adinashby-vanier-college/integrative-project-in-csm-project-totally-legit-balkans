@@ -2,13 +2,11 @@ package edu.vanier.superspace.simulation;
 
 import edu.vanier.superspace.dto.RenderLayers;
 import edu.vanier.superspace.mathematics.Vector2;
-import edu.vanier.superspace.simulation.components.Renderer;
 import javafx.scene.canvas.Canvas;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.Vector;
 
 public class Simulation {
     @Getter

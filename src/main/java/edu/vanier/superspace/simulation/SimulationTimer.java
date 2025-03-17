@@ -3,8 +3,6 @@ package edu.vanier.superspace.simulation;
 import edu.vanier.superspace.dto.RenderLayers;
 import edu.vanier.superspace.simulation.components.Renderer;
 import javafx.animation.AnimationTimer;
-import javafx.scene.canvas.Canvas;
-import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -12,6 +10,10 @@ import java.util.ArrayList;
 public class SimulationTimer extends AnimationTimer {
     private final ArrayList<Tickable> componentsToTick = new ArrayList<>();
     private final ArrayList<Renderer> componentsToRender = new ArrayList<>();
+
+    @Setter
+    private boolean running = false;
+    private boolean stepOnce = false;
 
     @Setter
     private Simulation linkedSimulation;
@@ -27,7 +29,17 @@ public class SimulationTimer extends AnimationTimer {
         long elapsedNanoseconds = lastUpdateTime - now;
         lastUpdateTime = now;
 
-        double deltaTime = (double)elapsedNanoseconds / 1e9;
+        if (!(running || stepOnce)) {
+            return;
+        }
+
+        double deltaTime;
+        if (stepOnce) {
+            deltaTime = 0.1;
+            stepOnce = false;
+        } else {
+            deltaTime = (double)elapsedNanoseconds / 1e9;
+        }
 
         tick(deltaTime);
         draw();
