@@ -1,6 +1,7 @@
 package edu.vanier.superspace.utils;
 
 import edu.vanier.superspace.Application;
+import edu.vanier.superspace.Main;
 import java.io.File;
 import javafx.stage.FileChooser;
 import lombok.Getter;
@@ -15,8 +16,9 @@ public class SaveManager {
     private static FileChooser saveFileChooser;
     
     public static void initializeFileDirctory() {
+        
         saveFileChooser = new FileChooser();
-        saveFileChooser.setInitialDirectory(new File(System.getProperty("user.dir") + "/Space Simulation Files/"));
+        saveFileChooser.setInitialDirectory(new File(System.getProperty("user.dir") + "/src/main/resources/Simulation Saves/"));
         saveFileChooser.setInitialFileName("project" + FileHelper.SIMULATION_FILE_EXTENSION);
         saveFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Simulation File", "*" + FileHelper.SIMULATION_FILE_EXTENSION));
         saveFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*")); 
