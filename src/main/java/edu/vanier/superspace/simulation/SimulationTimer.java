@@ -34,6 +34,7 @@ public class SimulationTimer extends AnimationTimer {
             if (!linkedSimulation.getActiveRenderLayers().contains(RenderLayers.values()[i])) {
                 continue;
             }
+
         }
     }
 }

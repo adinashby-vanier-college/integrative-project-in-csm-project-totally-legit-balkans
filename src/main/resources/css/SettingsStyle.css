@@ -8,6 +8,8 @@
     -fx-border-width: 1em;
     -fx-border-color: #000000;
     -fx-border-width: 0.05em;
+    -fx-background-radius: 0.25em;
+    -fx-border-radius: 0.25em;
 }
 
 .button-path:hover{
