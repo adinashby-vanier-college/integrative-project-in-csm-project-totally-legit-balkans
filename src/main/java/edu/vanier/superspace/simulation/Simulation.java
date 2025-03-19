@@ -13,6 +13,7 @@ import java.util.Vector;
 public class Simulation {
     @Getter
     private static Simulation instance = null;
+    public static String version = "0";
 
     private final ArrayList<Entity> entities = new ArrayList<>();
     private String name;
