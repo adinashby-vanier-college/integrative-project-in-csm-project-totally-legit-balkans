@@ -1,5 +1,6 @@
 package edu.vanier.superspace.utils;
 
+import edu.vanier.superspace.utils.serializers.SerializationExclusionStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.vanier.superspace.simulation.Entity;
@@ -33,7 +34,7 @@ public class JsonHelper {
         
     }
 
-    public static String serialize(Object oject) {
-        return gsonSerializer.toJson(oject);
+    public static String serialize(Object object) {
+        return gsonSerializer.toJson(object);
     }
 }
