@@ -10,6 +10,7 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import edu.vanier.superspace.simulation.Simulation;
 import java.lang.reflect.Type;
+import lombok.SneakyThrows;
 
 /**
  *
@@ -17,11 +18,18 @@ import java.lang.reflect.Type;
  */
 public class SimulationSerializer implements JsonSerializer<Simulation>{
 
-    @Override
+    @Override @SneakyThrows
     public JsonElement serialize(Simulation t, Type type, JsonSerializationContext jsc) {
         
         JsonObject serialized = new JsonObject();
-        serialized.add("version", jsc.serialize(t.version));
+        serialized.add("version", jsc.serialize("0"));
+        
+        for(var field : t.getClass().getDeclaredFields()){
+            
+            field.setAccessible(true);
+            serialized.add(field.getName(), jsc.serialize(field.get(t)));
+            
+        }
         
         return serialized;
         

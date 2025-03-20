@@ -9,7 +9,7 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import edu.vanier.superspace.simulation.components.Component;
+import edu.vanier.superspace.simulation.Entity;
 import java.lang.reflect.Type;
 import lombok.SneakyThrows;
 
@@ -17,17 +17,17 @@ import lombok.SneakyThrows;
  *
  * @author crist
  */
-public class ComponentDeserializer implements JsonDeserializer<Component>{
+public class EntityDeserializer implements JsonDeserializer<Entity>{
 
     @Override @SneakyThrows
-    public Component deserialize(JsonElement json, Type type, JsonDeserializationContext jdc) throws JsonParseException {
+    public Entity deserialize(JsonElement json, Type type, JsonDeserializationContext jdc) throws JsonParseException {
         
         JsonObject deserialized = json.getAsJsonObject();
         
         String fullyQualifiedName = deserialized.get("className").getAsString();
         
         Class<?> objectClass = Class.forName(fullyQualifiedName);
-        Component object = (Component)objectClass.getConstructor().newInstance();
+        Entity object = (Entity)objectClass.getConstructor().newInstance();
         
         for(var field : objectClass.getDeclaredFields()){
             
@@ -38,7 +38,31 @@ public class ComponentDeserializer implements JsonDeserializer<Component>{
         }
         
         
+            
+        
+
+        for(int i = 0; i < object.getComponents().size();i++){
+
+            for(var field : objectClass.getDeclaredFields()){
+
+                if(field.getClass().equals(object.getComponents().get(i).getClass())){
+
+                    field.setAccessible(true);
+                    field.set(object,object.getComponents().get(i));
+
+                }
+            }
+
+        }
+
+        
+            
+        
+        
+        
         return object;
+        
+        
         
     }
     
