@@ -5,6 +5,7 @@ import edu.vanier.superspace.Main;
 import java.io.File;
 import javafx.stage.FileChooser;
 import lombok.Getter;
+import lombok.SneakyThrows;
 
 public class SaveManager {
     @Getter
@@ -14,11 +15,11 @@ public class SaveManager {
     private static String lastSaveFilepath;
     
     private static FileChooser saveFileChooser;
-    
+    @SneakyThrows
     public static void initializeFileDirctory() {
-        
+        File saveFile = new File(System.getProperty("user.dir") + "/src/main/resources/Simulation Saves/");
         saveFileChooser = new FileChooser();
-        saveFileChooser.setInitialDirectory(new File(System.getProperty("user.dir") + "/src/main/resources/Simulation Saves/"));
+        saveFileChooser.setInitialDirectory(saveFile);
         saveFileChooser.setInitialFileName("project" + FileHelper.SIMULATION_FILE_EXTENSION);
         saveFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Simulation File", "*" + FileHelper.SIMULATION_FILE_EXTENSION));
         saveFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*")); 

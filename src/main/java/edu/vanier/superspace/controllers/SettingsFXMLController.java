@@ -8,6 +8,7 @@ import java.io.File;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
@@ -69,12 +70,14 @@ public class SettingsFXMLController {
     private void onMenuImagePathClicked() {
         logger.info("Setting image path for menu...");
         File chosenFile = this.chooseFile();
+        SimulationSettings.getInstance().setMenuBackground(new Image("file:///" + chosenFile.getAbsolutePath()));
     }
 
     @FXML @SneakyThrows
     private void onSimImagePathClicked() {
         logger.info("Setting image path for simulation...");
         File chosenFile = this.chooseFile();
+        
     }
 
     @FXML

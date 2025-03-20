@@ -6,6 +6,7 @@ package edu.vanier.superspace.utils;
 
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
+import javax.swing.text.StyledEditorKit;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,9 +24,11 @@ public class SimulationSettings {
     @Getter @Setter
     private Font globalFont;
     @Getter @Setter
-    private Image menuBackground;
+    private Image menuBackground = new Image("Images/MainMenuBackground.png");
     @Getter @Setter
     private Image simulationBackground;
+    @Getter @Setter
+    private boolean lightTheme;
     
     
     public static void initialize() {
