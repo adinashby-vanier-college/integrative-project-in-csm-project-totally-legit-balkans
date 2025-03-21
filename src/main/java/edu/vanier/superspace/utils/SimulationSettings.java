@@ -4,11 +4,13 @@
  */
 package edu.vanier.superspace.utils;
 
+import java.io.File;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javax.swing.text.StyledEditorKit;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.SneakyThrows;
 
 /**
  *
@@ -20,7 +22,6 @@ public class SimulationSettings {
     
     @Getter
     private static SimulationSettings instance;
-    
     @Getter @Setter
     private Font globalFont;
     @Getter @Setter
@@ -34,4 +35,29 @@ public class SimulationSettings {
     public static void initialize() {
         SimulationSettings.instance = new SimulationSettings();
     }
+    
+    @SneakyThrows
+    public static void saveToFile(){
+        String json = JsonHelper.toJson(instance);
+        File writeFile = new File(SIMULATION_SETTINGS_FILEPATH);
+        writeFile.getParentFile().mkdirs();
+        System.out.println(writeFile.getAbsolutePath());
+        if (!writeFile.exists()) {
+            writeFile.createNewFile();
+        }
+        FileHelper.writeFileCompletely(writeFile.getAbsolutePath(), json);
+    }
+    
+    @SneakyThrows
+    public static void loadFromFile(){
+        File saveFile = new File(SIMULATION_SETTINGS_FILEPATH);
+        if(!saveFile.exists()) {
+            instance = new SimulationSettings();
+            System.out.println("making new file");
+            return;
+        }
+//        instance = JsonHelper.fromJson(FileHelper.readFileCompletely(SIMULATION_SETTINGS_FILEPATH), SimulationSettings.class);
+    }
+    
+    
 }

@@ -10,7 +10,7 @@ public class FileHelper {
     
     public static final String SIMULATION_FILE_EXTENSION = ".sim";
     
-    public static String readFileCompletelySync(String filepath) {
+    public static String readFileCompletely(String filepath) {
         try {
             File newFile = new File(filepath);
 
@@ -31,7 +31,7 @@ public class FileHelper {
         return null;
     }
 
-    public static void writeFileCompletelySync(String filepath, String data) {
+    public static void writeFileCompletely(String filepath, String data) {
         try {
             FileWriter writer = new FileWriter(filepath);
             writer.write(data);

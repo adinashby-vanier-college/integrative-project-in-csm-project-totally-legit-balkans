@@ -14,6 +14,10 @@ import edu.vanier.superspace.utils.serializers.EntitySerializer;
 import edu.vanier.superspace.utils.serializers.SimulationSerializer;
 
 public class JsonHelper {
+    private static final Gson defaultGson = new GsonBuilder()
+            .setPrettyPrinting()
+            .serializeNulls()
+            .create();
     
     private static final Gson gsonSerializer = new GsonBuilder()
             .addSerializationExclusionStrategy(new SerializationExclusionStrategy())
@@ -36,5 +40,9 @@ public class JsonHelper {
 
     public static String serialize(Object object) {
         return gsonSerializer.toJson(object);
+    }
+    
+    public static String toJson(Object object) {
+        return defaultGson.toJson(object);
     }
 }
