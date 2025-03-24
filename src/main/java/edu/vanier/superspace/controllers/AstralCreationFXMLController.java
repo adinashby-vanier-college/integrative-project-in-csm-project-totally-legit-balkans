@@ -1,9 +1,7 @@
 package edu.vanier.superspace.controllers;
 
-import com.google.errorprone.annotations.FormatMethod;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.Entity;
-import edu.vanier.superspace.simulation.Simulation;
 import edu.vanier.superspace.simulation.components.DebugCircleRenderer;
 import edu.vanier.superspace.simulation.components.RigidBody;
 import edu.vanier.superspace.simulation.components.Transform;
@@ -11,27 +9,18 @@ import edu.vanier.superspace.utils.BorderPaneAutomaticResizing;
 import edu.vanier.superspace.utils.InputValidator;
 import javafx.event.ActionEvent;
 import edu.vanier.superspace.Application;
-import edu.vanier.superspace.utils.FileHelper;
 import java.io.File;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.stage.FileChooser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.swing.border.Border;
 
 /**
  * FXML Controller class for the astral creation scene.
@@ -43,13 +32,21 @@ public class AstralCreationFXMLController {
     @FXML
     private Button btnImageSelector;
     @FXML
-    private TextField txtFieldMass;
+    private TextField txtFieldPath;
     @FXML
-    private TextField txtFieldSpeed;
+    private TextField txtFieldName;
     @FXML
-    private TextField txtFieldDescription;
+    private TextArea txtAreaDescription;
     @FXML
     private ComboBox<String> cmbType;
+    @FXML
+    private TextField txtFieldRadius;
+    @FXML
+    private TextField txtFieldMass;
+    @FXML
+    private TextField txtFieldVelocity;
+    @FXML
+    private ComboBox<String> cmbDirection;
 
     public void initialize() {
         logger.info("Initializing AstralCreationFXMLController...");
@@ -59,6 +56,11 @@ public class AstralCreationFXMLController {
                 "Ice",
                 "Ocean",
                 "Terrestrial"
+        );
+
+        cmbDirection.getItems().addAll(
+                "Clockwise",
+                "Counter-clockwise"
         );
     }
 
@@ -82,7 +84,29 @@ public class AstralCreationFXMLController {
         btnImageSelector.setGraphic(i);
         
     }
-  
+
+    public void enableControls() {
+        txtFieldPath.setDisable(false);
+        txtFieldName.setDisable(false);
+        txtAreaDescription.setDisable(false);
+        cmbType.setDisable(false);
+        txtFieldRadius.setDisable(false);
+        txtFieldMass.setDisable(false);
+        txtFieldVelocity.setDisable(false);
+        cmbDirection.setDisable(false);
+    }
+
+    public void disableControls() {
+        txtFieldPath.setDisable(true);
+        txtFieldName.setDisable(true);
+        txtAreaDescription.setDisable(true);
+        cmbType.setDisable(true);
+        txtFieldRadius.setDisable(true);
+        txtFieldMass.setDisable(true);
+        txtFieldVelocity.setDisable(true);
+        cmbDirection.setDisable(true);
+    }
+
     public void addAstralBody() {
         //TODO: Check for the possible exceptions for each possible user input
         //TODO: Implement the dragging to the simulation of the astral body

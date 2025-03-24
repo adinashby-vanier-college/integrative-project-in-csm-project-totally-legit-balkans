@@ -46,18 +46,18 @@
                   <Font name="Dubai Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="txtFieldMass" alignment="CENTER" layoutX="111.0" layoutY="149.0" onAction="#onSubmitDouble" prefHeight="29.0" prefWidth="181.0" promptText="Enter values" styleClass="text-field">
+            <TextField fx:id="txtFieldPath" alignment="CENTER" disable="true" layoutX="111.0" layoutY="149.0" onAction="#onSubmitDouble" prefHeight="29.0" prefWidth="181.0" promptText="Enter values" styleClass="text-field">
                <font>
                   <Font name="Dubai Regular" size="10.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtFieldSpeed" alignment="CENTER" layoutX="111.0" layoutY="180.0" onAction="#onSubmitDouble" prefHeight="29.0" prefWidth="181.0" promptText="Enter values" styleClass="text-field">
+            <TextField fx:id="txtFieldName" alignment="CENTER" disable="true" layoutX="111.0" layoutY="180.0" onAction="#onSubmitDouble" prefHeight="29.0" prefWidth="181.0" promptText="Enter values" styleClass="text-field">
                <font>
                   <Font name="Dubai Regular" size="10.0" />
                </font>
             </TextField>
-            <ComboBox fx:id="cmbType" layoutX="111.0" layoutY="270.0" prefHeight="27.0" prefWidth="181.0" promptText="Choose type" styleClass="combo-box" />
-            <TextArea layoutX="111.0" layoutY="213.0" prefHeight="54.0" prefWidth="181.0" promptText="Enter Values&#10;" styleClass="text-area" wrapText="true">
+            <ComboBox fx:id="cmbType" disable="true" layoutX="111.0" layoutY="270.0" prefHeight="27.0" prefWidth="181.0" promptText="Choose type" styleClass="combo-box" />
+            <TextArea fx:id="txtAreaDescription" disable="true" layoutX="111.0" layoutY="213.0" prefHeight="54.0" prefWidth="181.0" promptText="Enter Values&#10;" styleClass="text-area" wrapText="true">
                <font>
                   <Font name="Dubai Regular" size="10.0" />
                </font>
@@ -68,7 +68,7 @@
                   <Font name="Dubai Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="txtFieldMass1" alignment="CENTER" layoutX="111.0" layoutY="341.0" onAction="#onSubmitDouble" prefHeight="29.0" prefWidth="181.0" promptText="Enter values (km)" styleClass="text-field">
+            <TextField fx:id="txtFieldRadius" alignment="CENTER" disable="true" layoutX="111.0" layoutY="341.0" onAction="#onSubmitDouble" prefHeight="29.0" prefWidth="181.0" promptText="Enter values (km)" styleClass="text-field">
                <font>
                   <Font name="Dubai Regular" size="10.0" />
                </font>
@@ -78,7 +78,7 @@
                   <Font name="Dubai Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="txtFieldMass11" alignment="CENTER" layoutX="111.0" layoutY="372.0" onAction="#onSubmitDouble" prefHeight="29.0" prefWidth="181.0" promptText="Enter values (kg)" styleClass="text-field">
+            <TextField fx:id="txtFieldMass" alignment="CENTER" disable="true" layoutX="111.0" layoutY="372.0" onAction="#onSubmitDouble" prefHeight="29.0" prefWidth="181.0" promptText="Enter values (kg)" styleClass="text-field">
                <font>
                   <Font name="Dubai Regular" size="10.0" />
                </font>
@@ -88,7 +88,7 @@
                   <Font name="Dubai Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="txtFieldMass111" alignment="CENTER" layoutX="111.0" layoutY="403.0" onAction="#onSubmitDouble" prefHeight="29.0" prefWidth="181.0" promptText="Enter values (km/s)" styleClass="text-field">
+            <TextField fx:id="txtFieldVelocity" alignment="CENTER" disable="true" layoutX="111.0" layoutY="403.0" onAction="#onSubmitDouble" prefHeight="29.0" prefWidth="181.0" promptText="Enter values (km/s)" styleClass="text-field">
                <font>
                   <Font name="Dubai Regular" size="10.0" />
                </font>
@@ -98,7 +98,7 @@
                   <Font name="Dubai Regular" size="16.0" />
                </font>
             </Text>
-            <ComboBox fx:id="cmbType1" layoutX="111.0" layoutY="434.0" prefHeight="27.0" prefWidth="181.0" promptText="Choose direction" styleClass="combo-box" />
+            <ComboBox fx:id="cmbDirection" disable="true" layoutX="111.0" layoutY="434.0" prefHeight="27.0" prefWidth="181.0" promptText="Choose direction" styleClass="combo-box" />
          </children>
       </Pane>
    </content>
