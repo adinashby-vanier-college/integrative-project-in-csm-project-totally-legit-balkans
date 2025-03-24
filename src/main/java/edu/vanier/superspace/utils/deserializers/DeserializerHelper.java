@@ -11,9 +11,9 @@ public class DeserializerHelper {
     
     @SneakyThrows
     public static void readField(Object object, Class<?> objectClass,
-            JsonObject deserialized, JsonDeserializationContext jdc){
+            JsonObject deserialized, JsonDeserializationContext jdc) {
         
-        for(var field : objectClass.getDeclaredFields()){
+        for (var field : objectClass.getDeclaredFields()){
             
             if (!(SerializationExclusionStrategy.toSkip(new FieldAttributes(field)))){
                 field.setAccessible(true);

@@ -10,7 +10,7 @@ import lombok.SneakyThrows;
 public class SerializerHelper {
     
     @SneakyThrows
-    public static void assignField(Object t, JsonObject serialized, JsonSerializationContext jsc){
+    public static void assignField(Object t, JsonObject serialized, JsonSerializationContext jsc) {
         
         for (var field : t.getClass().getDeclaredFields()){
             
@@ -18,11 +18,6 @@ public class SerializerHelper {
                 field.setAccessible(true);
                 serialized.add(field.getName(), jsc.serialize(field.get(t)));
             }
-            
         }
-        
-        
-        
     }
-    
 }

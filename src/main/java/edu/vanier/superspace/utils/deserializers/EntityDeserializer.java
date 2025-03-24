@@ -19,13 +19,13 @@ public class EntityDeserializer implements JsonDeserializer<Entity>{
         String fullyQualifiedName = deserialized.get("className").getAsString();
         Class<?> objectClass = Class.forName(fullyQualifiedName);
         
-        try{
-            if(objectClass.getConstructor().getParameterCount() != 0) 
+        try {
+            if (objectClass.getConstructor().getParameterCount() != 0) 
                 throw new Exception();
             Entity object = (Entity)objectClass.getConstructor().newInstance();
             DeserializerHelper.readField(object, objectClass, deserialized, jdc);
 
-            for(int i = 0; i < object.getComponents().size();i++){
+            for (int i = 0; i < object.getComponents().size();i++){
 
                 for(var field : objectClass.getDeclaredFields()){
 
@@ -39,13 +39,11 @@ public class EntityDeserializer implements JsonDeserializer<Entity>{
 
             }
             return object;
-        }catch(Exception exception){
+        } catch(Exception exception){
             System.out.println("Invalid number of parameters in constructor!");
         }
         
         return null;
-        
-        
         
     }
     
