@@ -25,7 +25,7 @@ public class SimulationSettings {
     @Getter @Setter
     private Font globalFont;
     @Getter @Setter
-    private Image menuBackground = new Image("Images/MainMenuBackground.png");
+    private Image menuBackground = new Image("fxml/Images/MainMenuBackground.png");
     @Getter @Setter
     private Image simulationBackground;
     @Getter @Setter

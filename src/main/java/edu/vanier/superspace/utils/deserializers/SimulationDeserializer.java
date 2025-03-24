@@ -20,13 +20,13 @@ public class SimulationDeserializer implements JsonDeserializer<Simulation>{
     public Simulation deserialize(JsonElement json, Type type, JsonDeserializationContext jdc) throws JsonParseException {
         
         JsonObject deserialized = json.getAsJsonObject();
-        Simulation object = new Simulation();
+        Simulation simulation = Simulation.getInstance();
         
         try {
             if (deserialized.get("version").getAsString().equals(SimulationSerializer.getVersion()))
                 throw new Exception();
-            DeserializerHelper.readField(object, Simulation.class, deserialized, jdc);
-            return object;
+            DeserializerHelper.readField(simulation, Simulation.class, deserialized, jdc);
+            return simulation;
         } catch (Exception exception){
             System.out.println("The simulation version is invalid!");
         }

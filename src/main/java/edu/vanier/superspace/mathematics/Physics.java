@@ -11,12 +11,12 @@ public class Physics {
         Vector2 distance = entity1.getTransform().getPosition().subtract(entity2.getTransform().getPosition());
         
         totalForce1_2 = distance.normalized().multiply((Constants.GRAVITATIONAL_CONSTANT * 
-                entity1.getRidigBody().getMass() * 
-                entity2.getRidigBody().getMass() )/ Math.pow(distance.magnitude(), 2)); 
+                entity1.getRigidBody().getMass() *
+                entity2.getRigidBody().getMass() )/ Math.pow(distance.magnitude(), 2));
         
         totalForce2_1 = totalForce1_2.negate();
         
-        entity1.getRidigBody().addForce(totalForce1_2);
-        entity2.getRidigBody().addForce(totalForce2_1);
+        entity1.getRigidBody().addForce(totalForce1_2);
+        entity2.getRigidBody().addForce(totalForce2_1);
     }
 }
