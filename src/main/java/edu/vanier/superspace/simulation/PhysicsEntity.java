@@ -1,12 +1,9 @@
 package edu.vanier.superspace.simulation;
 
-import edu.vanier.superspace.simulation.components.AstralBody;
-import edu.vanier.superspace.simulation.components.Ridigbody;
-import edu.vanier.superspace.simulation.components.Transform;
+import edu.vanier.superspace.simulation.components.RigidBody;
 import lombok.Getter;
 
 @Getter
 public class PhysicsEntity extends Entity {
-    private AstralBody astralBody;
-    private Ridigbody ridigbody;
+    private RigidBody rigidBody;
 }

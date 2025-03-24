@@ -1,11 +1,12 @@
 package edu.vanier.superspace.simulation.components;
 
 import edu.vanier.superspace.dto.RenderLayers;
+import edu.vanier.superspace.mathematics.Vector2;
 import javafx.scene.canvas.GraphicsContext;
 import lombok.Getter;
 
+@Getter
 public abstract class Renderer extends Component {
-    @Getter
     private final RenderLayers layer;
 
     public Renderer(RenderLayers layer) {
@@ -13,4 +14,6 @@ public abstract class Renderer extends Component {
     }
 
     public abstract void onDraw(GraphicsContext gc);
+
+    public abstract Vector2 estimateSize();
 }
