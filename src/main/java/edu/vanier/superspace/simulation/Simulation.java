@@ -22,6 +22,7 @@ public class Simulation {
     @Getter
     private static Simulation instance = null;
 
+    @Getter
     private final ArrayList<Entity> entities = new ArrayList<>();
     private String name;
 

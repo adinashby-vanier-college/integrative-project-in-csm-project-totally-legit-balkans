@@ -26,7 +26,6 @@ public class MenuBarFXMLController {
 
     @FXML
     private void onSaveAs(ActionEvent event) {
-        SaveManager.initializeFileDirctory();
         SaveManager.saveAs();
     }
 
