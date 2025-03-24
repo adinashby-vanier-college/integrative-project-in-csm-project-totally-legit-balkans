@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 
 public class MenuBarFXMLController {
+    public MenuItem loadFromDiskButton;
     @FXML
     private MenuItem saveButton;
     @FXML
@@ -26,7 +27,14 @@ public class MenuBarFXMLController {
 
     @FXML
     private void onSaveAs(ActionEvent event) {
-        SaveManager.saveAs();
+        boolean success = SaveManager.saveAs();
+        if (success) {
+            saveButton.setDisable(false);
+        }
+    }
+
+    public void onLoadFromDisk(ActionEvent event) {
+        SaveManager.load();
     }
 
     @FXML
