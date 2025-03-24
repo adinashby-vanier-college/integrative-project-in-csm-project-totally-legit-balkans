@@ -1,9 +1,11 @@
 package edu.vanier.superspace.utils;
 
+import com.google.gson.annotations.SerializedName;
 import edu.vanier.superspace.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import lombok.SneakyThrows;
 
 public class SceneManagement {
     public static void loadScene(Scenes scene) {
@@ -19,6 +21,7 @@ public class SceneManagement {
         Application.getPrimaryStage().sizeToScene();
     }
 
+    @SneakyThrows
     public static Parent loadPartial(Partials partial) {
         return FXMLHelper.loadFXML(partial.getFilepath());
     }
