@@ -10,12 +10,24 @@ import edu.vanier.superspace.simulation.components.Transform;
 import edu.vanier.superspace.utils.BorderPaneAutomaticResizing;
 import edu.vanier.superspace.utils.InputValidator;
 import javafx.event.ActionEvent;
+import edu.vanier.superspace.Application;
+import edu.vanier.superspace.utils.FileHelper;
+import java.io.File;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.stage.FileChooser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,6 +62,27 @@ public class AstralCreationFXMLController {
         );
     }
 
+    @FXML
+    private void onMouseDraggedOverImageSelector() {
+        addAstralBody();
+    }
+
+    @FXML
+    private void onImageSelectorClicked() {
+        FileChooser chooser = new FileChooser();
+        chooser.setInitialDirectory(new File(System.getProperty("user.dir") + "/src/main/resources/Sprites/Planets/"));
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
+        chooser.setTitle("Select Image File For Astral Body");
+        File astralImage = chooser.showSaveDialog(Application.getPrimaryStage().getOwner());
+        System.out.println(astralImage.getAbsolutePath());
+        ImageView i = new ImageView(new Image("file:///" + astralImage.getAbsolutePath()));
+        i.setFitHeight(90);
+        i.setFitWidth(90);
+        btnImageSelector.setText("");
+        btnImageSelector.setGraphic(i);
+        
+    }
+  
     public void addAstralBody() {
         //TODO: Check for the possible exceptions for each possible user input
         //TODO: Implement the dragging to the simulation of the astral body

@@ -16,7 +16,10 @@ import javax.lang.model.util.SimpleAnnotationValueVisitor6;
 
 @Getter
 public enum Scenes {
-    MAIN_MENU((pane, reload) -> pane.setCenter(SceneManagement.loadPartial(Partials.MAIN_MENU))),
+    MAIN_MENU((pane, reload) -> {
+        pane.setCenter(SceneManagement.loadPartial(Partials.MAIN_MENU));
+        
+            }),
     SIMULATION((pane, reload) -> {
         AnchorPane center = new AnchorPane();
 //        center.setStyle("-fx-border-color:#ff0000;");

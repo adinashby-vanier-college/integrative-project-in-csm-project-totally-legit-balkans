@@ -2,10 +2,14 @@ package edu.vanier.superspace.controllers;
 
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.Scenes;
+import edu.vanier.superspace.utils.SimulationSettings;
+import java.io.File;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +17,9 @@ import org.slf4j.LoggerFactory;
  * FXML Controller class for the main menu scene.
  */
 public class MainMenuFXMLController {
+    @Getter
+    private static MainMenuFXMLController instance;
+    
     private final static Logger logger = LoggerFactory.getLogger(MainMenuFXMLController.class);
     @FXML
     private Button btnQuit;
@@ -22,6 +29,8 @@ public class MainMenuFXMLController {
     private ImageView imgViewBackground;
 
     public void initialize() {
+        instance = this;
+        imgViewBackground.setImage(SimulationSettings.getInstance().getMenuBackground());
         logger.info("Initializing MainMenuFXMLController...");
     }
 
@@ -40,4 +49,5 @@ public class MainMenuFXMLController {
 
         SceneManagement.loadScene(Scenes.SIMULATION, true);
     }
+    
 }

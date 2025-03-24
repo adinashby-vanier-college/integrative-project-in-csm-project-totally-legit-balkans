@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TitledPane prefHeight="324.0" prefWidth="300.0" stylesheets="@../css/AstralCreationStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.AstralCreationFXMLController">
+<TitledPane prefHeight="324.0" prefWidth="300.0" stylesheets="@../css/AstralCreationStyle.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.AstralCreationFXMLController">
    <content>
       <Pane prefHeight="231.0" prefWidth="312.0" styleClass="pane">
          <children>

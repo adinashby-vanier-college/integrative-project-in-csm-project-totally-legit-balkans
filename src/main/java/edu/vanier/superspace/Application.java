@@ -4,6 +4,7 @@ import edu.vanier.superspace.utils.RenderDimensions;
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.Partials;
 import edu.vanier.superspace.utils.Scenes;
+import edu.vanier.superspace.utils.SimulationSettings;
 import javafx.stage.Stage;
 import lombok.Getter;
 
@@ -13,6 +14,7 @@ public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage primaryStage) {
+        SimulationSettings.initialize();
         Application.primaryStage = primaryStage;
 
         SceneManagement.loadScene(Scenes.MAIN_MENU);
