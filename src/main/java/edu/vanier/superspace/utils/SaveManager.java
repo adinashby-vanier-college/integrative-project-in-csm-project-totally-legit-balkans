@@ -15,15 +15,15 @@ public class SaveManager {
     private static Logger logger = LoggerFactory.getLogger(SaveManager.class);
     
     @Getter
-    private static File lastSaveFilepathParent = new File("./simulations/");
+    private static File lastSaveFilepathParent = new File(System.getProperty("user.dir"), "/simulations/");
 
     @Getter
     private static File lastSaveFilepath;
     
     private static FileChooser saveFileChooser;
+
     @SneakyThrows
     public static void initializeFileDirctory() {
-        //File saveFile = new File(System.getProperty("user.dir") + "/src/main/resources/Simulation Saves/");
         saveFileChooser = new FileChooser();
         saveFileChooser.setInitialDirectory(lastSaveFilepathParent);
         saveFileChooser.setInitialFileName("project" + FileHelper.SIMULATION_FILE_EXTENSION);
@@ -31,23 +31,27 @@ public class SaveManager {
         saveFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*")); 
     }
 
-    public static void save() {
-        saveAs(lastSaveFilepath);
+    public static boolean save() {
+        return saveAs(lastSaveFilepath);
     }
 
-    public static void saveAs() {
+    public static boolean saveAs() {
         saveFileChooser.setTitle("Save Simulation Project");
         File saveLocation = saveFileChooser.showSaveDialog(Application.getPrimaryStage().getOwner());
-        saveFileChooser.setInitialDirectory(saveLocation.getParentFile());
-        saveAs(saveFileChooser.showOpenDialog(Application.getPrimaryStage()));
+
+        if (saveLocation == null) {
+            return false;
+        }
+
+        return saveAs(saveLocation);
     }
 
-    private static void saveAs(File saveFile) {
+    private static boolean saveAs(File saveFile) {
         Simulation sim = Simulation.getInstance();
         
         if (sim == null){
             logger.error("The simulation was never created!");
-            return;
+            return false;
         }
         
         lastSaveFilepath = saveFile;
@@ -56,27 +60,28 @@ public class SaveManager {
         
         String asJson = JsonHelper.serialize(sim);
         FileHelper.writeFileCompletely(saveFile.getAbsolutePath(), asJson);
-        
+        return true;
     }
 
-    public static void load() {
-        
+    public static boolean load() {
         File loadPath = saveFileChooser.showOpenDialog(Application.getPrimaryStage());
-        load(loadPath);
-        
+
+        if (loadPath == null) {
+            return false;
+        }
+
+        return load(loadPath);
     }
 
-    private static void load(File filepath) {
-        
+    private static boolean load(File filepath) {
         String jsonRead = FileHelper.readFileCompletely(filepath.getAbsolutePath());
         JsonHelper.deserialize(jsonRead, Simulation.class);
         
-        for (var entity : Simulation.getInstance().getEntities()){
-            
+        for (var entity : Simulation.getInstance().getEntities()) {
             entity.register();
-            
         }
-        
+
+        return true;
     }
 
     public static void clear() {
