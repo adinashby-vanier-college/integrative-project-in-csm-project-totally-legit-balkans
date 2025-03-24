@@ -29,8 +29,6 @@ public class SimulationTimer extends AnimationTimer {
     private Simulation linkedSimulation;
     private long lastUpdateTime = 0;
 
-    private boolean firstFrame = true;
-
     public void step() {
         stepOnce = true;
     }
@@ -66,8 +64,6 @@ public class SimulationTimer extends AnimationTimer {
 
         clearScreen();
         draw();
-
-        firstFrame = false;
     }
 
     public void registerEntityToUpdate(Entity entity) {

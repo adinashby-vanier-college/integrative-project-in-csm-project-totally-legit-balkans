@@ -1,11 +1,13 @@
 package edu.vanier.superspace.simulation.components;
 
+import edu.vanier.superspace.annotations.ToSerialize;
 import edu.vanier.superspace.mathematics.Vector2;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@ToSerialize
 public class Transform extends Component  {
     private Vector2 position;
     private Vector2 scale;

@@ -1,5 +1,6 @@
 package edu.vanier.superspace.simulation;
 
+import edu.vanier.superspace.annotations.ToSerialize;
 import edu.vanier.superspace.dto.RenderLayers;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.components.Camera;
@@ -22,8 +23,9 @@ public class Simulation {
     @Getter
     private static Simulation instance = null;
 
-    @Getter
+    @Getter @ToSerialize
     private final ArrayList<Entity> entities = new ArrayList<>();
+    @ToSerialize
     private String name;
 
     @Getter
@@ -31,7 +33,7 @@ public class Simulation {
 
     @Getter
     private final Canvas[] canvases = new Canvas[RenderLayers.values().length];
-    @Getter
+    @Getter @ToSerialize
     private final EnumSet<RenderLayers> activeRenderLayers = EnumSet.of(RenderLayers.DEBUG);
 
     @Getter

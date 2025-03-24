@@ -1,5 +1,6 @@
 package edu.vanier.superspace.simulation.components;
 
+import edu.vanier.superspace.annotations.ToSerialize;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.Entity;
 import edu.vanier.superspace.simulation.PhysicsEntity;
@@ -18,8 +19,9 @@ public class Camera extends Entity implements Tickable {
     @Getter @Setter
     private static Camera instance;
 
-    @Setter
+    @Setter @ToSerialize
     private double zoom = 1;
+    @ToSerialize
     private Vector2 viewport;
 
     public Camera() {

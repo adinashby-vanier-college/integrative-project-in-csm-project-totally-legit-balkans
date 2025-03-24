@@ -1,5 +1,6 @@
 package edu.vanier.superspace.simulation;
 
+import edu.vanier.superspace.annotations.ToSerialize;
 import edu.vanier.superspace.simulation.components.Component;
 import edu.vanier.superspace.simulation.components.Renderer;
 import edu.vanier.superspace.simulation.components.Transform;
@@ -12,14 +13,16 @@ import java.util.UUID;
 
 @Getter
 public class Entity {
+    @ToSerialize
     private UUID guid;
     protected Transform transform;
     protected Simulation simulation;
     protected Renderer renderer;
-    @Setter
+    @Setter @ToSerialize
     protected boolean simulating;
-    @Setter
+    @Setter @ToSerialize
     protected String name;
+    @ToSerialize
     protected final ArrayList<Component> components = new ArrayList<>();
 
     public Entity() {
