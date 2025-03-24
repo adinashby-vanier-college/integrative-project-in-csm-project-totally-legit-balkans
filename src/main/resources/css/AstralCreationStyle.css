@@ -26,6 +26,15 @@
     -fx-background-color: #cfcccc;
 }
 
+.text-area{
+    -fx-background-color: #D9D9D9;
+    -fx-border-color: #000000;
+}
+
+.text-area:hover{
+    -fx-background-color: #cfcccc;
+}
+
 .combo-box{
     -fx-background-color: #D9D9D9;
     -fx-border-color: #000000;
