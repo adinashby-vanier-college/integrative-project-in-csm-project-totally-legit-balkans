@@ -45,11 +45,9 @@ public class MainMenuFXMLController {
 
     @FXML
     private void onAddButtonClicked() {
-        //TODO: Implement the creation of a file for a simulation
-        //TODO: Buttons for each simulation that the user has
         logger.info("Adding a simulation...");
 
-        SceneManagement.loadScene(Scenes.SIMULATION);
+        SceneManagement.loadScene(Scenes.SIMULATION, true);
     }
     
 }

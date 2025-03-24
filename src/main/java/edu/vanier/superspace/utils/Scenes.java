@@ -1,14 +1,18 @@
 package edu.vanier.superspace.utils;
 
 import com.sun.prism.impl.PrismSettings;
+import edu.vanier.superspace.Application;
 import edu.vanier.superspace.simulation.Simulation;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import lombok.Getter;
 
 import java.util.function.Function;
 import javafx.scene.shape.Rectangle;
+
+import javax.lang.model.util.SimpleAnnotationValueVisitor6;
 
 @Getter
 public enum Scenes {
@@ -17,16 +21,23 @@ public enum Scenes {
         
             }),
     SIMULATION((pane, reload) -> {
-        if (reload) {
-            new Simulation();
-        }
-        AnchorPane p = new AnchorPane();
-        p.setStyle("-fx-background-color:transparent;");
-        pane.setCenter(p);
+        AnchorPane center = new AnchorPane();
+//        center.setStyle("-fx-border-color:#ff0000;");
+        StackPane canvasStack = new StackPane();
+        center.getChildren().add(canvasStack);
+        pane.setCenter(center);
         pane.setTop(SceneManagement.loadPartial(Partials.MENU_BAR));
         pane.setBottom(SceneManagement.loadPartial(Partials.CONTROL_BAR));
         pane.setRight(SceneManagement.loadPartial(Partials.ASTRAL_CREATION));
-        new BorderPaneAutomaticResizing(pane, false, true, true, false);
+        var resizing = new BorderPaneAutomaticResizing(pane);
+        Application.getPrimaryStage().heightProperty().addListener(resizing::onResizeElement);
+        Application.getPrimaryStage().widthProperty().addListener(resizing::onResizeElement);
+
+        if (reload) {
+            new Simulation(canvasStack);
+        }
+
+        center.setOnMouseClicked(Simulation.getInstance()::onSceneClicked);
     }),
     SETTINGS((pane, reload) -> pane.setCenter(SceneManagement.loadPartial(Partials.SETTINGS)));
 

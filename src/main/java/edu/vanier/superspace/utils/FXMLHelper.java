@@ -10,12 +10,12 @@ import org.slf4j.LoggerFactory;
 public class FXMLHelper {
     private final static Logger LOGGER = LoggerFactory.getLogger(FXMLHelper.class);
 
-    public static Parent loadFXML(String path) {
+    public static Parent loadFXML(String path) throws Exception {
         return loadFXML(path, null);
     }
 
     @NonNull
-    public static Parent loadFXML(String path, Object controller) {
+    public static Parent loadFXML(String path, Object controller) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(path));
 
         // If a controller is provided for certain specific cases, we want to set it
@@ -29,6 +29,6 @@ public class FXMLHelper {
             LOGGER.error(exception.getMessage(), exception);
         }
 
-        return null;
+        throw new Exception("Invalid FXML at: " + path);
     }
 }
