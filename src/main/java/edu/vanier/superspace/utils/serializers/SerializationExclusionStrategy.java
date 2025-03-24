@@ -1,6 +1,6 @@
 package edu.vanier.superspace.utils.serializers;
 
-import annotations.ToSerialize;
+import edu.vanier.superspace.annotations.ToSerialize;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 

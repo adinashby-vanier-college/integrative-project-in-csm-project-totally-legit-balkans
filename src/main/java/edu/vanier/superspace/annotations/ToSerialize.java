@@ -1,4 +1,4 @@
-package annotations;
+package edu.vanier.superspace.annotations;
 
 
 import java.lang.annotation.ElementType;

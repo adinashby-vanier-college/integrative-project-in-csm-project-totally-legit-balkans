@@ -2,7 +2,6 @@ package edu.vanier.superspace;
 
 import edu.vanier.superspace.utils.RenderDimensions;
 import edu.vanier.superspace.utils.SceneManagement;
-import edu.vanier.superspace.utils.Partials;
 import edu.vanier.superspace.utils.SaveManager;
 import edu.vanier.superspace.utils.Scenes;
 import edu.vanier.superspace.utils.SimulationSettings;
@@ -16,7 +15,7 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage primaryStage) {
         SimulationSettings.initialize();
-        SaveManager.initializeFileDirctory();
+        SaveManager.initializeFileDirectory();
         Application.primaryStage = primaryStage;
 
         SceneManagement.loadScene(Scenes.MAIN_MENU);

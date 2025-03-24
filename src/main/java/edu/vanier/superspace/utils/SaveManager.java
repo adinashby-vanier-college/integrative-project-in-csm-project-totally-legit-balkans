@@ -1,7 +1,6 @@
 package edu.vanier.superspace.utils;
 
 import edu.vanier.superspace.Application;
-import edu.vanier.superspace.Main;
 import edu.vanier.superspace.simulation.Simulation;
 import java.io.File;
 import javafx.stage.FileChooser;
@@ -23,7 +22,7 @@ public class SaveManager {
     private static FileChooser saveFileChooser;
 
     @SneakyThrows
-    public static void initializeFileDirctory() {
+    public static void initializeFileDirectory() {
         saveFileChooser = new FileChooser();
         saveFileChooser.setInitialDirectory(lastSaveFilepathParent);
         saveFileChooser.setInitialFileName("project" + FileHelper.SIMULATION_FILE_EXTENSION);
