@@ -18,13 +18,14 @@ public class ComponentDeserializer implements JsonDeserializer<Component>{
         String fullyQualifiedName = deserialized.get("className").getAsString();
         Class<?> objectClass = Class.forName(fullyQualifiedName);
         
-        try{
-            if(objectClass.getConstructor().getParameterCount() != 0) 
+        try {
+            if (objectClass.getConstructor().getParameterCount() != 0){ 
                 throw new Exception();
+            }
             Component object = (Component)objectClass.getConstructor().newInstance();
             DeserializerHelper.readField(object, objectClass, deserialized, jdc);
             return object;
-        }catch(Exception exception){
+        } catch(Exception exception){
             System.out.println("Invalid number of parameters in constructor!");
         }
         
