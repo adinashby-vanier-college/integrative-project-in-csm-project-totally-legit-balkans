@@ -12,7 +12,10 @@ import javafx.scene.shape.Rectangle;
 
 @Getter
 public enum Scenes {
-    MAIN_MENU((pane, reload) -> pane.setCenter(SceneManagement.loadPartial(Partials.MAIN_MENU))),
+    MAIN_MENU((pane, reload) -> {
+        pane.setCenter(SceneManagement.loadPartial(Partials.MAIN_MENU));
+        
+            }),
     SIMULATION((pane, reload) -> {
         if (reload) {
             new Simulation();
