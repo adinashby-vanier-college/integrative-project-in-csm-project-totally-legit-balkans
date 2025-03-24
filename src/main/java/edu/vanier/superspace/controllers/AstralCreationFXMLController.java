@@ -1,11 +1,25 @@
 package edu.vanier.superspace.controllers;
 
+import com.google.errorprone.annotations.FormatMethod;
+import edu.vanier.superspace.mathematics.Vector2;
+import edu.vanier.superspace.simulation.Entity;
+import edu.vanier.superspace.simulation.Simulation;
+import edu.vanier.superspace.simulation.components.DebugCircleRenderer;
+import edu.vanier.superspace.simulation.components.RigidBody;
+import edu.vanier.superspace.simulation.components.Transform;
+import edu.vanier.superspace.utils.BorderPaneAutomaticResizing;
+import edu.vanier.superspace.utils.InputValidator;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.swing.border.Border;
 
 /**
  * FXML Controller class for the astral creation scene.
@@ -13,11 +27,7 @@ import org.slf4j.LoggerFactory;
  */
 public class AstralCreationFXMLController {
     private final static Logger logger = LoggerFactory.getLogger(AstralCreationFXMLController.class);
-    private String imagePath;
-    private double mass;
-    private double speed;
-    private String description;
-    private String type;
+
     @FXML
     private Button btnImageSelector;
     @FXML
@@ -40,23 +50,38 @@ public class AstralCreationFXMLController {
         );
     }
 
-    @FXML
-    private void onMouseDraggedOverImageSelector() {
-        addAstralBody();
-    }
-
     public void addAstralBody() {
         //TODO: Check for the possible exceptions for each possible user input
         //TODO: Implement the dragging to the simulation of the astral body
         //TODO: Implement the creation of a new physics entity after exceptions are handled
         try {
-            mass = Double.parseDouble(txtFieldMass.getText());
-            speed = Double.parseDouble(txtFieldSpeed.getText());
-            description = txtFieldDescription.getText();
-            type = cmbType.valueProperty().get();
-            imagePath = btnImageSelector.getBackground().getImages().getFirst().getImage().getUrl();
+//            mass = Double.parseDouble(txtFieldMass.getText());
+//            speed = Double.parseDouble(txtFieldSpeed.getText());
+//            description = txtFieldDescription.getText();
+//            type = cmbType.valueProperty().get();
+//            imagePath = btnImageSelector.getBackground().getImages().getFirst().getImage().getUrl();
         } catch (Exception e) {
             System.out.println("Exceptions to be handled...");
         }
+
+        System.out.println("Dragged");
+    }
+
+    @FXML
+    private void onDragEnd(DragEvent dragEvent) {
+        Vector2 targetPosition = Vector2.of(dragEvent.getSceneX(), dragEvent.getSceneY()).subtract(BorderPaneAutomaticResizing.getInstance().topLeftCornerPositionOffset());
+
+        Entity newEntity = new Entity();
+        newEntity.addComponent(new Transform());
+        newEntity.addComponent(new RigidBody());
+        newEntity.addComponent(new DebugCircleRenderer());
+        newEntity.register();
+    }
+
+    @FXML
+    private void onSubmitDouble(ActionEvent event) {
+        var field = (TextField)event.getSource();
+        InputValidator.validateDouble(field);
+        System.out.println(field.getUserData());
     }
 }
