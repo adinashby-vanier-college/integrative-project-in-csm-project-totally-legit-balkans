@@ -21,7 +21,7 @@
                   <Font name="Dubai Regular" size="40.0" />
                </font>
             </Text>
-            <Button id="btnImage" fx:id="btnImageSelector" layoutX="104.0" layoutY="46.0" mnemonicParsing="false" onDragOver="#onDragEnd" prefHeight="90.0" prefWidth="90.0" text="Choose Planet" textAlignment="CENTER" wrapText="true">
+            <Button id="btnImage" fx:id="btnImageSelector" layoutX="104.0" layoutY="46.0" mnemonicParsing="false" onMouseClicked="#onAction" prefHeight="90.0" prefWidth="90.0" text="Choose Planet" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Dubai Regular" size="16.0" />
                </font>

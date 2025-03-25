@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: #BEBEBE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.AstralPopupFXMLController">
+   <content>
+      <GridPane alignment="CENTER" prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #BEBEBE;">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" stylesheets="@../css/AstralPopupStyle.css" text="+" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="Dubai Regular" size="33.0" />
+               </font>
+            </Button>
+            <Label text="Add new" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="Dubai Regular" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </content>
+</ScrollPane>

@@ -1,5 +1,6 @@
 package edu.vanier.superspace.controllers;
 
+import edu.vanier.superspace.Main;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.Entity;
 import edu.vanier.superspace.simulation.components.DebugCircleRenderer;
@@ -7,10 +8,17 @@ import edu.vanier.superspace.simulation.components.RigidBody;
 import edu.vanier.superspace.simulation.components.Transform;
 import edu.vanier.superspace.utils.BorderPaneAutomaticResizing;
 import edu.vanier.superspace.utils.InputValidator;
+import edu.vanier.superspace.utils.Partials;
+import edu.vanier.superspace.utils.SceneManagement;
 import javafx.event.ActionEvent;
 import edu.vanier.superspace.Application;
 import java.io.File;
+import java.io.IOException;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
@@ -18,7 +26,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.DragEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +39,7 @@ import org.slf4j.LoggerFactory;
  */
 public class AstralCreationFXMLController {
     private final static Logger logger = LoggerFactory.getLogger(AstralCreationFXMLController.class);
+    private boolean isPopupOpen = false;
 
     @FXML
     private Button btnImageSelector;
@@ -64,26 +76,26 @@ public class AstralCreationFXMLController {
         );
     }
 
-    @FXML
-    private void onMouseDraggedOverImageSelector() {
-        addAstralBody();
-    }
+//    @FXML
+//    private void onMouseDraggedOverImageSelector() {
+//        addAstralBody();
+//    }
 
-    @FXML
-    private void onImageSelectorClicked() {
-        FileChooser chooser = new FileChooser();
-        chooser.setInitialDirectory(new File(System.getProperty("user.dir") + "/src/main/resources/Sprites/Planets/"));
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
-        chooser.setTitle("Select Image File For Astral Body");
-        File astralImage = chooser.showSaveDialog(Application.getPrimaryStage().getOwner());
-        System.out.println(astralImage.getAbsolutePath());
-        ImageView i = new ImageView(new Image("file:///" + astralImage.getAbsolutePath()));
-        i.setFitHeight(90);
-        i.setFitWidth(90);
-        btnImageSelector.setText("");
-        btnImageSelector.setGraphic(i);
-        
-    }
+//    @FXML
+//    private void onImageSelectorClicked() {
+//        FileChooser chooser = new FileChooser();
+//        chooser.setInitialDirectory(new File(System.getProperty("user.dir") + "/src/main/resources/Sprites/Planets/"));
+//        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
+//        chooser.setTitle("Select Image File For Astral Body");
+//        File astralImage = chooser.showSaveDialog(Application.getPrimaryStage().getOwner());
+//        System.out.println(astralImage.getAbsolutePath());
+//        ImageView i = new ImageView(new Image("file:///" + astralImage.getAbsolutePath()));
+//        i.setFitHeight(90);
+//        i.setFitWidth(90);
+//        btnImageSelector.setText("");
+//        btnImageSelector.setGraphic(i);
+//
+//    }
 
     public void enableControls() {
         txtFieldPath.setDisable(false);
@@ -124,15 +136,37 @@ public class AstralCreationFXMLController {
         System.out.println("Dragged");
     }
 
-    @FXML
-    private void onDragEnd(DragEvent dragEvent) {
-        Vector2 targetPosition = Vector2.of(dragEvent.getSceneX(), dragEvent.getSceneY()).subtract(BorderPaneAutomaticResizing.getInstance().topLeftCornerPositionOffset());
+//    @FXML
+//    private void onDragEnd(DragEvent dragEvent) {
+//        Vector2 targetPosition = Vector2.of(dragEvent.getSceneX(), dragEvent.getSceneY()).subtract(BorderPaneAutomaticResizing.getInstance().topLeftCornerPositionOffset());
+//
+//        Entity newEntity = new Entity();
+//        newEntity.addComponent(new Transform());
+//        newEntity.addComponent(new RigidBody());
+//        newEntity.addComponent(new DebugCircleRenderer());
+//        newEntity.register();
+//    }
 
-        Entity newEntity = new Entity();
-        newEntity.addComponent(new Transform());
-        newEntity.addComponent(new RigidBody());
-        newEntity.addComponent(new DebugCircleRenderer());
-        newEntity.register();
+    @FXML
+    private void onAction(MouseEvent event) throws IOException {
+        System.out.println("Clicked!");
+        if (!isPopupOpen) {
+            isPopupOpen = true;
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(Main.class.getResource("/fxml/astralCreationPopup.fxml"));
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+            stage.setX(event.getSceneX());
+            stage.setY(event.getSceneY());
+            stage.setAlwaysOnTop(true);
+            stage.show();
+
+            stage.setOnCloseRequest(event1 -> {
+                logger.info("Closing the popup...");
+                isPopupOpen = false;
+            });
+        }
     }
 
     @FXML

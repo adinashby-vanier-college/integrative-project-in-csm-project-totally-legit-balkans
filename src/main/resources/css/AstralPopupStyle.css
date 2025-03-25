@@ -1,0 +1,19 @@
+.scroll-bar:horizontal .scroll-bar:vertical{
+    -fx-background-color: transparent;
+}
+
+.decrement-button{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.button{
+    -fx-border-radius: 6em;
+    -fx-background-radius: 6em;
+    -fx-background-color: #D9D9D9;
+    -fx-border-color: #000000;
+}
+
+.button:hover{
+    -fx-background-color: #cfcccc;
+}
