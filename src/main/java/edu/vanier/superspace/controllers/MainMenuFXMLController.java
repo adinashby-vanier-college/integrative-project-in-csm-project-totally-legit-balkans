@@ -1,5 +1,6 @@
 package edu.vanier.superspace.controllers;
 
+import edu.vanier.superspace.Application;
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.Scenes;
 import edu.vanier.superspace.utils.SimulationSettings;
@@ -27,10 +28,13 @@ public class MainMenuFXMLController {
     private Button btnAdd;
     @FXML
     private ImageView imgViewBackground;
-
+    
+    @FXML
     public void initialize() {
         instance = this;
         imgViewBackground.setImage(SimulationSettings.getInstance().getMenuBackground());
+        imgViewBackground.fitHeightProperty().bind(Application.getPrimaryStage().heightProperty());
+        imgViewBackground.fitWidthProperty().bind(Application.getPrimaryStage().widthProperty());
         logger.info("Initializing MainMenuFXMLController...");
     }
 

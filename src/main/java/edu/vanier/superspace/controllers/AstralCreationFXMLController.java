@@ -80,7 +80,6 @@ public class AstralCreationFXMLController {
         i.setFitWidth(90);
         btnImageSelector.setText("");
         btnImageSelector.setGraphic(i);
-        
     }
   
     public void addAstralBody() {
