@@ -19,10 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.DragEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,6 +29,8 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.xml.stream.XMLEventReader;
 
 /**
  * FXML Controller class for the astral creation scene.
@@ -59,6 +58,10 @@ public class AstralCreationFXMLController {
     private TextField txtFieldVelocity;
     @FXML
     private ComboBox<String> cmbDirection;
+    @FXML
+    private TextField txtFieldDistance;
+    @FXML
+    private ComboBox<String> cmbReference;
 
     public void initialize() {
         logger.info("Initializing AstralCreationFXMLController...");
@@ -150,23 +153,51 @@ public class AstralCreationFXMLController {
     @FXML
     private void onAction(MouseEvent event) throws IOException {
         System.out.println("Clicked!");
-        if (!isPopupOpen) {
-            isPopupOpen = true;
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(Main.class.getResource("/fxml/astralCreationPopup.fxml"));
-            Scene scene = new Scene(root);
 
-            stage.setScene(scene);
-            stage.setX(event.getSceneX());
-            stage.setY(event.getSceneY());
-            stage.setAlwaysOnTop(true);
-            stage.show();
+        ContextMenu cm = new ContextMenu();
+        MenuItem addNew = new MenuItem("Add new");
+        MenuItem mercury = new MenuItem("Mercury");
+        MenuItem venus = new MenuItem("Venus");
+        MenuItem earth = new MenuItem("Earth");
 
-            stage.setOnCloseRequest(event1 -> {
-                logger.info("Closing the popup...");
-                isPopupOpen = false;
-            });
-        }
+        ImageView addNewIm = new ImageView(new Image(getClass().getResource("/fxml/images/AddNew.png").toExternalForm()));
+        addNewIm.setFitWidth(32);
+        addNewIm.setFitHeight(32);
+        addNew.setGraphic(addNewIm);
+        ImageView mercuryIm = new ImageView(new Image(getClass().getResource("/Sprites/Planets/Mercury.png").toExternalForm()));
+        mercuryIm.setFitHeight(32);
+        mercuryIm.setFitWidth(32);
+        mercury.setGraphic(mercuryIm);
+        ImageView venusIm = new ImageView(new Image(getClass().getResource("/Sprites/Planets/Venus.png").toExternalForm()));
+        venusIm.setFitHeight(32);
+        venusIm.setFitWidth(32);
+        venus.setGraphic(venusIm);
+        ImageView earthIm = new ImageView(new Image(getClass().getResource("/Sprites/Planets/Earth.png").toExternalForm()));
+        earthIm.setFitHeight(32);
+        earthIm.setFitWidth(32);
+        earth.setGraphic(earthIm);
+
+        cm.getItems().addAll(addNew, mercury, venus, earth);
+        btnImageSelector.setContextMenu(cm);
+        btnImageSelector.getScene().getStylesheets().add(getClass().getResource("/css/ContextMenuStyle.css").toExternalForm());
+
+//        if (!isPopupOpen) {
+//            isPopupOpen = true;
+//            Stage stage = new Stage();
+//            Parent root = FXMLLoader.load(Main.class.getResource("/fxml/astralCreationPopup.fxml"));
+//            Scene scene = new Scene(root);
+//
+//            stage.setScene(scene);
+//            stage.setX(event.getSceneX());
+//            stage.setY(event.getSceneY());
+//            stage.setAlwaysOnTop(true);
+//            stage.show();
+//
+//            stage.setOnCloseRequest(event1 -> {
+//                logger.info("Closing the popup...");
+//                isPopupOpen = false;
+//            });
+//        }
     }
 
     @FXML

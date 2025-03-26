@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TitledPane prefHeight="500.0" prefWidth="300.0" stylesheets="@../css/AstralCreationStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.AstralCreationFXMLController">
+<TitledPane prefHeight="650.0" prefWidth="300.0" stylesheets="@../css/AstralCreationStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.AstralCreationFXMLController">
    <content>
       <Pane prefHeight="231.0" prefWidth="312.0" styleClass="pane">
          <children>
@@ -83,22 +83,38 @@
                   <Font name="Dubai Regular" size="10.0" />
                </font>
             </TextField>
-            <Text layoutX="-9.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Initial Velocity:" textAlignment="RIGHT" wrappingWidth="115.13682556152344">
+            <Text layoutX="-11.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velocity at Periapsis:" textAlignment="RIGHT" wrappingWidth="115.13682556152344">
                <font>
                   <Font name="Dubai Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="txtFieldVelocity" alignment="CENTER" disable="true" layoutX="111.0" layoutY="403.0" onAction="#onSubmitDouble" prefHeight="29.0" prefWidth="181.0" promptText="Enter values (km/s)" styleClass="text-field">
+            <TextField fx:id="txtFieldVelocity" alignment="CENTER" disable="true" layoutX="111.0" layoutY="403.0" onAction="#onSubmitDouble" prefHeight="60.0" prefWidth="181.0" promptText="Enter values (km/s)" styleClass="text-field">
                <font>
                   <Font name="Dubai Regular" size="10.0" />
                </font>
             </TextField>
-            <Text layoutX="19.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Direction:" textAlignment="RIGHT" wrappingWidth="87.13682556152344">
+            <Text layoutX="18.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Direction:" textAlignment="RIGHT" wrappingWidth="87.13682556152344">
                <font>
                   <Font name="Dubai Regular" size="16.0" />
                </font>
             </Text>
-            <ComboBox fx:id="cmbDirection" disable="true" layoutX="111.0" layoutY="434.0" prefHeight="27.0" prefWidth="181.0" promptText="Choose direction" styleClass="combo-box" />
+            <ComboBox fx:id="cmbDirection" disable="true" layoutX="111.0" layoutY="465.0" prefHeight="27.0" prefWidth="181.0" promptText="Choose direction" styleClass="combo-box" />
+            <Text layoutX="-11.0" layoutY="510.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Distance From Center at Periapsis:" textAlignment="RIGHT" wrappingWidth="115.13682556152344">
+               <font>
+                  <Font name="Dubai Regular" size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtFieldDistance" alignment="CENTER" disable="true" layoutX="111.0" layoutY="496.0" onAction="#onSubmitDouble" prefHeight="75.0" prefWidth="181.0" promptText="Enter values (km)" styleClass="text-field">
+               <font>
+                  <Font name="Dubai Regular" size="10.0" />
+               </font>
+            </TextField>
+            <Text layoutX="-11.0" layoutY="591.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reference for Periapsis:" textAlignment="RIGHT" wrappingWidth="115.13682556152344">
+               <font>
+                  <Font name="Dubai Regular" size="16.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="cmbReference" disable="true" layoutX="111.0" layoutY="574.0" prefHeight="47.0" prefWidth="181.0" promptText="Choose reference" styleClass="combo-box" />
          </children>
       </Pane>
    </content>
