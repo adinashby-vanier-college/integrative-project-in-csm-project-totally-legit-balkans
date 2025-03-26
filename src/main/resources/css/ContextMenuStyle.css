@@ -22,6 +22,7 @@
     -fx-background-radius: 20;
 }
 
-.context-menu .scroll-arrow {
-
+.context-menu .scroll-arrow:focused {
+    -fx-background-color: #cfcccc;
+    -fx-background-radius: 20;
 }
