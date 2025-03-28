@@ -7,7 +7,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class DebugCircleRenderer extends Renderer {
-    private final double radius = 500;
+    private final double radius = 100;
 
     public DebugCircleRenderer() {
         super(RenderLayers.DEBUG);

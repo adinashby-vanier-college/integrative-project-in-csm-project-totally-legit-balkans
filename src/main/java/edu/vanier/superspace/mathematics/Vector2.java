@@ -27,7 +27,7 @@ public class Vector2 {
      * @param x the x component of the vector
      * @param y the y component of the vector
      */
-    private Vector2(double x, double y) {
+    public Vector2(double x, double y) {
         this.x = x;
         this.y = y;
     }

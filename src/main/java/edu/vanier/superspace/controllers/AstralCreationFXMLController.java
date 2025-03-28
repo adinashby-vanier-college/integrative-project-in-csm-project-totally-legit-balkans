@@ -37,6 +37,10 @@ import javax.xml.stream.XMLEventReader;
 public class AstralCreationFXMLController {
     private final static Logger logger = LoggerFactory.getLogger(AstralCreationFXMLController.class);
     private boolean contextMenuStyled = false;
+    private double dragXMouseAnchor;
+    private double dragYMouseAnchor;
+    private double dragLayoutX;
+    private double dragLayoutY;
 
     @FXML
     private Button btnReset;
@@ -158,14 +162,43 @@ public class AstralCreationFXMLController {
     }
 
     @FXML
-    private void onDragEnd(DragEvent dragEvent) {
-        Vector2 targetPosition = Vector2.of(dragEvent.getSceneX(), dragEvent.getSceneY()).subtract(BorderPaneAutomaticResizing.getInstance().topLeftCornerPositionOffset());
+    private void onButtonMousePressed(MouseEvent event) {
+        dragXMouseAnchor = event.getX();
+        dragYMouseAnchor = event.getY();
+    }
+
+    @FXML
+    private void onButtonMouseDragged(MouseEvent event) {
+        dragLayoutX = event.getSceneX() - dragXMouseAnchor;
+        dragLayoutY = event.getSceneY() - dragYMouseAnchor;
+    }
+
+    @FXML
+    private void onButtonMouseReleased(MouseEvent event) {
+        System.out.println("released");
+        System.out.println(dragLayoutX + ", " + dragLayoutY);
+        double x = event.getSceneX();
+        double y = event.getSceneY();
 
         Entity newEntity = new Entity();
         newEntity.addComponent(new Transform());
         newEntity.addComponent(new RigidBody());
         newEntity.addComponent(new DebugCircleRenderer());
+        newEntity.getTransform().setPosition(new Vector2(x, y));
         newEntity.register();
+    }
+
+    @FXML
+    private void onDragEnd(DragEvent dragEvent) {
+//        Vector2 targetPosition = Vector2.of(dragEvent.getSceneX(), dragEvent.getSceneY()).subtract(BorderPaneAutomaticResizing.getInstance().topLeftCornerPositionOffset());
+//        System.out.println("Hi");
+//
+//
+//        Entity newEntity = new Entity();
+//        newEntity.addComponent(new Transform());
+//        newEntity.addComponent(new RigidBody());
+//        newEntity.addComponent(new DebugCircleRenderer());
+//        newEntity.register();
     }
 
     @FXML

@@ -56,6 +56,7 @@ public class Simulation {
         Entity entity = new Entity();
         entity.addComponent(new DebugCircleRenderer());
         entity.addComponent(new Transform());
+        entity.getTransform().setPosition(new Vector2(200, 200));
         entity.setName("Entity 1");
 
         entity.register();

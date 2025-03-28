@@ -13,14 +13,14 @@
 
 <TitledPane prefHeight="700.0" prefWidth="300.0" stylesheets="@../css/AstralCreationStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.AstralCreationFXMLController">
    <content>
-      <Pane onDragDetected="#onDragEnd" onMouseEntered="#onPaneMouseEntered" prefHeight="231.0" prefWidth="312.0" styleClass="pane">
+      <Pane onMouseEntered="#onPaneMouseEntered" prefHeight="231.0" prefWidth="312.0" styleClass="pane">
          <children>
             <Text layoutX="17.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Astral Creation" textAlignment="CENTER" wrappingWidth="263.73675537109375">
                <font>
                   <Font name="Dubai Regular" size="40.0" />
                </font>
             </Text>
-            <Button id="btnImage" fx:id="btnImageSelector" layoutX="104.0" layoutY="46.0" mnemonicParsing="false" onMouseClicked="#onMouseClickedImage" prefHeight="90.0" prefWidth="90.0" stylesheets="@../css/AstralCreationStyle.css" text="Choose Planet" textAlignment="CENTER" wrapText="true">
+            <Button id="btnImage" fx:id="btnImageSelector" layoutX="104.0" layoutY="46.0" mnemonicParsing="false" onMouseDragged="#onButtonMouseDragged" onMousePressed="#onButtonMousePressed" onMouseReleased="#onButtonMouseReleased" prefHeight="90.0" prefWidth="90.0" stylesheets="@../css/AstralCreationStyle.css" text="Choose Planet" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Dubai Regular" size="16.0" />
                </font>
