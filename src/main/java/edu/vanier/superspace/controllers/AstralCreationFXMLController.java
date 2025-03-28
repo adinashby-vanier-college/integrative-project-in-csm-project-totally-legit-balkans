@@ -69,6 +69,7 @@ public class AstralCreationFXMLController {
 
     @FXML
     private void onImageSelectorClicked() {
+        System.out.println("balls");
         FileChooser chooser = new FileChooser();
         chooser.setInitialDirectory(new File(System.getProperty("user.dir") + "/src/main/resources/Sprites/Planets/"));
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
@@ -76,8 +77,8 @@ public class AstralCreationFXMLController {
         File astralImage = chooser.showSaveDialog(Application.getPrimaryStage().getOwner());
         System.out.println(astralImage.getAbsolutePath());
         ImageView i = new ImageView(new Image("file:///" + astralImage.getAbsolutePath()));
-        i.setFitHeight(90);
-        i.setFitWidth(90);
+        i.setFitHeight(75);
+        i.setFitWidth(75);
         btnImageSelector.setText("");
         btnImageSelector.setGraphic(i);
     }

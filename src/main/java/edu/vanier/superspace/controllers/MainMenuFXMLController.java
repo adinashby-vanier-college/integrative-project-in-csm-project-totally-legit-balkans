@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import lombok.Getter;
 import org.slf4j.Logger;
@@ -28,6 +29,8 @@ public class MainMenuFXMLController {
     private Button btnAdd;
     @FXML
     private ImageView imgViewBackground;
+    @FXML
+    private HBox hboxSceneSelector;
     
     @FXML
     public void initialize() {
