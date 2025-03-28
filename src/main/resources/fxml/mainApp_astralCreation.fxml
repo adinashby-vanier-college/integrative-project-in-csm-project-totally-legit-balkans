@@ -13,7 +13,7 @@
 
 <TitledPane prefHeight="700.0" prefWidth="300.0" stylesheets="@../css/AstralCreationStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.AstralCreationFXMLController">
    <content>
-      <Pane onDragDetected="#onDragEnd" prefHeight="231.0" prefWidth="312.0" styleClass="pane">
+      <Pane onDragDetected="#onDragEnd" onMouseEntered="#onPaneMouseEntered" prefHeight="231.0" prefWidth="312.0" styleClass="pane">
          <children>
             <Text layoutX="17.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Astral Creation" textAlignment="CENTER" wrappingWidth="263.73675537109375">
                <font>

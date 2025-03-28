@@ -36,6 +36,7 @@ import javax.xml.stream.XMLEventReader;
  */
 public class AstralCreationFXMLController {
     private final static Logger logger = LoggerFactory.getLogger(AstralCreationFXMLController.class);
+    private boolean contextMenuStyled = false;
 
     @FXML
     private Button btnReset;
@@ -81,6 +82,9 @@ public class AstralCreationFXMLController {
                 "Clockwise",
                 "Counter-clockwise"
         );
+
+        loadContextMenu();
+        btnImageSelector.setContextMenu(contextMenu);
     }
 
 
@@ -145,6 +149,15 @@ public class AstralCreationFXMLController {
     }
 
     @FXML
+    private void onPaneMouseEntered(MouseEvent event) {
+        if (!contextMenuStyled) {
+            btnImageSelector.getScene().getStylesheets().add(getClass().getResource("/css/ContextMenuStyle.css").toExternalForm());
+            contextMenuStyled = true;
+            System.out.println("styled");
+        }
+    }
+
+    @FXML
     private void onDragEnd(DragEvent dragEvent) {
         Vector2 targetPosition = Vector2.of(dragEvent.getSceneX(), dragEvent.getSceneY()).subtract(BorderPaneAutomaticResizing.getInstance().topLeftCornerPositionOffset());
 
@@ -165,10 +178,7 @@ public class AstralCreationFXMLController {
 
     }
 
-    @FXML
-    private void onMouseClickedImage(MouseEvent event) throws IOException {
-        System.out.println("Clicked!");
-
+    private void loadContextMenu() throws IOException {
         ContextMenu cm = new ContextMenu();
         MenuItem addNew = new MenuItem("Add new");
         MenuItem mercury = new MenuItem("Mercury");
@@ -183,6 +193,7 @@ public class AstralCreationFXMLController {
         MenuItem europa = new MenuItem("Europa");
         MenuItem io = new MenuItem("Io");
         MenuItem pluto = new MenuItem("Pluto");
+        MenuItem sun = new MenuItem("Sun");
 
         ImageView addNewIm = new ImageView(new Image(getClass().getResource("/fxml/images/AddNew.png").toExternalForm()));
         addNewIm.setFitWidth(32);
@@ -236,10 +247,12 @@ public class AstralCreationFXMLController {
         plutoIm.setFitHeight(32);
         plutoIm.setFitWidth(32);
         pluto.setGraphic(plutoIm);
+        ImageView sunIm = new ImageView(new Image(Presets.getSunPath()));
+        sunIm.setFitHeight(32);
+        sunIm.setFitWidth(32);
+        sun.setGraphic(sunIm);
 
-        btnImageSelector.setContextMenu(contextMenu);
-        btnImageSelector.getScene().getStylesheets().add(getClass().getResource("/css/ContextMenuStyle.css").toExternalForm());
-        cm.getItems().addAll(addNew, mercury, venus, earth, moon, mars, jupiter, uranus, neptune, callisto, europa, io, pluto);
+        cm.getItems().addAll(addNew, mercury, venus, earth, moon, mars, jupiter, uranus, neptune, callisto, europa, io, pluto, sun);
 
         earth.setOnAction(event1 -> {
             updatePresetValues(Presets.EARTH, earthIm);
@@ -289,7 +302,16 @@ public class AstralCreationFXMLController {
             updatePresetValues(Presets.PLUTO, plutoIm);
         });
 
+        sun.setOnAction(event1 -> {
+            updatePresetValues(Presets.SUN, sunIm);
+        });
+
         contextMenu = cm;
+    }
+
+    @FXML
+    private void onMouseClickedImage(MouseEvent event) throws IOException {
+        System.out.println("Clicked!");
     }
 
     private void resetAstralCreation() {
