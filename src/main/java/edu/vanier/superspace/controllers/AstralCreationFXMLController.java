@@ -8,7 +8,6 @@ import edu.vanier.superspace.simulation.components.Transform;
 import edu.vanier.superspace.utils.*;
 import javafx.event.ActionEvent;
 import java.io.IOException;
-import java.util.Arrays;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -33,7 +32,7 @@ public class AstralCreationFXMLController {
     private double dragLayoutY;
     private Entity body;
     private boolean isEmpty = true;
-    private ContextMenu loadedContextMenu;
+    private boolean isPreset;
 
     @FXML
     private Button btnReset;
@@ -150,7 +149,7 @@ public class AstralCreationFXMLController {
 //        System.out.println("hi");
         reloadContextMenu();
         //TODO: Implement a way to reload the images, maybe clone the loadedContextMenu and assign it here everytime
-        // cm is requested.
+        // cm is requested. (Maybe not required)
     }
 
     private void reloadContextMenu() {
@@ -217,19 +216,22 @@ public class AstralCreationFXMLController {
 
         for (int i = 0; i < Presets.values().length; i++) {
             Presets preset = Presets.values()[i];
-            String name = preset.getName();
-            String menuItemName = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
-            System.out.println(menuItemName);
+            String menuItemName = preset.getName().substring(0, 1).toUpperCase() +
+                    preset.getName().substring(1).toLowerCase();
+
             MenuItem menuItem = new MenuItem(menuItemName);
-            // "/Sprites/Planets/" + menuItemName + ".png"
-            ImageView imageView = new ImageView(new Image(getClass().getResource("/Sprites/Planets/" + menuItemName + ".png").toExternalForm()));
-            ImageView buttonImage = new ImageView(new Image(getClass().getResource("/Sprites/Planets/" + menuItemName + ".png").toExternalForm()));
-            imageView.setFitHeight(15);
-            imageView.setFitWidth(15);
+            ImageView imageView = new ImageView(new Image(getClass().getResource("/Sprites/Planets/"
+                    + menuItemName + ".png").toExternalForm()));
+            ImageView buttonImage = new ImageView(new Image(getClass().getResource("/Sprites/Planets/"
+                    + menuItemName + ".png").toExternalForm()));
+            imageView.setFitHeight(32);
+            imageView.setFitWidth(32);
             menuItem.setGraphic(imageView);
             cm.getItems().add(menuItem);
 
-            menuItem.setOnMenuValidation(event -> {
+            menuItem.setOnAction(event -> {
+                buttonImage.setFitHeight(32);
+                buttonImage.setFitWidth(32);
                 updatePresetValues(preset, buttonImage);
                 isEmpty = false;
             });
