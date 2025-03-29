@@ -2,6 +2,8 @@ package edu.vanier.superspace.utils;
 
 import com.google.gson.annotations.SerializedName;
 import edu.vanier.superspace.Application;
+import edu.vanier.superspace.simulation.Simulation;
+import java.io.File;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -24,5 +26,10 @@ public class SceneManagement {
     @SneakyThrows
     public static Parent loadPartial(Partials partial) {
         return FXMLHelper.loadFXML(partial.getFilepath());
+    }
+    
+    public static void exportSimulationScene(File exportFilepath) {
+        System.out.println(exportFilepath);
+        FileHelper.writeFileCompletely(exportFilepath.getAbsolutePath(), JsonHelper.serialize(Simulation.getInstance()));
     }
 }
