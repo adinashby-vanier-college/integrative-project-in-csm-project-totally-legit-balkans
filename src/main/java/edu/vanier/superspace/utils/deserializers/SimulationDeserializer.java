@@ -23,14 +23,17 @@ public class SimulationDeserializer implements JsonDeserializer<Simulation>{
         Simulation simulation = Simulation.getInstance();
         
         try {
-            if (deserialized.get("version").getAsString().equals(SimulationSerializer.getVersion()))
-                throw new Exception();
+            if (!deserialized.get("version").getAsString().equals(SimulationSerializer.getVersion())) {
+                throw new Exception("The simulation version is invalid!");
+            }
             DeserializerHelper.readField(simulation, Simulation.class, deserialized, jdc);
             return simulation;
-        } catch (Exception exception){
-            System.out.println("The simulation version is invalid!");
         }
-           return null;
+        catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }
+
+        return null;
     }
     
 }

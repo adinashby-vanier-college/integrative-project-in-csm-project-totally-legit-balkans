@@ -1,58 +1,93 @@
 package edu.vanier.superspace.utils;
 
 import edu.vanier.superspace.Application;
-import edu.vanier.superspace.Main;
+import edu.vanier.superspace.simulation.Simulation;
 import java.io.File;
 import javafx.stage.FileChooser;
 import lombok.Getter;
 import lombok.SneakyThrows;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SaveManager {
+    
+    private static Logger logger = LoggerFactory.getLogger(SaveManager.class);
+    
     @Getter
-    private static String lastSaveFilepathParent;
+    private static File lastSaveFilepathParent = new File(System.getProperty("user.dir"), "/simulations/");
 
     @Getter
-    private static String lastSaveFilepath;
+    private static File lastSaveFilepath;
     
     private static FileChooser saveFileChooser;
+
     @SneakyThrows
-    public static void initializeFileDirctory() {
-        File saveFile = new File(System.getProperty("user.dir") + "/src/main/resources/Simulation Saves/");
+    public static void initializeFileDirectory() {
         saveFileChooser = new FileChooser();
-        saveFileChooser.setInitialDirectory(saveFile);
+        saveFileChooser.setInitialDirectory(lastSaveFilepathParent);
         saveFileChooser.setInitialFileName("project" + FileHelper.SIMULATION_FILE_EXTENSION);
         saveFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Simulation File", "*" + FileHelper.SIMULATION_FILE_EXTENSION));
         saveFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*")); 
     }
 
-    public static void save() {
-
+    public static boolean save() {
+        return saveAs(lastSaveFilepath);
     }
 
-    public static void saveAs() {
+    public static boolean saveAs() {
         saveFileChooser.setTitle("Save Simulation Project");
         File saveLocation = saveFileChooser.showSaveDialog(Application.getPrimaryStage().getOwner());
-        saveFileChooser.setInitialDirectory(saveLocation.getParentFile());
-        saveAs(saveFileChooser.showOpenDialog(Application.getPrimaryStage()));
+
+        if (saveLocation == null) {
+            return false;
+        }
+
+        return saveAs(saveLocation);
     }
 
-    private static void saveAs(File saveFile) {
-
+    private static boolean saveAs(File saveFile) {
+        Simulation sim = Simulation.getInstance();
+        
+        if (sim == null){
+            logger.error("The simulation was never created!");
+            return false;
+        }
+        
+        lastSaveFilepath = saveFile;
+        lastSaveFilepathParent = saveFile.getParentFile();
+        saveFileChooser.setInitialDirectory(lastSaveFilepathParent);
+        
+        String asJson = JsonHelper.serialize(sim);
+        FileHelper.writeFileCompletely(saveFile.getAbsolutePath(), asJson);
+        return true;
     }
 
-    public static void load() {
+    public static boolean load() {
+        File loadPath = saveFileChooser.showOpenDialog(Application.getPrimaryStage());
 
+        if (loadPath == null) {
+            return false;
+        }
+
+        return load(loadPath);
     }
 
-    private static void load(String filepath) {
+    private static boolean load(File filepath) {
+        String jsonRead = FileHelper.readFileCompletely(filepath.getAbsolutePath());
+        JsonHelper.deserialize(jsonRead, Simulation.class);
+        
+        for (var entity : Simulation.getInstance().getEntities()) {
+            entity.registerFromLoadedFile();
+        }
 
+        return true;
     }
 
     public static void clear() {
-
+        SceneManagement.loadScene(Scenes.SIMULATION, true);
     }
 
     private static boolean canSaveDirectly() {
-        return lastSaveFilepath != null && !lastSaveFilepath.isEmpty();
+        return lastSaveFilepath != null;
     }
 }

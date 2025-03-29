@@ -15,6 +15,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Vector;
 
 public class SimulationTimer extends AnimationTimer {
     @Getter
@@ -28,8 +29,6 @@ public class SimulationTimer extends AnimationTimer {
     @Setter
     private Simulation linkedSimulation;
     private long lastUpdateTime = 0;
-
-    private boolean firstFrame = true;
 
     public void step() {
         stepOnce = true;
@@ -52,22 +51,20 @@ public class SimulationTimer extends AnimationTimer {
 
         lastUpdateTime = now;
 
-        double deltaTime;
+        double deltaTime = (double)elapsedNanoseconds / 1e9;
+
         if (stepOnce) {
-            deltaTime = 0.1;
-            stepOnce = false;
-        } else {
-            deltaTime = (double)elapsedNanoseconds / 1e9;
+            tick(0.1);
         }
 
         if (running) {
             tick(deltaTime);
         }
 
+        Camera.getInstance().onUpdate(deltaTime);
+        Input.update();
         clearScreen();
         draw();
-
-        firstFrame = false;
     }
 
     public void registerEntityToUpdate(Entity entity) {
@@ -88,6 +85,7 @@ public class SimulationTimer extends AnimationTimer {
     }
 
     private void tick(double deltaTime) {
+        componentsToTick.stream().filter((t) -> !((Component)t).isInitialized()).forEach(c -> ((Component)c).onInitialize());
         componentsToTick.forEach((t) -> t.onUpdate(deltaTime));
     }
 
@@ -100,7 +98,7 @@ public class SimulationTimer extends AnimationTimer {
 
     private void draw() {
         Camera camera = Camera.getInstance();
-        Vector2 cameraPos = camera.getTransform().getPosition().negate();
+        Vector2 cameraPos = camera.getTransform().getPosition().negateOnRenderAxis();
 
         for (int i = 0; i < linkedSimulation.getCanvases().length; i++) {
             if (!linkedSimulation.getActiveRenderLayers().contains(RenderLayers.values()[i])) {
@@ -119,12 +117,27 @@ public class SimulationTimer extends AnimationTimer {
                 }
 
                 GraphicsContext gc = linkedSimulation.getCanvases()[finalI].getGraphicsContext2D();
-                gc.save();
-                gc.translate(cameraPos.getX(), cameraPos.getY());
-                r.onDraw(gc);
-                gc.restore();
+                correctForCameraPositionAndDraw(camera.getZoom(), cameraPos, gc, r::onDraw);
             });
         }
+
+        GraphicsContext debugCanvas = linkedSimulation.getCanvases()[RenderLayers.DEBUG.ordinal()].getGraphicsContext2D();
+//        correctForCameraPositionAndDraw(camera.getZoom(), Vector2.zero(), debugCanvas, (gc) -> {
+//            gc.setStroke(Color.RED);
+//            gc.setLineWidth(3);
+//            gc.strokeRect(camera.getTransform().getPosition().getX(), camera.getTransform().getPosition().getY(), camera.getViewport().getX(), camera.getViewport().getY());
+//        });
     }
 
+    private interface DrawCallback {
+        void onDraw(GraphicsContext gc);
+    }
+
+    private void correctForCameraPositionAndDraw(double zoom, Vector2 position, GraphicsContext graphicsContext, DrawCallback callback) {
+        graphicsContext.save();
+        graphicsContext.translate(position.getX(), position.getY());
+        graphicsContext.scale(zoom, zoom);
+        callback.onDraw(graphicsContext);
+        graphicsContext.restore();
+    }
 }

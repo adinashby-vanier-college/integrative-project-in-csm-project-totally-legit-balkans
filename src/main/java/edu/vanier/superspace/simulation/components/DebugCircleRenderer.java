@@ -7,7 +7,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class DebugCircleRenderer extends Renderer {
-    private final double radius = 100;
+    private final double diameter = 1700 * 2;
 
     public DebugCircleRenderer() {
         super(RenderLayers.DEBUG);
@@ -16,13 +16,21 @@ public class DebugCircleRenderer extends Renderer {
     @Override
     public void onDraw(GraphicsContext gc) {
         Transform tf = getEntity().getTransform();
-        double halfRadius = radius / 2;
+        Vector2 pos = tf.getPosition();
+        double radius = diameter / 2;
         gc.setFill(Color.BLUE);
-        gc.fillOval(tf.getPosition().getX() - halfRadius, tf.getPosition().getY() - halfRadius, radius, radius);
+        gc.fillOval(tf.getPosition().getX() - radius, tf.getPosition().getY() - radius, diameter, diameter);
+
+        gc.setStroke(Color.GREEN);
+        gc.setLineWidth(2);
+        gc.strokeLine(pos.getX() - 5, pos.getY() - 5, pos.getX() + 5, pos.getY() + 5);
+        gc.strokeLine(pos.getX() - 5, pos.getY() + 5, pos.getX() + 5, pos.getY() - 5);
+
+//        System.out.println("drawn!");
     }
 
     @Override
     public Vector2 estimateSize() {
-        return Vector2.of(radius, radius);
+        return Vector2.of(diameter, diameter);
     }
 }

@@ -1,14 +1,13 @@
 package edu.vanier.superspace.utils;
 
-import edu.vanier.superspace.simulation.Input;
 import javafx.scene.control.TextField;
 
 public class InputValidator {
-    public static double validateDouble(TextField field) {
-        return validateDouble(field, "%.2f");
+    public static double validateDoubleWithUserData(TextField field) {
+        return validateDoubleWithUserData(field, "%.2f");
     }
 
-    public static double validateDouble(TextField field, String inputFieldFormatter) {
+    public static double validateDoubleWithUserData(TextField field, String inputFieldFormatter) {
         if (field.getUserData() == null) {
             field.setUserData(0.0);
         }

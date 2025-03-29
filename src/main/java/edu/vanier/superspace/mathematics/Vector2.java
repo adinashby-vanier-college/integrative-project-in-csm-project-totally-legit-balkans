@@ -1,5 +1,6 @@
 package edu.vanier.superspace.mathematics;
 
+import edu.vanier.superspace.annotations.ToSerialize;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,6 +8,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@ToSerialize
 public class Vector2 {
     /**
      * Data Fields
@@ -30,6 +32,10 @@ public class Vector2 {
     public Vector2(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    public static Vector2 copyOf(Vector2 vector) {
+        return new Vector2(vector.x, vector.y);
     }
 
     /**
@@ -124,6 +130,14 @@ public class Vector2 {
      */
     public Vector2 negate() {
         return new Vector2(-this.x, -this.y);
+    }
+
+    /**
+     * Negates the components of the vector to correct for rendering axis direction only.
+     * @return A new vector with the negated components accounting for rendering axis directions.
+     */
+    public Vector2 negateOnRenderAxis() {
+        return new Vector2(-this.x, this.y);
     }
 
     /**

@@ -9,14 +9,11 @@ import java.lang.reflect.Type;
 import lombok.SneakyThrows;
 
 public class EntitySerializer implements JsonSerializer<Entity>{
-
     @Override @SneakyThrows
     public JsonElement serialize(Entity t, Type type, JsonSerializationContext jsc) {
-        
         JsonObject serialized = new JsonObject();
-        serialized.add("className", jsc.serialize(t.getClass()));
+        serialized.addProperty("className", type.getTypeName());
         SerializerHelper.assignField(t, serialized, jsc);
         return serialized;
     }
-    
 }
