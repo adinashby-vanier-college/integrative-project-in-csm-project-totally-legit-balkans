@@ -114,7 +114,7 @@ public class AstralCreationFXMLController {
     @FXML
     private void onSubmitDouble(ActionEvent event) {
         var field = (TextField)event.getSource();
-        InputValidator.validateDouble(field);
+        InputValidator.validateDoubleWithUserData(field);
         System.out.println(field.getUserData());
     }
 }
