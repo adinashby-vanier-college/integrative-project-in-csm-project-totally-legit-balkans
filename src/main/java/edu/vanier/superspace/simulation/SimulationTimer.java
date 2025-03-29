@@ -14,6 +14,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Vector;
 
@@ -43,7 +44,6 @@ public class SimulationTimer extends AnimationTimer {
         }
 
         long elapsedNanoseconds = now - lastUpdateTime;
-
 //        if (elapsedNanoseconds < 1e9) {
 //            return;
 //        }
@@ -86,6 +86,7 @@ public class SimulationTimer extends AnimationTimer {
 
     private void tick(double deltaTime) {
         componentsToTick.stream().filter((t) -> !((Component)t).isInitialized()).forEach(c -> ((Component)c).onInitialize());
+
         componentsToTick.forEach((t) -> t.onUpdate(deltaTime));
     }
 
@@ -94,6 +95,10 @@ public class SimulationTimer extends AnimationTimer {
             GraphicsContext gc = canvas.getGraphicsContext2D();
             gc.clearRect(0, 0, linkedSimulation.getCanvasStack().getWidth(), linkedSimulation.getCanvasStack().getHeight());
         }
+
+        var gc = linkedSimulation.getCanvases()[RenderLayers.SPACE_SIMULATION.ordinal()].getGraphicsContext2D();
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, linkedSimulation.getCanvasStack().getWidth(), linkedSimulation.getCanvasStack().getHeight());
     }
 
     private void draw() {

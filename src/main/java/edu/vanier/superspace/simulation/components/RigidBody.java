@@ -13,7 +13,14 @@ public class RigidBody extends Component implements Tickable  {
     private Vector2 velocity = Vector2.of(0, 0);
     private double mass = 1.0;
     private Vector2 acceleration = Vector2.of(0, 0);
-    
+
+    public RigidBody() {}
+
+    public RigidBody(double mass) {
+        this();
+        this.mass = mass;
+    }
+
     public void addForce(Vector2 forceVector){
         acceleration.addAssign(forceVector.divide(mass));
     }

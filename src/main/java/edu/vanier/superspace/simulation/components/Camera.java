@@ -1,6 +1,7 @@
 package edu.vanier.superspace.simulation.components;
 
 import edu.vanier.superspace.annotations.ToSerialize;
+import edu.vanier.superspace.controllers.AstralCreationFXMLController;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.*;
 import edu.vanier.superspace.utils.BorderPaneAutomaticResizing;
@@ -40,6 +41,11 @@ public class Camera extends Entity implements Tickable {
         AnchorPane drawPane = ((AnchorPane) BorderPaneAutomaticResizing.getInstance().getPane().getCenter());
         viewport = Vector2.of(drawPane.getWidth(), drawPane.getHeight()).multiply(zoom);
 
+        System.out.println(AstralCreationFXMLController.getInstance().isSelected());
+        if (AstralCreationFXMLController.getInstance().isSelected()) {
+            return;
+        }
+
         double xVelocity = 0;
         double yVelocity = 0;
 
@@ -76,7 +82,7 @@ public class Camera extends Entity implements Tickable {
 
     public Vector2 screenSpaceToWorldSpace(Vector2 screenSpace) {
         Vector2 realDimensions = screenSpace.divide(zoom);
-        return realDimensions.add(transform.getPosition());
+        return transform.getPosition().add(realDimensions);
     }
 
     public boolean isInViewport(Entity entity) {

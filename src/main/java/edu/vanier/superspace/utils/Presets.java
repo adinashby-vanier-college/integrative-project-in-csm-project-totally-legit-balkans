@@ -4,19 +4,19 @@ import lombok.Getter;
 
 @Getter
 public enum Presets {
-    EARTH("Earth", "A friendly planet!", "Terrestrial", 20, 20, getEarthPath()),
-    VENUS("Venus", "Beautifully lit planet!", "Terrestrial", 10, 10, getVenusPath()),
-    MERCURY("Mercury", "Small Planet!", "Terrestrial", 5, 5, getMercuryPath()),
-    MOON("Moon", "Earth's close friend", "Terrestrial", 10, 10, getMoonPath()),
-    MARS("Mars", "Big red!", "Terrestrial", 15, 15, getMarsPath()),
-    JUPITER("Jupiter", "Biggest planet!", "Gaseous", 10, 10, getJupiterPath()),
-    URANUS("Uranus", "Lol", "Ice", 10, 10, getUranusPath()),
-    NEPTUNE("Neptune", "darker blueee", "Ice", 10, 10, getNeptunePath()),
-    PLUTO("Pluto", "Wishes it were a planet...", "Terrestrial", 10, 10, getPlutoPath()),
-    CALLISTO("Callisto", "One of Jupiter's moons", "Terrestrial", 10, 10, getCallistoPath()),
-    IO("Io", "One of Jupiter's moons", "Terrestrial", 10, 10, getIOPath()),
-    EUROPA("Europa", "One of Jupiter's moons", "Terrestrial", 10, 10, getEuropaPath()),
-    SUN("Sun", "Huge star", "Star", 10, 10, getSunPath());
+    EARTH("Earth", "A friendly planet!", "Terrestrial", 6380, 20, getEarthPath()),
+    VENUS("Venus", "Beautifully lit planet!", "Terrestrial", 6052, 10, getVenusPath()),
+    MERCURY("Mercury", "Small Planet!", "Terrestrial", 2439, 5, getMercuryPath()),
+    MOON("Moon", "Earth's close friend", "Terrestrial", 1737, 10, getMoonPath()),
+    MARS("Mars", "Big red!", "Terrestrial", 3389, 15, getMarsPath()),
+    JUPITER("Jupiter", "Biggest planet!", "Gaseous", 69910, 10, getJupiterPath()),
+    URANUS("Uranus", "Lol", "Ice", 25559, 10, getUranusPath()),
+    NEPTUNE("Neptune", "darker blueee", "Ice", 24764, 10, getNeptunePath()),
+    PLUTO("Pluto", "Wishes it were a planet...", "Terrestrial", 1188, 10, getPlutoPath()),
+    CALLISTO("Callisto", "One of Jupiter's moons", "Terrestrial", 2410, 10, getCallistoPath()),
+    IO("Io", "One of Jupiter's moons", "Terrestrial", 1821, 10, getIOPath()),
+    EUROPA("Europa", "One of Jupiter's moons", "Terrestrial", 1561, 10, getEuropaPath()),
+    SUN("Sun", "Huge star", "Star", 1.3927e6 / 2, 10, getSunPath());
 
 
     private String name;

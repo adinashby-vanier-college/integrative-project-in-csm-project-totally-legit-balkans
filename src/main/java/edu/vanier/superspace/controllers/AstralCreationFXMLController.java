@@ -2,7 +2,8 @@ package edu.vanier.superspace.controllers;
 
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.Entity;
-import edu.vanier.superspace.simulation.components.DebugCircleRenderer;
+import edu.vanier.superspace.simulation.components.Camera;
+import edu.vanier.superspace.simulation.components.PlanetRenderer;
 import edu.vanier.superspace.simulation.components.RigidBody;
 import edu.vanier.superspace.simulation.components.Transform;
 import edu.vanier.superspace.utils.*;
@@ -16,6 +17,7 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,14 +27,19 @@ import org.slf4j.LoggerFactory;
  */
 public class AstralCreationFXMLController {
     private final static Logger logger = LoggerFactory.getLogger(AstralCreationFXMLController.class);
+    @Getter
+    private static AstralCreationFXMLController instance;
     private boolean contextMenuStyled = false;
     private double dragXMouseAnchor;
     private double dragYMouseAnchor;
     private double dragLayoutX;
     private double dragLayoutY;
     private Entity body;
+    private Presets selectedAstralBody;
     private boolean isEmpty = true;
     private boolean isPreset;
+    @Getter
+    private boolean isSelected = false;
 
     @FXML
     private Button btnReset;
@@ -62,6 +69,10 @@ public class AstralCreationFXMLController {
     private TextField txtFieldDistance;
     @FXML
     private ComboBox<String> cmbReference;
+
+    public AstralCreationFXMLController() {
+        instance = this;
+    }
 
     public void initialize() throws IOException {
         logger.info("Initializing AstralCreationFXMLController...");
@@ -126,21 +137,7 @@ public class AstralCreationFXMLController {
         cmbReference.setDisable(true);
     }
 
-    public void addAstralBody() {
-        //TODO: Check for the possible exceptions for each possible user input
-        //TODO: Implement the dragging to the simulation of the astral body
-        //TODO: Implement the creation of a new physics entity after exceptions are handled
-        //TODO: Add it to an arraylist of current astral bodies in the simulation
-        try {
-//            mass = Double.parseDouble(txtFieldMass.getText());
-//            speed = Double.parseDouble(txtFieldSpeed.getText());
-//            description = txtFieldDescription.getText();
-//            type = cmbType.valueProperty().get();
-//            imagePath = btnImageSelector.getBackground().getImages().getFirst().getImage().getUrl();
-        } catch (Exception e) {
-            System.out.println("Exceptions to be handled...");
-        }
-    }
+    public void addAstralBody() {}
 
     @FXML
     private void onButtonContextMenuRequested(ContextMenuEvent event) throws IOException {
@@ -153,8 +150,7 @@ public class AstralCreationFXMLController {
     }
 
     private void reloadContextMenu() {
-        MenuItem hello = new MenuItem("Hello");
-        contextMenu.getItems().add(hello);
+
     }
 
     @FXML
@@ -162,7 +158,6 @@ public class AstralCreationFXMLController {
         if (!contextMenuStyled) {
             btnImageSelector.getScene().getStylesheets().add(getClass().getResource("/css/ContextMenuStyle.css").toExternalForm());
             contextMenuStyled = true;
-            System.out.println("styled");
         }
     }
 
@@ -174,21 +169,26 @@ public class AstralCreationFXMLController {
 
     @FXML
     private void onButtonMouseDragged(MouseEvent event) {
-        dragLayoutX = event.getSceneX() - dragXMouseAnchor;
-        dragLayoutY = event.getSceneY() - dragYMouseAnchor;
+        isSelected = true;
+        dragLayoutX = event.getSceneX();
+        dragLayoutY = event.getSceneY();
+        Vector2 dragDelta = Vector2.of(dragLayoutX, dragLayoutY);
+        Vector2 finalPlanetPosition = Camera.getInstance().screenSpaceToWorldSpace(dragDelta);
 
         if (body == null) {
             if (!isEmpty) {
                 Entity newEntity = new Entity();
                 newEntity.addComponent(new Transform());
-                newEntity.addComponent(new RigidBody());
-                newEntity.addComponent(new DebugCircleRenderer());
-                newEntity.getTransform().setPosition(new Vector2(dragLayoutX, dragLayoutY));
+                newEntity.addComponent(new RigidBody(selectedAstralBody.getMass()));
+                PlanetRenderer planetRenderer = new PlanetRenderer(selectedAstralBody.getRadius() * 2,
+                        selectedAstralBody.getPath());
+                newEntity.addComponent(planetRenderer);
+                newEntity.getTransform().setPosition(finalPlanetPosition);
                 newEntity.register();
                 body = newEntity;
             }
         } else {
-            body.getTransform().setPosition(new Vector2(dragLayoutX, dragLayoutY));
+            body.getTransform().setPosition(finalPlanetPosition);
         }
     }
 
@@ -199,6 +199,7 @@ public class AstralCreationFXMLController {
             System.out.println(dragLayoutX);
             System.out.println(dragLayoutY);
         }
+        isSelected = false;
     }
 
     @FXML
@@ -234,6 +235,7 @@ public class AstralCreationFXMLController {
                 buttonImage.setFitWidth(32);
                 updatePresetValues(preset, buttonImage);
                 isEmpty = false;
+                selectedAstralBody = preset;
             });
         }
 
@@ -264,6 +266,7 @@ public class AstralCreationFXMLController {
         btnRemove.setDisable(true);
         isEmpty = true;
         body = null;
+        selectedAstralBody = null;
     }
 
     @FXML
@@ -288,5 +291,7 @@ public class AstralCreationFXMLController {
         btnImageSelector.setGraphic(graphic);
         btnReset.setDisable(false);
         btnRemove.setDisable(true);
+        dragLayoutX = 0;
+        dragLayoutY = 0;
     }
 }
