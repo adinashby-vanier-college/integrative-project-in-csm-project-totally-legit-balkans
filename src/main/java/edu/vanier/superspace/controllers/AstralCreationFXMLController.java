@@ -1,6 +1,5 @@
 package edu.vanier.superspace.controllers;
 
-import edu.vanier.superspace.Main;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.Entity;
 import edu.vanier.superspace.simulation.components.DebugCircleRenderer;
@@ -8,27 +7,17 @@ import edu.vanier.superspace.simulation.components.RigidBody;
 import edu.vanier.superspace.simulation.components.Transform;
 import edu.vanier.superspace.utils.*;
 import javafx.event.ActionEvent;
-import edu.vanier.superspace.Application;
-import java.io.File;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.DragEvent;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.FileChooser;
-import javafx.stage.Popup;
-import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.xml.stream.XMLEventReader;
 
 /**
  * FXML Controller class for the astral creation scene.
@@ -41,6 +30,9 @@ public class AstralCreationFXMLController {
     private double dragYMouseAnchor;
     private double dragLayoutX;
     private double dragLayoutY;
+    private Entity body;
+    private boolean isEmpty = true;
+    private ContextMenu loadedContextMenu;
 
     @FXML
     private Button btnReset;
@@ -148,8 +140,15 @@ public class AstralCreationFXMLController {
         } catch (Exception e) {
             System.out.println("Exceptions to be handled...");
         }
+    }
 
-        System.out.println("Dragged");
+    @FXML
+    private void onButtonContextMenuRequested(ContextMenuEvent event) throws IOException {
+//        contextMenu = loadedContextMenu;
+//        btnImageSelector.setContextMenu(contextMenu);
+//        System.out.println("hi");
+        //TODO: Implement a way to reload the images, maybe clone the loadedContextMenu and assign it here everytime
+        // cm is requested.
     }
 
     @FXML
@@ -171,34 +170,27 @@ public class AstralCreationFXMLController {
     private void onButtonMouseDragged(MouseEvent event) {
         dragLayoutX = event.getSceneX() - dragXMouseAnchor;
         dragLayoutY = event.getSceneY() - dragYMouseAnchor;
+
+        if (body == null) {
+            if (!isEmpty) {
+                Entity newEntity = new Entity();
+                newEntity.addComponent(new Transform());
+                newEntity.addComponent(new RigidBody());
+                newEntity.addComponent(new DebugCircleRenderer());
+                newEntity.getTransform().setPosition(new Vector2(dragLayoutX, dragLayoutY));
+                newEntity.register();
+                body = newEntity;
+            }
+        } else {
+            body.getTransform().setPosition(new Vector2(dragLayoutX, dragLayoutY));
+        }
     }
 
     @FXML
     private void onButtonMouseReleased(MouseEvent event) {
-        System.out.println("released");
-        System.out.println(dragLayoutX + ", " + dragLayoutY);
-        double x = event.getSceneX();
-        double y = event.getSceneY();
-
-        Entity newEntity = new Entity();
-        newEntity.addComponent(new Transform());
-        newEntity.addComponent(new RigidBody());
-        newEntity.addComponent(new DebugCircleRenderer());
-        newEntity.getTransform().setPosition(new Vector2(x, y));
-        newEntity.register();
-    }
-
-    @FXML
-    private void onDragEnd(DragEvent dragEvent) {
-//        Vector2 targetPosition = Vector2.of(dragEvent.getSceneX(), dragEvent.getSceneY()).subtract(BorderPaneAutomaticResizing.getInstance().topLeftCornerPositionOffset());
-//        System.out.println("Hi");
-//
-//
-//        Entity newEntity = new Entity();
-//        newEntity.addComponent(new Transform());
-//        newEntity.addComponent(new RigidBody());
-//        newEntity.addComponent(new DebugCircleRenderer());
-//        newEntity.register();
+        if (body != null) {
+            resetAstralCreation();
+        }
     }
 
     @FXML
@@ -289,54 +281,67 @@ public class AstralCreationFXMLController {
 
         earth.setOnAction(event1 -> {
             updatePresetValues(Presets.EARTH, earthIm);
+            isEmpty = false;
         });
 
         venus.setOnAction(event1 -> {
             updatePresetValues(Presets.VENUS, venusIm);
+            isEmpty = false;
         });
 
         mercury.setOnAction(event1 -> {
             updatePresetValues(Presets.MERCURY, mercuryIm);
+            isEmpty = false;
         });
 
         mars.setOnAction(event1 -> {
             updatePresetValues(Presets.MARS, marsIm);
+            isEmpty = false;
         });
 
         moon.setOnAction(event1 -> {
             updatePresetValues(Presets.MOON, moonIm);
+            isEmpty = false;
         });
 
         jupiter.setOnAction(event1 -> {
             updatePresetValues(Presets.JUPITER, jupiterIm);
+            isEmpty = false;
         });
 
         uranus.setOnAction(event1 -> {
             updatePresetValues(Presets.URANUS, uranusIm);
+            isEmpty = false;
         });
 
         neptune.setOnAction(event1 -> {
             updatePresetValues(Presets.NEPTUNE, neptuneIm);
+            isEmpty = false;
         });
 
         callisto.setOnAction(event1 -> {
             updatePresetValues(Presets.CALLISTO, callistoIm);
+            isEmpty = false;
         });
 
         europa.setOnAction(event1 -> {
             updatePresetValues(Presets.EUROPA, europaIm);
+            isEmpty = false;
         });
 
         io.setOnAction(event1 -> {
             updatePresetValues(Presets.IO, ioIm);
+            isEmpty = false;
         });
 
         pluto.setOnAction(event1 -> {
             updatePresetValues(Presets.PLUTO, plutoIm);
+            isEmpty = false;
         });
 
         sun.setOnAction(event1 -> {
             updatePresetValues(Presets.SUN, sunIm);
+            isEmpty = false;
         });
 
         contextMenu = cm;
@@ -362,6 +367,10 @@ public class AstralCreationFXMLController {
         disableControls();
         btnImageSelector.setText("Choose Planet");
         btnImageSelector.setGraphic(null);
+        btnReset.setDisable(true);
+        btnRemove.setDisable(true);
+        isEmpty = true;
+        body = null;
     }
 
     @FXML
