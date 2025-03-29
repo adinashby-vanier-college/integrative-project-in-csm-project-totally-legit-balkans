@@ -16,8 +16,7 @@ public enum Presets {
     CALLISTO("Callisto", "One of Jupiter's moons", "Terrestrial", 10, 10, getCallistoPath()),
     IO("Io", "One of Jupiter's moons", "Terrestrial", 10, 10, getIOPath()),
     EUROPA("Europa", "One of Jupiter's moons", "Terrestrial", 10, 10, getEuropaPath()),
-    SUN("Sun", "Huge star", "Star", 10, 10, getSunPath()),
-    SATURN();
+    SUN("Sun", "Huge star", "Star", 10, 10, getSunPath());
 
 
     private String name;
@@ -89,6 +88,6 @@ public enum Presets {
     }
 
     public static String getMoonPath() {
-        return Presets.class.getResource("/Sprites/Planets/TheMoon.png").toExternalForm();
+        return Presets.class.getResource("/Sprites/Planets/Moon.png").toExternalForm();
     }
 }

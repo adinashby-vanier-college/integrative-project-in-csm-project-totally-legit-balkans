@@ -8,6 +8,7 @@ import edu.vanier.superspace.simulation.components.Transform;
 import edu.vanier.superspace.utils.*;
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.util.Arrays;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -147,8 +148,14 @@ public class AstralCreationFXMLController {
 //        contextMenu = loadedContextMenu;
 //        btnImageSelector.setContextMenu(contextMenu);
 //        System.out.println("hi");
+        reloadContextMenu();
         //TODO: Implement a way to reload the images, maybe clone the loadedContextMenu and assign it here everytime
         // cm is requested.
+    }
+
+    private void reloadContextMenu() {
+        MenuItem hello = new MenuItem("Hello");
+        contextMenu.getItems().add(hello);
     }
 
     @FXML
@@ -190,6 +197,8 @@ public class AstralCreationFXMLController {
     private void onButtonMouseReleased(MouseEvent event) {
         if (body != null) {
             resetAstralCreation();
+            System.out.println(dragLayoutX);
+            System.out.println(dragLayoutY);
         }
     }
 
@@ -205,144 +214,26 @@ public class AstralCreationFXMLController {
 
     private void loadContextMenu() throws IOException {
         ContextMenu cm = new ContextMenu();
-        MenuItem addNew = new MenuItem("Add new");
-        MenuItem mercury = new MenuItem("Mercury");
-        MenuItem venus = new MenuItem("Venus");
-        MenuItem earth = new MenuItem("Earth");
-        MenuItem moon = new MenuItem("Moon");
-        MenuItem mars = new MenuItem("Mars");
-        MenuItem jupiter = new MenuItem("Jupiter");
-        MenuItem uranus = new MenuItem("Uranus");
-        MenuItem neptune =  new MenuItem("Neptune");
-        MenuItem callisto =  new MenuItem("Callisto");
-        MenuItem europa = new MenuItem("Europa");
-        MenuItem io = new MenuItem("Io");
-        MenuItem pluto = new MenuItem("Pluto");
-        MenuItem sun = new MenuItem("Sun");
 
-        ImageView addNewIm = new ImageView(new Image(getClass().getResource("/fxml/images/AddNew.png").toExternalForm()));
-        addNewIm.setFitWidth(32);
-        addNewIm.setFitHeight(32);
-        addNew.setGraphic(addNewIm);
-        ImageView mercuryIm = new ImageView(new Image(Presets.getMercuryPath()));
-        mercuryIm.setFitHeight(32);
-        mercuryIm.setFitWidth(32);
-        mercury.setGraphic(mercuryIm);
-        ImageView venusIm = new ImageView(new Image(Presets.getVenusPath()));
-        venusIm.setFitHeight(32);
-        venusIm.setFitWidth(32);
-        venus.setGraphic(venusIm);
-        ImageView earthIm = new ImageView(new Image(Presets.getEarthPath()));
-        earthIm.setFitHeight(32);
-        earthIm.setFitWidth(32);
-        earth.setGraphic(earthIm);
-        ImageView moonIm = new ImageView(new Image(Presets.getMoonPath()));
-        moonIm.setFitHeight(32);
-        moonIm.setFitWidth(32);
-        moon.setGraphic(moonIm);
-        ImageView marsIm = new ImageView(new Image(Presets.getMarsPath()));
-        marsIm.setFitHeight(32);
-        marsIm.setFitWidth(32);
-        mars.setGraphic(marsIm);
-        ImageView jupiterIm = new ImageView(new Image(Presets.getJupiterPath()));
-        jupiterIm.setFitHeight(32);
-        jupiterIm.setFitWidth(32);
-        jupiter.setGraphic(jupiterIm);
-        ImageView uranusIm = new ImageView(new Image(Presets.getUranusPath()));
-        uranusIm.setFitHeight(32);
-        uranusIm.setFitWidth(32);
-        uranus.setGraphic(uranusIm);
-        ImageView neptuneIm = new ImageView(new Image(Presets.getNeptunePath()));
-        neptuneIm.setFitHeight(32);
-        neptuneIm.setFitWidth(32);
-        neptune.setGraphic(neptuneIm);
-        ImageView callistoIm = new ImageView(new Image(Presets.getCallistoPath()));
-        callistoIm.setFitHeight(32);
-        callistoIm.setFitWidth(32);
-        callisto.setGraphic(callistoIm);
-        ImageView europaIm = new ImageView(new Image(Presets.getEuropaPath()));
-        europaIm.setFitHeight(32);
-        europaIm.setFitWidth(32);
-        europa.setGraphic(europaIm);
-        ImageView ioIm = new ImageView(new Image(Presets.getIOPath()));
-        ioIm.setFitHeight(32);
-        ioIm.setFitWidth(32);
-        io.setGraphic(ioIm);
-        ImageView plutoIm = new ImageView(new Image(Presets.getPlutoPath()));
-        plutoIm.setFitHeight(32);
-        plutoIm.setFitWidth(32);
-        pluto.setGraphic(plutoIm);
-        ImageView sunIm = new ImageView(new Image(Presets.getSunPath()));
-        sunIm.setFitHeight(32);
-        sunIm.setFitWidth(32);
-        sun.setGraphic(sunIm);
+        for (int i = 0; i < Presets.values().length; i++) {
+            Presets preset = Presets.values()[i];
+            String name = preset.getName();
+            String menuItemName = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+            System.out.println(menuItemName);
+            MenuItem menuItem = new MenuItem(menuItemName);
+            // "/Sprites/Planets/" + menuItemName + ".png"
+            ImageView imageView = new ImageView(new Image(getClass().getResource("/Sprites/Planets/" + menuItemName + ".png").toExternalForm()));
+            ImageView buttonImage = new ImageView(new Image(getClass().getResource("/Sprites/Planets/" + menuItemName + ".png").toExternalForm()));
+            imageView.setFitHeight(15);
+            imageView.setFitWidth(15);
+            menuItem.setGraphic(imageView);
+            cm.getItems().add(menuItem);
 
-        cm.getItems().addAll(addNew, mercury, venus, earth, moon, mars, jupiter, uranus, neptune, callisto, europa, io, pluto, sun);
-
-        earth.setOnAction(event1 -> {
-            updatePresetValues(Presets.EARTH, earthIm);
-            isEmpty = false;
-        });
-
-        venus.setOnAction(event1 -> {
-            updatePresetValues(Presets.VENUS, venusIm);
-            isEmpty = false;
-        });
-
-        mercury.setOnAction(event1 -> {
-            updatePresetValues(Presets.MERCURY, mercuryIm);
-            isEmpty = false;
-        });
-
-        mars.setOnAction(event1 -> {
-            updatePresetValues(Presets.MARS, marsIm);
-            isEmpty = false;
-        });
-
-        moon.setOnAction(event1 -> {
-            updatePresetValues(Presets.MOON, moonIm);
-            isEmpty = false;
-        });
-
-        jupiter.setOnAction(event1 -> {
-            updatePresetValues(Presets.JUPITER, jupiterIm);
-            isEmpty = false;
-        });
-
-        uranus.setOnAction(event1 -> {
-            updatePresetValues(Presets.URANUS, uranusIm);
-            isEmpty = false;
-        });
-
-        neptune.setOnAction(event1 -> {
-            updatePresetValues(Presets.NEPTUNE, neptuneIm);
-            isEmpty = false;
-        });
-
-        callisto.setOnAction(event1 -> {
-            updatePresetValues(Presets.CALLISTO, callistoIm);
-            isEmpty = false;
-        });
-
-        europa.setOnAction(event1 -> {
-            updatePresetValues(Presets.EUROPA, europaIm);
-            isEmpty = false;
-        });
-
-        io.setOnAction(event1 -> {
-            updatePresetValues(Presets.IO, ioIm);
-            isEmpty = false;
-        });
-
-        pluto.setOnAction(event1 -> {
-            updatePresetValues(Presets.PLUTO, plutoIm);
-            isEmpty = false;
-        });
-
-        sun.setOnAction(event1 -> {
-            updatePresetValues(Presets.SUN, sunIm);
-            isEmpty = false;
-        });
+            menuItem.setOnMenuValidation(event -> {
+                updatePresetValues(preset, buttonImage);
+                isEmpty = false;
+            });
+        }
 
         contextMenu = cm;
     }

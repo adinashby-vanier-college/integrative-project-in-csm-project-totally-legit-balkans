@@ -26,7 +26,7 @@ public class Camera extends Entity implements Tickable {
         super();
         Camera.instance = this;
         AnchorPane drawPane = ((AnchorPane) BorderPaneAutomaticResizing.getInstance().getPane().getCenter());
-        viewport = Vector2.of(drawPane.getWidth(), drawPane.getHeight());
+        viewport = Vector2.of(2000, 800);
     }
 
     @Override
