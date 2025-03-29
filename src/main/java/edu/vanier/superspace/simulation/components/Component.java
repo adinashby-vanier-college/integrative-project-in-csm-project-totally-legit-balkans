@@ -4,7 +4,13 @@ import edu.vanier.superspace.simulation.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
-public class Component {
+@Getter
+public abstract class Component {
+    @Setter
     private Entity entity;
+    private boolean initialized = false;
+
+    public void onInitialize() {
+        initialized = true;
+    }
 }
