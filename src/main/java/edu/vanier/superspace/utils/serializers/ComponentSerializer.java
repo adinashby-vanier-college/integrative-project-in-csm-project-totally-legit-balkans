@@ -14,7 +14,7 @@ public class ComponentSerializer implements JsonSerializer<Component>{
     @Override @SneakyThrows
     public JsonElement serialize(Component t, Type type, JsonSerializationContext jsc) {
         JsonObject serialized = new JsonObject();
-        serialized.add("className", jsc.serialize(t.getClass()));
+        serialized.addProperty("className", type.getTypeName());
         SerializerHelper.assignField(t, serialized, jsc);
         return serialized;
     }
