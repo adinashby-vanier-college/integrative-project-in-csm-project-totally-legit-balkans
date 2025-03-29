@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -20,7 +21,7 @@
                   <Font name="Dubai Regular" size="40.0" />
                </font>
             </Text>
-            <Button id="btnImage" fx:id="btnImageSelector" layoutX="104.0" layoutY="46.0" mnemonicParsing="false" onContextMenuRequested="#onButtonContextMenuRequested" onMouseDragged="#onButtonMouseDragged" onMousePressed="#onButtonMousePressed" onMouseReleased="#onButtonMouseReleased" prefHeight="90.0" prefWidth="90.0" stylesheets="@../css/AstralCreationStyle.css" text="Choose Planet" textAlignment="CENTER" wrapText="true">
+            <Button id="btnImage" fx:id="btnImageSelector" alignment="CENTER" contentDisplay="CENTER" layoutX="104.0" layoutY="46.0" mnemonicParsing="false" onContextMenuRequested="#onButtonContextMenuRequested" onMouseDragged="#onButtonMouseDragged" onMousePressed="#onButtonMousePressed" onMouseReleased="#onButtonMouseReleased" prefHeight="90.0" prefWidth="90.0" stylesheets="@../css/AstralCreationStyle.css" text="Choose Planet" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Dubai Regular" size="16.0" />
                </font>
@@ -48,12 +49,12 @@
                   <Font name="Dubai Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="txtFieldPath" alignment="CENTER" disable="true" layoutX="108.0" layoutY="187.0" onAction="#onSubmitDouble" prefHeight="29.0" prefWidth="181.0" promptText="Enter values" styleClass="text-field">
+            <TextField fx:id="txtFieldMass" alignment="CENTER" layoutX="145.0" layoutY="149.0" onAction="#onSubmitDouble" prefHeight="16.0" prefWidth="130.0" promptText="Enter values" styleClass="text-field">
                <font>
                   <Font name="Dubai Regular" size="10.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtFieldName" alignment="CENTER" disable="true" layoutX="108.0" layoutY="218.0" onAction="#onSubmitDouble" prefHeight="29.0" prefWidth="181.0" promptText="Enter values" styleClass="text-field">
+            <TextField fx:id="txtFieldSpeed" alignment="CENTER" layoutX="145.0" layoutY="180.0" onAction="#onSubmitDouble" prefHeight="16.0" prefWidth="130.0" promptText="Enter values" styleClass="text-field">
                <font>
                   <Font name="Dubai Regular" size="10.0" />
                </font>
