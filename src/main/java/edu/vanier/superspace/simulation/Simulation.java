@@ -33,7 +33,7 @@ public class Simulation {
 
     @Getter
     private final Canvas[] canvases = new Canvas[RenderLayers.values().length];
-    @Getter @ToSerialize
+    @Getter
     private final EnumSet<RenderLayers> activeRenderLayers = EnumSet.of(RenderLayers.DEBUG);
 
     @Getter
@@ -54,14 +54,7 @@ public class Simulation {
 
         Simulation.instance = this;
 
-        Camera camera = new Camera();
-        camera.register();
-        Entity entity = new Entity();
-        entity.addComponent(new DebugCircleRenderer());
-        entity.addComponent(new Transform());
-        entity.setName("Entity 1");
-
-        entity.register();
+        new Camera();
 
         clock.setLinkedSimulation(this);
         clock.start();
@@ -76,6 +69,10 @@ public class Simulation {
             canvas.setWidth(canvasStack.getWidth());
             canvas.setHeight(canvasStack.getHeight());
         }
+    }
+
+    public void registerFromLoadedFile(Entity entity) {
+        clock.registerEntityToUpdate(entity);
     }
 
     public void createEntity(Entity entity) {

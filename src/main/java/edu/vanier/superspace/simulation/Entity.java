@@ -35,6 +35,11 @@ public class Entity {
         System.out.println(transform);
     }
 
+    public void registerFromLoadedFile() {
+        simulation = Simulation.getInstance();
+        Simulation.getInstance().registerFromLoadedFile(this);
+    }
+
     public void register() {
         simulation = Simulation.getInstance();
         Simulation.getInstance().createEntity(this);

@@ -77,7 +77,7 @@ public class SaveManager {
         JsonHelper.deserialize(jsonRead, Simulation.class);
         
         for (var entity : Simulation.getInstance().getEntities()) {
-            entity.register();
+            entity.registerFromLoadedFile();
         }
 
         return true;
