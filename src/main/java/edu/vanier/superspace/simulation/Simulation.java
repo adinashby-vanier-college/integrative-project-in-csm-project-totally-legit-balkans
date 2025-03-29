@@ -1,5 +1,6 @@
 package edu.vanier.superspace.simulation;
 
+import edu.vanier.superspace.annotations.ToSerialize;
 import edu.vanier.superspace.dto.RenderLayers;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.components.Camera;
@@ -26,7 +27,9 @@ public class Simulation {
     @Getter
     private static Simulation instance = null;
 
+    @Getter @ToSerialize
     private final ArrayList<Entity> entities = new ArrayList<>();
+    @ToSerialize
     private String name;
     @Getter @Setter
     private File saveLocation;
@@ -36,7 +39,8 @@ public class Simulation {
     @Getter
     private final Canvas[] canvases = new Canvas[RenderLayers.values().length];
     @Getter
-    private final EnumSet<RenderLayers> activeRenderLayers = EnumSet.of(RenderLayers.DEBUG);
+    private final EnumSet<RenderLayers> activeRenderLayers = EnumSet.of(RenderLayers.DEBUG,
+            RenderLayers.SPACE_SIMULATION);
 
     @Getter
     private final SimulationTimer clock = new SimulationTimer();
@@ -56,14 +60,7 @@ public class Simulation {
 
         Simulation.instance = this;
 
-        Camera camera = new Camera();
-        camera.register();
-        Entity entity = new Entity();
-        entity.addComponent(new DebugCircleRenderer());
-        entity.addComponent(new Transform());
-        entity.setName("Entity 1");
-
-        entity.register();
+        new Camera();
 
         clock.setLinkedSimulation(this);
         clock.start();
@@ -78,6 +75,10 @@ public class Simulation {
             canvas.setWidth(canvasStack.getWidth());
             canvas.setHeight(canvasStack.getHeight());
         }
+    }
+
+    public void registerFromLoadedFile(Entity entity) {
+        clock.registerEntityToUpdate(entity);
     }
 
     public void createEntity(Entity entity) {

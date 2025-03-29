@@ -24,6 +24,7 @@ public class JsonHelper {
             .registerTypeHierarchyAdapter(Component.class,new ComponentSerializer())
             .registerTypeHierarchyAdapter(Entity.class, new EntitySerializer())
             .registerTypeHierarchyAdapter(Simulation.class, new SimulationSerializer())
+            .setPrettyPrinting()
             .create();
     
     private static final Gson gsonDeserializer = new GsonBuilder()

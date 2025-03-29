@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 import edu.vanier.superspace.Application;
 import edu.vanier.superspace.simulation.Simulation;
 import java.io.File;
+
+import edu.vanier.superspace.simulation.Input;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -19,6 +21,7 @@ public class SceneManagement {
         scene.getInitializer().initialize(root, reload);
 
         Scene loadedScene = new Scene(root, RenderDimensions.getApplicationTargetWidth(), RenderDimensions.getApplicationTargetHeight());
+        Input.initialize(loadedScene);
         Application.getPrimaryStage().setScene(loadedScene);
         Application.getPrimaryStage().sizeToScene();
     }
