@@ -22,19 +22,17 @@ javafx {
 
 dependencies {
     // The following .jars are pulled from:
-    //@see: https://repo.maven.apache.org/maven2/org/openjfx/    
+    // https://repo.maven.apache.org/maven2/org/openjfx/    
     compileOnly  "org.openjfx:javafx-base:$javafxVersion:sources"
     compileOnly  "org.openjfx:javafx-controls:$javafxVersion:sources"
     compileOnly  "org.openjfx:javafx-fxml:$javafxVersion:sources"
     compileOnly  "org.openjfx:javafx-graphics:$javafxVersion:sources"
-    compileOnly  "org.openjfx:javafx-swing:$javafxVersion:sources"
     
     // Load the Javadoc for the specified JavaFX modules.
     compileOnly  "org.openjfx:javafx-base:$javafxVersion:javadoc"
     compileOnly  "org.openjfx:javafx-controls:$javafxVersion:javadoc"
     compileOnly  "org.openjfx:javafx-fxml:$javafxVersion:javadoc"
     compileOnly  "org.openjfx:javafx-graphics:$javafxVersion:javadoc"
-    compileOnly  "org.openjfx:javafx-swing:$javafxVersion:javadoc"
 
     // Link Logback to the project: @see: https://logback.qos.ch/ 
     implementation "ch.qos.logback:logback-classic:$logbackVersion"

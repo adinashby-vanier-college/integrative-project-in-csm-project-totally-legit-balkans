@@ -154,32 +154,6 @@ public class AstralCreationFXMLController {
     }
 
     @FXML
-    private void onImageSelectorClicked() {
-        FileChooser chooser = new FileChooser();
-        chooser.setInitialDirectory(new File(System.getProperty("user.dir") + "/src/main/resources/Sprites/Planets/"));
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
-        chooser.setTitle("Select Image File For Astral Body");
-        File astralImage = chooser.showSaveDialog(Application.getPrimaryStage().getOwner());
-        System.out.println(astralImage.getAbsolutePath());
-        ImageView i = new ImageView(new Image("file:///" + astralImage.getAbsolutePath()));
-        i.setFitHeight(75);
-        i.setFitWidth(75);
-        btnImageSelector.setText("");
-        btnImageSelector.setGraphic(i);
-    }
-  
-    public void addAstralBody() {
-        //TODO: Check for the possible exceptions for each possible user input
-        //TODO: Implement the dragging to the simulation of the astral body
-        //TODO: Implement the creation of a new physics entity after exceptions are handled
-        try {
-//            mass = Double.parseDouble(txtFieldMass.getText());
-//            speed = Double.parseDouble(txtFieldSpeed.getText());
-//            description = txtFieldDescription.getText();
-//            type = cmbType.valueProperty().get();
-//            imagePath = btnImageSelector.getBackground().getImages().getFirst().getImage().getUrl();
-        } catch (Exception e) {
-            System.out.println("Exceptions to be handled...");
     private void onPaneMouseEntered(MouseEvent event) {
         if (!contextMenuStyled) {
             btnImageSelector.getScene().getStylesheets().add(getClass().getResource("/css/ContextMenuStyle.css").toExternalForm());

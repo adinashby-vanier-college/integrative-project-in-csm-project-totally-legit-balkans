@@ -7,7 +7,6 @@ import edu.vanier.superspace.simulation.components.Camera;
 import edu.vanier.superspace.simulation.components.DebugCircleRenderer;
 import edu.vanier.superspace.simulation.components.Transform;
 import edu.vanier.superspace.utils.SaveManager;
-import java.io.File;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
@@ -19,9 +18,6 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
-import javafx.scene.SnapshotParameters;
-import javafx.scene.SnapshotResult;
-import javafx.scene.image.WritableImage;
 
 public class Simulation {
     @Getter
@@ -31,8 +27,7 @@ public class Simulation {
     private final ArrayList<Entity> entities = new ArrayList<>();
     @ToSerialize
     private String name;
-    @Getter @Setter
-    private File saveLocation;
+
     @Getter
     private StackPane canvasStack;
 
@@ -119,5 +114,4 @@ public class Simulation {
         Camera.setInstance(null);
         Platform.exit();
     }
-    
 }
