@@ -12,8 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1280.0" styleClass="border-pane" stylesheets="@../css/SettingsStyle.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.SettingsFXMLController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1280.0" styleClass="border-pane" stylesheets="@../css/SettingsStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.SettingsFXMLController">
    <top>
       <AnchorPane prefHeight="108.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
          <children>
@@ -159,33 +158,27 @@
                   <RadioButton fx:id="rdbSmall" mnemonicParsing="false" onAction="#onRdbSmallClicked" text="Small" GridPane.columnIndex="5" GridPane.rowIndex="10">
                      <font>
                         <Font name="Dubai Regular" size="25.0" />
-                     </font>
-                  </RadioButton>
+                     </font></RadioButton>
                   <RadioButton fx:id="rdbFontMedium" mnemonicParsing="false" onAction="#onRdbFontMediumClicked" text="Medium" GridPane.columnIndex="6" GridPane.rowIndex="10">
                      <font>
                         <Font name="Dubai Regular" size="25.0" />
-                     </font>
-                  </RadioButton>
+                     </font></RadioButton>
                   <RadioButton fx:id="rdbBig" mnemonicParsing="false" onAction="#onRdbBigClicked" text="Big" GridPane.columnIndex="7" GridPane.rowIndex="10">
                      <font>
                         <Font name="Dubai Regular" size="25.0" />
-                     </font>
-                  </RadioButton>
+                     </font></RadioButton>
                   <RadioButton fx:id="rdbCalibri" mnemonicParsing="false" onAction="#onRdbCalibriClicked" text="Calibri" GridPane.columnIndex="5" GridPane.rowIndex="11">
                      <font>
                         <Font name="Dubai Regular" size="25.0" />
-                     </font>
-                  </RadioButton>
+                     </font></RadioButton>
                   <RadioButton fx:id="rdbArial" mnemonicParsing="false" onAction="#onRdbArialClicked" text="Arial" GridPane.columnIndex="6" GridPane.rowIndex="11">
                      <font>
                         <Font name="Dubai Regular" size="25.0" />
-                     </font>
-                  </RadioButton>
+                     </font></RadioButton>
                   <RadioButton fx:id="rdbDubai" mnemonicParsing="false" onAction="#onRdbDubaiClicked" text="Dubai" GridPane.columnIndex="7" GridPane.rowIndex="11">
                      <font>
                         <Font name="Dubai Regular" size="25.0" />
-                     </font>
-                  </RadioButton>
+                     </font></RadioButton>
                </children>
                <opaqueInsets>
                   <Insets />

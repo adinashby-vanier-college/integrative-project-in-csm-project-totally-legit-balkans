@@ -9,7 +9,6 @@ import java.io.IOException;
 public class FileHelper {
     
     public static final String SIMULATION_FILE_EXTENSION = ".sim";
-    public static final String SIMULATION_ICON_EXTENSION = ".icon";
     
     public static String readFileCompletely(String filepath) {
         try {
