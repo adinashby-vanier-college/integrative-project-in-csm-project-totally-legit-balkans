@@ -51,7 +51,6 @@ public class SaveManager {
                 generateAndWriteSaveIcon(saveFile);
                 Simulation.getInstance().setSaveLocation(saveFile);
                 setLastSaveFilepath(saveFile.getAbsolutePath());
-                Application.getPrimaryStage().setTitle("Balls");
             } catch (Exception ex) {
                 System.out.println("Export Error");
             }

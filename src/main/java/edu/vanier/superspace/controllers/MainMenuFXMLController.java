@@ -72,7 +72,6 @@ public class MainMenuFXMLController {
             hboxSceneSelector.getChildren().add(new Label("No preset simulations found."));
         } else {
             for (File simulationFile : simulationFiles) {
-                System.out.println("working");
                         
                 hboxSceneSelector.getChildren().addFirst(createNewFileButton(simulationFile));
             }
