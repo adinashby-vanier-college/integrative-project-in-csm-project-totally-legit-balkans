@@ -215,6 +215,13 @@ public class AstralCreationFXMLController {
     private void loadContextMenu() throws IOException {
         ContextMenu cm = new ContextMenu();
 
+        MenuItem addNew = new MenuItem("Add new");
+        ImageView addNewImage = new ImageView(new Image(getClass().getResource("/fxml/Images/AddNew.png").toExternalForm()));
+        addNewImage.setFitWidth(32);
+        addNewImage.setFitHeight(32);
+        addNew.setGraphic(addNewImage);
+        cm.getItems().add(addNew);
+
         for (int i = 0; i < Presets.values().length; i++) {
             Presets preset = Presets.values()[i];
             String menuItemName = preset.getName().substring(0, 1).toUpperCase() +
@@ -222,9 +229,9 @@ public class AstralCreationFXMLController {
 
             MenuItem menuItem = new MenuItem(menuItemName);
             ImageView imageView = new ImageView(new Image(getClass().getResource("/Sprites/Planets/"
-                    + menuItemName + ".png").toExternalForm()));
+                    + menuItemName + "Icon.png").toExternalForm()));
             ImageView buttonImage = new ImageView(new Image(getClass().getResource("/Sprites/Planets/"
-                    + menuItemName + ".png").toExternalForm()));
+                    + menuItemName + "Icon.png").toExternalForm()));
             imageView.setFitHeight(32);
             imageView.setFitWidth(32);
             menuItem.setGraphic(imageView);
