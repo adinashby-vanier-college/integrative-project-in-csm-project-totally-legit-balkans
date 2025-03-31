@@ -2,8 +2,12 @@ package edu.vanier.superspace.utils;
 
 import edu.vanier.superspace.Application;
 import edu.vanier.superspace.simulation.Simulation;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
+import javax.imageio.ImageIO;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
@@ -23,8 +27,9 @@ public class SaveManager {
 
     @SneakyThrows
     public static void initializeFileDirectory() {
+        File saveFile = new File(System.getProperty("user.dir") + "/src/main/resources/Simulation Saves/");
         saveFileChooser = new FileChooser();
-        saveFileChooser.setInitialDirectory(lastSaveFilepathParent);
+        saveFileChooser.setInitialDirectory(saveFile);
         saveFileChooser.setInitialFileName("project" + FileHelper.SIMULATION_FILE_EXTENSION);
         saveFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Simulation File", "*" + FileHelper.SIMULATION_FILE_EXTENSION));
         saveFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*")); 
@@ -52,7 +57,7 @@ public class SaveManager {
             logger.error("The simulation was never created!");
             return false;
         }
-        
+        generateAndWriteSaveIcon(saveFile);
         lastSaveFilepath = saveFile;
         lastSaveFilepathParent = saveFile.getParentFile();
         saveFileChooser.setInitialDirectory(lastSaveFilepathParent);
@@ -83,6 +88,20 @@ public class SaveManager {
         return true;
     }
 
+    @SneakyThrows
+    private static void generateAndWriteSaveIcon(File jsonWritePath) {
+        String iconWritePath = jsonWritePath.getAbsolutePath().substring(0, jsonWritePath.getAbsolutePath().length() - 4);
+        File iconWriteFile = new File(iconWritePath + FileHelper.SIMULATION_ICON_EXTENSION);
+        Image img = new Image("fxml/Images/MainMenuBackground.png");
+        BufferedImage bff = new BufferedImage(20, 20, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D gr = bff.createGraphics();
+        gr.drawImage(bff, 100, 150, null);
+        gr.dispose();
+        ImageIO.write(bff, "png", iconWriteFile);
+//        WritableImage sceneIcon = Simulation.getInstance().getIconScreenshot();
+//        ImageIO.write(SwingFXUtils.fromFXImage(sceneIcon, null), "png", iconWriteFile);
+    }
+    
     public static void clear() {
         SceneManagement.loadScene(Scenes.SIMULATION, true);
     }
