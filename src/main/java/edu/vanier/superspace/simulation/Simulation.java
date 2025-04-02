@@ -4,17 +4,14 @@ import edu.vanier.superspace.annotations.ToSerialize;
 import edu.vanier.superspace.dto.RenderLayers;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.components.Camera;
-import edu.vanier.superspace.simulation.components.DebugCircleRenderer;
-import edu.vanier.superspace.simulation.components.Transform;
 import edu.vanier.superspace.utils.SaveManager;
+import edu.vanier.superspace.utils.AstralBody;
+import edu.vanier.superspace.utils.UserCatalog;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -22,9 +19,12 @@ import java.util.EnumSet;
 public class Simulation {
     @Getter
     private static Simulation instance = null;
-
+    @Getter
+    private final UserCatalog userCatalog;
     @Getter @ToSerialize
     private final ArrayList<Entity> entities = new ArrayList<>();
+    @Getter
+    private final ArrayList<AstralBody> userBodies = new ArrayList<>();
     @ToSerialize
     private String name;
 
@@ -59,6 +59,8 @@ public class Simulation {
 
         clock.setLinkedSimulation(this);
         clock.start();
+
+        userCatalog = new UserCatalog();
     }
 
     public void registerCamera(Camera camera) {

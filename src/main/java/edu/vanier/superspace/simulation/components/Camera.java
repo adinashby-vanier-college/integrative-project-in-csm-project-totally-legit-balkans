@@ -41,7 +41,6 @@ public class Camera extends Entity implements Tickable {
         AnchorPane drawPane = ((AnchorPane) BorderPaneAutomaticResizing.getInstance().getPane().getCenter());
         viewport = Vector2.of(drawPane.getWidth(), drawPane.getHeight()).multiply(zoom);
 
-        System.out.println(AstralCreationFXMLController.getInstance().isSelected());
         if (AstralCreationFXMLController.getInstance().isSelected()) {
             return;
         }

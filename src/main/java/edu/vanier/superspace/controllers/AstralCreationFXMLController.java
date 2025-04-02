@@ -2,6 +2,7 @@ package edu.vanier.superspace.controllers;
 
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.Entity;
+import edu.vanier.superspace.simulation.Simulation;
 import edu.vanier.superspace.simulation.components.Camera;
 import edu.vanier.superspace.simulation.components.PlanetRenderer;
 import edu.vanier.superspace.simulation.components.RigidBody;
@@ -9,6 +10,7 @@ import edu.vanier.superspace.simulation.components.Transform;
 import edu.vanier.superspace.utils.*;
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -35,11 +37,11 @@ public class AstralCreationFXMLController {
     private double dragLayoutX;
     private double dragLayoutY;
     private Entity body;
-    private Presets selectedAstralBody;
+    private AstralBody selectedAstralBody;
     private boolean isEmpty = true;
-    private boolean isPreset;
     @Getter
     private boolean isSelected = false;
+    private UserCatalog userCatalog;
 
     @FXML
     private Button btnReset;
@@ -89,9 +91,6 @@ public class AstralCreationFXMLController {
                 "Clockwise",
                 "Counter-clockwise"
         );
-
-        loadContextMenu();
-        btnImageSelector.setContextMenu(contextMenu);
     }
 
 
@@ -154,9 +153,12 @@ public class AstralCreationFXMLController {
     }
 
     @FXML
-    private void onPaneMouseEntered(MouseEvent event) {
+    private void onPaneMouseEntered(MouseEvent event) throws IOException {
         if (!contextMenuStyled) {
             btnImageSelector.getScene().getStylesheets().add(getClass().getResource("/css/ContextMenuStyle.css").toExternalForm());
+            userCatalog = Simulation.getInstance().getUserCatalog();
+            loadContextMenu();
+            btnImageSelector.setContextMenu(contextMenu);
             contextMenuStyled = true;
         }
     }
@@ -182,6 +184,8 @@ public class AstralCreationFXMLController {
                 newEntity.addComponent(new RigidBody(selectedAstralBody.getMass()));
                 PlanetRenderer planetRenderer = new PlanetRenderer(selectedAstralBody.getRadius() * 2,
                         selectedAstralBody.getPath());
+                System.out.println(selectedAstralBody.getPath());
+                System.out.println(selectedAstralBody.getMass());
                 newEntity.addComponent(planetRenderer);
                 newEntity.getTransform().setPosition(finalPlanetPosition);
                 newEntity.register();
@@ -212,6 +216,10 @@ public class AstralCreationFXMLController {
 
     }
 
+    private String addIconToPath(String path) {
+        return path.substring(0, path.length() - 4) + "Icon.png";
+    }
+
     private void loadContextMenu() throws IOException {
         ContextMenu cm = new ContextMenu();
 
@@ -222,16 +230,14 @@ public class AstralCreationFXMLController {
         addNew.setGraphic(addNewImage);
         cm.getItems().add(addNew);
 
-        for (int i = 0; i < Presets.values().length; i++) {
-            Presets preset = Presets.values()[i];
-            String menuItemName = preset.getName().substring(0, 1).toUpperCase() +
-                    preset.getName().substring(1).toLowerCase();
+        for (int i = 0; i < userCatalog.getCatalog().size(); i++) {
+            AstralBody astralBody  = userCatalog.getCatalog().get(i);
+            String menuItemName = astralBody.getName().substring(0, 1).toUpperCase() +
+                    astralBody.getName().substring(1).toLowerCase();
 
             MenuItem menuItem = new MenuItem(menuItemName);
-            ImageView imageView = new ImageView(new Image(getClass().getResource("/Sprites/Planets/"
-                    + menuItemName + "Icon.png").toExternalForm()));
-            ImageView buttonImage = new ImageView(new Image(getClass().getResource("/Sprites/Planets/"
-                    + menuItemName + "Icon.png").toExternalForm()));
+            ImageView imageView = new ImageView(new Image(addIconToPath(astralBody.getPath())));
+            ImageView buttonImage = new ImageView(new Image(addIconToPath(astralBody.getPath())));
             imageView.setFitHeight(32);
             imageView.setFitWidth(32);
             menuItem.setGraphic(imageView);
@@ -240,9 +246,9 @@ public class AstralCreationFXMLController {
             menuItem.setOnAction(event -> {
                 buttonImage.setFitHeight(32);
                 buttonImage.setFitWidth(32);
-                updatePresetValues(preset, buttonImage);
+                updatePresetValues(astralBody, buttonImage, astralBody.isPreset());
                 isEmpty = false;
-                selectedAstralBody = preset;
+                selectedAstralBody = astralBody;
             });
         }
 
@@ -252,6 +258,7 @@ public class AstralCreationFXMLController {
     @FXML
     private void onMouseClickedImage(MouseEvent event) throws IOException {
         System.out.println("Clicked!");
+
     }
 
     private void resetAstralCreation() {
@@ -283,21 +290,21 @@ public class AstralCreationFXMLController {
         System.out.println(field.getUserData());
     }
 
-    private void updatePresetValues(Presets preset, Node graphic) {
+    private void updatePresetValues(AstralBody astralBody, Node graphic, boolean isPreset) {
         enableControls();
-        txtFieldPath.setText(preset.getPath());
-        txtFieldName.setText(preset.getName());
-        txtAreaDescription.setText(preset.getDescription());
-        cmbType.setValue(preset.getType());
-        txtFieldMass.setText(String.valueOf(preset.getMass()));
-        txtFieldRadius.setText(String.valueOf(preset.getRadius()));
+        txtFieldPath.setText(astralBody.getPath());
+        txtFieldName.setText(astralBody.getName());
+        txtAreaDescription.setText(astralBody.getDescription());
+        cmbType.setValue(astralBody.getType());
+        txtFieldMass.setText(String.valueOf(astralBody.getMass()));
+        txtFieldRadius.setText(String.valueOf(astralBody.getRadius()));
 
         graphic.setScaleX(3);
         graphic.setScaleY(3);
         btnImageSelector.setText("");
         btnImageSelector.setGraphic(graphic);
         btnReset.setDisable(false);
-        btnRemove.setDisable(true);
+        btnRemove.setDisable(isPreset);
         dragLayoutX = 0;
         dragLayoutY = 0;
     }
