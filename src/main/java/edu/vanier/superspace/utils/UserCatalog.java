@@ -25,7 +25,7 @@ public class UserCatalog {
             String path = Presets.values()[i].getPath();
             boolean isPreset = Presets.values()[i].isPreset();
 
-            AstralBody astralBody = new AstralBody(name, description, type, mass, radius, path, isPreset);
+            AstralBody astralBody = new AstralBody(name, description, type, radius, mass, path, isPreset);
             catalog.add(astralBody);
         }
     }
