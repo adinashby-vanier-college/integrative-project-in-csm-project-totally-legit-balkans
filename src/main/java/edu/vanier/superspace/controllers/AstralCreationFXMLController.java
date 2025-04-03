@@ -10,18 +10,15 @@ import javafx.event.ActionEvent;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import lombok.Getter;
-import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -122,7 +119,7 @@ public class AstralCreationFXMLController {
         cmbReference.setDisable(true);
     }
 
-    public void addAstralBody() {
+    public boolean addAstralBody() {
         verifySelectedAstralBody();
         if (isVerified) {
             AstralBody astralBody;
@@ -137,10 +134,12 @@ public class AstralCreationFXMLController {
                 astralBody = new AstralBody(name, description, type, radius, mass, path, false);
                 System.out.println(txtAreaDescription.getText());
                 Simulation.getInstance().getUserCatalog().addToCatalog(astralBody);
+                return true;
             } catch (Exception e) {
                 System.out.println("What went wrong??");
             }
         }
+        return false;
     }
 
     public void addToContextMenu(AstralBody astralBody) {
@@ -261,8 +260,9 @@ public class AstralCreationFXMLController {
 
     @FXML
     private void onBtnAddPreset(ActionEvent event) {
-        addAstralBody();
-        resetAstralCreation();
+        if (addAstralBody()) {
+            resetAstralCreation();
+        }
     }
 
     private String addIconToPath(String path) {
