@@ -1,5 +1,7 @@
 package edu.vanier.superspace.utils;
 
+import edu.vanier.superspace.controllers.AstralCreationFXMLController;
+import edu.vanier.superspace.simulation.Simulation;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -37,6 +39,11 @@ public class UserCatalog {
     }
 
     public void addToCatalog(AstralBody body) {
-        catalog.add(body);
+        Simulation.getInstance().getUserCatalog().catalog.add(body);
+        AstralCreationFXMLController.getInstance().addToContextMenu(body);
+    }
+
+    public void removeFromCatalog(AstralBody body) {
+        Simulation.getInstance().getUserCatalog().catalog.remove(body);
     }
 }

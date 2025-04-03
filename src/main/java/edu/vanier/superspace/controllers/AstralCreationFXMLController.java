@@ -21,6 +21,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -142,6 +143,24 @@ public class AstralCreationFXMLController {
         }
     }
 
+    public void addToContextMenu(AstralBody astralBody) {
+        MenuItem menuItem = new Menu(astralBody.getName());
+        ImageView imageView = new ImageView(new Image(astralBody.getPath()));
+        ImageView buttonImage = new ImageView(new Image(astralBody.getPath()));
+        imageView.setFitHeight(32);
+        imageView.setFitWidth(32);
+        buttonImage.setFitHeight(32);
+        buttonImage.setFitWidth(32);
+        menuItem.setGraphic(imageView);
+        contextMenu.getItems().add(menuItem);
+
+        menuItem.setOnAction(event -> {
+            updateUserPresetValues(astralBody, buttonImage);
+            isEmpty = false;
+            selectedAstralBody = astralBody;
+        });
+    }
+
     @FXML
     private void onPaneMouseEntered(MouseEvent event) throws IOException {
         if (!contextMenuStyled) {
@@ -162,6 +181,7 @@ public class AstralCreationFXMLController {
         Vector2 finalPlanetPosition = Camera.getInstance().screenSpaceToWorldSpace(dragDelta);
 
         verifySelectedAstralBody();
+        System.out.println(isVerified);
         if (isVerified) {
             if (body == null) {
                 if (!isEmpty) {
@@ -183,15 +203,6 @@ public class AstralCreationFXMLController {
     }
 
     private void verifySelectedAstralBody() {
-        if (!selectedAstralBody.isPreset()) {
-            selectedAstralBody.setName(txtFieldName.getText());
-            selectedAstralBody.setDescription(txtAreaDescription.getText());
-            selectedAstralBody.setType(cmbType.getValue());
-            selectedAstralBody.setRadius(Double.parseDouble(txtFieldRadius.getText()));
-            selectedAstralBody.setMass(Double.parseDouble(txtFieldMass.getText()));
-            selectedAstralBody.setPath(txtFieldPath.getText());
-        }
-
         try {
             double radius = Double.parseDouble(txtFieldRadius.getText());
             double mass =  Double.parseDouble(txtFieldMass.getText());
@@ -200,7 +211,19 @@ public class AstralCreationFXMLController {
 
             if (mass == 0.0 || radius == 0.0) {
                 isVerified = false;
-            } else isVerified = !path.isEmpty() && !name.isEmpty();
+            } else if (path.isEmpty() || name.isEmpty()) {
+                isVerified = false;
+            } else {
+                isVerified = true;
+                if (!selectedAstralBody.isPreset()) {
+                    selectedAstralBody.setName(txtFieldName.getText());
+                    selectedAstralBody.setDescription(txtAreaDescription.getText());
+                    selectedAstralBody.setType(cmbType.getValue());
+                    selectedAstralBody.setRadius(Double.parseDouble(txtFieldRadius.getText()));
+                    selectedAstralBody.setMass(Double.parseDouble(txtFieldMass.getText()));
+                    selectedAstralBody.setPath(txtFieldPath.getText());
+                }
+            }
         } catch (Exception e) {
             System.out.println("Wrong input");
         }
@@ -222,13 +245,24 @@ public class AstralCreationFXMLController {
     @FXML
     private void onBtnRemovePressed(ActionEvent event) {
         if (!selectedAstralBody.isPreset()) {
-            System.out.println("Removed!");
+            Simulation.getInstance().getUserCatalog().removeFromCatalog(selectedAstralBody);
+
+            for (int i = 0; i < contextMenu.getItems().size(); i++) {
+                MenuItem menuItem = contextMenu.getItems().get(i);
+
+                if (menuItem.getText().equals(selectedAstralBody.getName())) {
+                    contextMenu.getItems().remove(menuItem);
+                }
+            }
+
+            resetAstralCreation();
         }
     }
 
     @FXML
     private void onBtnAddPreset(ActionEvent event) {
         addAstralBody();
+        resetAstralCreation();
     }
 
     private String addIconToPath(String path) {
@@ -252,13 +286,20 @@ public class AstralCreationFXMLController {
             chooser.setTitle("Select Image File For Astral Body");
             File astralImage = chooser.showOpenDialog(Application.getPrimaryStage().getOwner());
 
-            ImageView i = new ImageView(new Image("file:///" + astralImage.getAbsolutePath()));
-            i.setFitWidth(32);
-            i.setFitHeight(32);
-            isEmpty = false;
-            updateNewAstralBody(i);
+            if (astralImage == null) {
+                System.out.println("nothing happens");
+            } else {
+                ImageView i = new ImageView(new Image("file:///" + astralImage.getAbsolutePath()));
+                i.setFitWidth(32);
+                i.setFitHeight(32);
+                isEmpty = false;
+                selectedAstralBody = new AstralBody();
+                selectedAstralBody.setPath("file:///" + astralImage.getAbsolutePath());
+                updateNewAstralBody(i);
+            }
         });
 
+        // For the presets
         for (int i = 0; i < userCatalog.getCatalog().size(); i++) {
             AstralBody astralBody  = userCatalog.getCatalog().get(i);
             String menuItemName = astralBody.getName().substring(0, 1).toUpperCase() +
@@ -301,6 +342,7 @@ public class AstralCreationFXMLController {
         btnImageSelector.setGraphic(null);
         btnReset.setDisable(true);
         btnRemove.setDisable(true);
+        btnAddPreset.setDisable(true);
         isEmpty = true;
         body = null;
         selectedAstralBody = null;
@@ -317,11 +359,31 @@ public class AstralCreationFXMLController {
         enableControls();
         graphic.setScaleX(3);
         graphic.setScaleY(3);
+
+        txtFieldPath.setText(selectedAstralBody.getPath());
         btnImageSelector.setText("");
         btnImageSelector.setGraphic(graphic);
         btnReset.setDisable(false);
+        btnAddPreset.setDisable(false);
+        selectedAstralBody.setPreset(false);
+    }
 
-        selectedAstralBody = new AstralBody();
+    private void updateUserPresetValues(AstralBody astralBody, Node graphic) {
+        enableControls();
+        txtFieldPath.setText(astralBody.getPath());
+        txtFieldName.setText(astralBody.getName());
+        txtAreaDescription.setText(astralBody.getDescription());
+        cmbType.setValue(astralBody.getType());
+        txtFieldMass.setText(String.valueOf(astralBody.getMass()));
+        txtFieldRadius.setText(String.valueOf(astralBody.getRadius()));
+
+        graphic.setScaleX(3);
+        graphic.setScaleY(3);
+        btnImageSelector.setText("");
+        btnImageSelector.setGraphic(graphic);
+        btnReset.setDisable(false);
+        btnRemove.setDisable(false);
+        btnAddPreset.setDisable(false);
     }
 
     private void updatePresetValues(AstralBody astralBody, Node graphic, boolean isPreset) {
