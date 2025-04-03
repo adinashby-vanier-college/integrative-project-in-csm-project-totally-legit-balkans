@@ -23,8 +23,6 @@ public class Simulation {
     private final UserCatalog userCatalog;
     @Getter @ToSerialize
     private final ArrayList<Entity> entities = new ArrayList<>();
-    @Getter
-    private final ArrayList<AstralBody> userBodies = new ArrayList<>();
     @ToSerialize
     private String name;
 

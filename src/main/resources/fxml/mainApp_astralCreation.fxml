@@ -20,7 +20,7 @@
                   <Font name="Dubai Regular" size="40.0" />
                </font>
             </Text>
-            <Button id="btnImage" fx:id="btnImageSelector" layoutX="104.0" layoutY="46.0" mnemonicParsing="false" onContextMenuRequested="#onButtonContextMenuRequested" onMouseDragged="#onButtonMouseDragged" onMousePressed="#onButtonMousePressed" onMouseReleased="#onButtonMouseReleased" prefHeight="90.0" prefWidth="90.0" stylesheets="@../css/AstralCreationStyle.css" text="Choose Planet" textAlignment="CENTER" wrapText="true">
+            <Button id="btnImage" fx:id="btnImageSelector" layoutX="104.0" layoutY="46.0" mnemonicParsing="false" onMouseDragged="#onButtonMouseDragged" onMouseReleased="#onButtonMouseReleased" prefHeight="90.0" prefWidth="90.0" stylesheets="@../css/AstralCreationStyle.css" text="Choose Planet" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Dubai Regular" size="16.0" />
                </font>
@@ -117,8 +117,9 @@
                </font>
             </Text>
             <ComboBox fx:id="cmbReference" disable="true" layoutX="108.0" layoutY="612.0" prefHeight="47.0" prefWidth="181.0" promptText="Choose reference" styleClass="combo-box" />
-            <Button fx:id="btnReset" disable="true" layoutX="29.0" layoutY="137.0" mnemonicParsing="false" onAction="#onBtnResetPressed" prefHeight="32.0" prefWidth="92.0" text="Reset" />
-            <Button fx:id="btnRemove" disable="true" layoutX="183.0" layoutY="136.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="92.0" text="Remove" />
+            <Button fx:id="btnReset" disable="true" layoutY="136.0" mnemonicParsing="false" onAction="#onBtnResetPressed" prefHeight="32.0" prefWidth="92.0" text="Reset" />
+            <Button fx:id="btnRemove" disable="true" layoutX="206.0" layoutY="136.0" mnemonicParsing="false" onAction="#onBtnRemovePressed" prefHeight="32.0" prefWidth="92.0" text="Remove" />
+            <Button fx:id="btnAddPreset" disable="true" layoutX="104.0" layoutY="145.0" mnemonicParsing="false" onAction="#onBtnAddPreset" prefHeight="32.0" prefWidth="92.0" text="Add Preset" />
          </children>
       </Pane>
    </content>

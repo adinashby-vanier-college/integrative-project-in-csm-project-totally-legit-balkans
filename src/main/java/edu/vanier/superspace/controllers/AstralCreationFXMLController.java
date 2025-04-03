@@ -33,8 +33,6 @@ public class AstralCreationFXMLController {
     @Getter
     private static AstralCreationFXMLController instance;
     private boolean contextMenuStyled = false;
-    private double dragXMouseAnchor;
-    private double dragYMouseAnchor;
     private double dragLayoutX;
     private double dragLayoutY;
     private Entity body;
@@ -42,12 +40,15 @@ public class AstralCreationFXMLController {
     private boolean isEmpty = true;
     @Getter
     private boolean isSelected = false;
+    private boolean isVerified = false;
     private UserCatalog userCatalog;
 
     @FXML
     private Button btnReset;
     @FXML
     private Button btnRemove;
+    @FXML
+    private Button btnAddPreset;
     @FXML
     private ContextMenu contextMenu;
     @FXML
@@ -94,23 +95,6 @@ public class AstralCreationFXMLController {
         );
     }
 
-
-//    @FXML
-//    private void onImageSelectorClicked() {
-//        FileChooser chooser = new FileChooser();
-//        chooser.setInitialDirectory(new File(System.getProperty("user.dir") + "/src/main/resources/Sprites/Planets/"));
-//        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
-//        chooser.setTitle("Select Image File For Astral Body");
-//        File astralImage = chooser.showSaveDialog(Application.getPrimaryStage().getOwner());
-//        System.out.println(astralImage.getAbsolutePath());
-//        ImageView i = new ImageView(new Image("file:///" + astralImage.getAbsolutePath()));
-//        i.setFitHeight(90);
-//        i.setFitWidth(90);
-//        btnImageSelector.setText("");
-//        btnImageSelector.setGraphic(i);
-//
-//    }
-
     public void enableControls() {
         txtFieldPath.setDisable(false);
         txtFieldName.setDisable(false);
@@ -137,20 +121,25 @@ public class AstralCreationFXMLController {
         cmbReference.setDisable(true);
     }
 
-    public void addAstralBody() {}
+    public void addAstralBody() {
+        verifySelectedAstralBody();
+        if (isVerified) {
+            AstralBody astralBody;
+            try {
+                String name = selectedAstralBody.getName();
+                String description = selectedAstralBody.getDescription();
+                String type = selectedAstralBody.getType();
+                double radius = selectedAstralBody.getRadius();
+                double mass = selectedAstralBody.getMass();
+                String path = selectedAstralBody.getPath();
 
-    @FXML
-    private void onButtonContextMenuRequested(ContextMenuEvent event) throws IOException {
-//        contextMenu = loadedContextMenu;
-//        btnImageSelector.setContextMenu(contextMenu);
-//        System.out.println("hi");
-        reloadContextMenu();
-        //TODO: Implement a way to reload the images, maybe clone the loadedContextMenu and assign it here everytime
-        // cm is requested. (Maybe not required)
-    }
-
-    private void reloadContextMenu() {
-
+                astralBody = new AstralBody(name, description, type, radius, mass, path, false);
+                System.out.println(txtAreaDescription.getText());
+                Simulation.getInstance().getUserCatalog().addToCatalog(astralBody);
+            } catch (Exception e) {
+                System.out.println("What went wrong??");
+            }
+        }
     }
 
     @FXML
@@ -165,12 +154,6 @@ public class AstralCreationFXMLController {
     }
 
     @FXML
-    private void onButtonMousePressed(MouseEvent event) {
-        dragXMouseAnchor = event.getX();
-        dragYMouseAnchor = event.getY();
-    }
-
-    @FXML
     private void onButtonMouseDragged(MouseEvent event) {
         isSelected = true;
         dragLayoutX = event.getSceneX();
@@ -178,24 +161,48 @@ public class AstralCreationFXMLController {
         Vector2 dragDelta = Vector2.of(dragLayoutX, dragLayoutY);
         Vector2 finalPlanetPosition = Camera.getInstance().screenSpaceToWorldSpace(dragDelta);
 
-        if (body == null) {
-            if (!isEmpty) {
-                Entity newEntity = new Entity();
-                newEntity.addComponent(new Transform());
-                newEntity.addComponent(new RigidBody(selectedAstralBody.getMass()));
-                System.out.println(selectedAstralBody.getRadius() * 2);
-                PlanetRenderer planetRenderer = new PlanetRenderer(selectedAstralBody.getRadius() * 2,
-                        selectedAstralBody.getPath());
-//                newEntity.addComponent(new DebugCircleRenderer());
-                System.out.println(selectedAstralBody.getPath());
-                System.out.println(selectedAstralBody.getMass());
-                newEntity.addComponent(planetRenderer);
-                newEntity.getTransform().setPosition(finalPlanetPosition);
-                newEntity.register();
-                body = newEntity;
+        verifySelectedAstralBody();
+        if (isVerified) {
+            if (body == null) {
+                if (!isEmpty) {
+                    Entity newEntity = new Entity();
+                    newEntity.addComponent(new Transform());
+                    newEntity.addComponent(new RigidBody(selectedAstralBody.getMass()));
+                    System.out.println(selectedAstralBody.getRadius() * 2);
+                    PlanetRenderer planetRenderer = new PlanetRenderer(selectedAstralBody.getRadius() * 2,
+                            selectedAstralBody.getPath());
+                    newEntity.addComponent(planetRenderer);
+                    newEntity.getTransform().setPosition(finalPlanetPosition);
+                    newEntity.register();
+                    body = newEntity;
+                }
+            } else {
+                body.getTransform().setPosition(finalPlanetPosition);
             }
-        } else {
-            body.getTransform().setPosition(finalPlanetPosition);
+        }
+    }
+
+    private void verifySelectedAstralBody() {
+        if (!selectedAstralBody.isPreset()) {
+            selectedAstralBody.setName(txtFieldName.getText());
+            selectedAstralBody.setDescription(txtAreaDescription.getText());
+            selectedAstralBody.setType(cmbType.getValue());
+            selectedAstralBody.setRadius(Double.parseDouble(txtFieldRadius.getText()));
+            selectedAstralBody.setMass(Double.parseDouble(txtFieldMass.getText()));
+            selectedAstralBody.setPath(txtFieldPath.getText());
+        }
+
+        try {
+            double radius = Double.parseDouble(txtFieldRadius.getText());
+            double mass =  Double.parseDouble(txtFieldMass.getText());
+            String path = txtFieldPath.getText();
+            String name = txtFieldName.getText();
+
+            if (mass == 0.0 || radius == 0.0) {
+                isVerified = false;
+            } else isVerified = !path.isEmpty() && !name.isEmpty();
+        } catch (Exception e) {
+            System.out.println("Wrong input");
         }
     }
 
@@ -214,7 +221,14 @@ public class AstralCreationFXMLController {
 
     @FXML
     private void onBtnRemovePressed(ActionEvent event) {
+        if (!selectedAstralBody.isPreset()) {
+            System.out.println("Removed!");
+        }
+    }
 
+    @FXML
+    private void onBtnAddPreset(ActionEvent event) {
+        addAstralBody();
     }
 
     private String addIconToPath(String path) {
@@ -237,7 +251,6 @@ public class AstralCreationFXMLController {
             chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
             chooser.setTitle("Select Image File For Astral Body");
             File astralImage = chooser.showOpenDialog(Application.getPrimaryStage().getOwner());
-            System.out.println(astralImage.getAbsolutePath());
 
             ImageView i = new ImageView(new Image("file:///" + astralImage.getAbsolutePath()));
             i.setFitWidth(32);
@@ -271,12 +284,6 @@ public class AstralCreationFXMLController {
         contextMenu = cm;
     }
 
-    @FXML
-    private void onMouseClickedImage(MouseEvent event) throws IOException {
-        System.out.println("Clicked!");
-
-    }
-
     private void resetAstralCreation() {
         txtFieldPath.setText("");
         txtFieldRadius.setText("");
@@ -297,13 +304,13 @@ public class AstralCreationFXMLController {
         isEmpty = true;
         body = null;
         selectedAstralBody = null;
+        isVerified = false;
     }
 
     @FXML
     private void onSubmitDouble(ActionEvent event) {
         var field = (TextField)event.getSource();
         InputValidator.validateDoubleWithUserData(field);
-        System.out.println(field.getUserData());
     }
 
     private void updateNewAstralBody(Node graphic) {
@@ -313,8 +320,8 @@ public class AstralCreationFXMLController {
         btnImageSelector.setText("");
         btnImageSelector.setGraphic(graphic);
         btnReset.setDisable(false);
-        dragLayoutX = 0;
-        dragLayoutY = 0;
+
+        selectedAstralBody = new AstralBody();
     }
 
     private void updatePresetValues(AstralBody astralBody, Node graphic, boolean isPreset) {
@@ -331,8 +338,6 @@ public class AstralCreationFXMLController {
         btnImageSelector.setText("");
         btnImageSelector.setGraphic(graphic);
         btnReset.setDisable(false);
-        btnRemove.setDisable(isPreset);
-        dragLayoutX = 0;
-        dragLayoutY = 0;
+        btnRemove.setDisable(!isPreset);
     }
 }

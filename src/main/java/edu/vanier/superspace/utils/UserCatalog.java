@@ -30,13 +30,13 @@ public class UserCatalog {
         }
     }
 
-    private void readFromFile() {}
+    private void loadUserSavedAstralBodies() {}
 
     private void refreshCatalog() {
-        readFromFile();
+        loadUserSavedAstralBodies();
     }
 
-    private void addToCatalog(AstralBody body) {
+    public void addToCatalog(AstralBody body) {
         catalog.add(body);
     }
 }

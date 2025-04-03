@@ -13,7 +13,10 @@ public class AstralBody {
     private String path;
     private boolean isPreset;
 
+    public AstralBody() {}
+
     public AstralBody(String name, String description, String type, double radius, double mass, String path, boolean isPreset) {
+        this();
         this.name = name;
         this.description = description;
         this.type = type;
