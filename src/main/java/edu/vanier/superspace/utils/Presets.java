@@ -18,7 +18,7 @@ public enum Presets{
     EUROPA("Europa", "One of Jupiter's moons", "Terrestrial", 1561, 10, Assets.EUROPA.getFilePath(), false),
     SUN("Sun", "Huge star", "Star", 1.3927e6 / 2, 10, Assets.SUN.getFilePath(), false),
     EARTHTEST("Earth", "meow", "Terrestrial", 25, 100, Assets.EARTH.getFilePath(), false),
-    MARSTEST("Mars", "Big", "Terrestrial", 25, 100, Assets.MARS.getFilePath(), false),;
+    MARSTEST("Mars", "Big", "Terrestrial", 25, 50, Assets.MARS.getFilePath(), false),;
 
 
     private String name;
@@ -29,9 +29,7 @@ public enum Presets{
     private String path;
     private boolean isPreset;
 
-    Presets() {
-
-    }
+    Presets() {}
 
     Presets(String name, String description, String type, double radius, double mass, String path, boolean isPreset) {
         this.name = name;

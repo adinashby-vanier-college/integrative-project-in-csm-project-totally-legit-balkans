@@ -28,7 +28,7 @@ public class Physics {
 
         Vector2 distance = entity1.getTransform().getPosition().subtract(entity2.getTransform().getPosition());
 
-        totalForce1_2 = distance.normalized().multiply((Constants.GRAVITATIONAL_CONSTANT *
+        totalForce1_2 = distance.normalized().multiply((Constants.SIMULATION_GRAVITATIONAL_CONSTANT *
                 entity1.getRigidBody().getMass() *
                 entity2.getRigidBody().getMass() )/ Math.pow(distance.magnitude(), 2));
 

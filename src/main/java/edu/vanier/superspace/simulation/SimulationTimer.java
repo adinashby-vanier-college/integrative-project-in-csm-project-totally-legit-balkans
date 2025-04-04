@@ -1,11 +1,9 @@
 package edu.vanier.superspace.simulation;
 
 import edu.vanier.superspace.dto.RenderLayers;
+import edu.vanier.superspace.mathematics.Physics;
 import edu.vanier.superspace.mathematics.Vector2;
-import edu.vanier.superspace.simulation.components.Camera;
-import edu.vanier.superspace.simulation.components.Component;
-import edu.vanier.superspace.simulation.components.Renderer;
-import edu.vanier.superspace.simulation.components.Transform;
+import edu.vanier.superspace.simulation.components.*;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -24,7 +22,7 @@ public class SimulationTimer extends AnimationTimer {
     private final ArrayList<Renderer> componentsToRender = new ArrayList<>();
 
     @Setter
-    private boolean running = true;
+    private boolean running = false;
     private boolean stepOnce = false;
 
     @Setter
@@ -55,6 +53,7 @@ public class SimulationTimer extends AnimationTimer {
 
         if (stepOnce) {
             tick(0.1);
+            stepOnce = false;
         }
 
         if (running) {
@@ -88,6 +87,18 @@ public class SimulationTimer extends AnimationTimer {
         componentsToTick.stream().filter((t) -> !((Component)t).isInitialized()).forEach(c -> ((Component)c).onInitialize());
 
         componentsToTick.forEach((t) -> t.onUpdate(deltaTime));
+
+        Entity firstEntity = null;
+        for (Tickable component : componentsToTick) {
+            if (component instanceof RigidBody rigidBody) {
+                if (firstEntity == null) {
+                    firstEntity = rigidBody.getEntity();
+                } else {
+                    firstEntity.getRigidBody().attract(rigidBody.getEntity());
+                    rigidBody.attract(firstEntity);
+                }
+            }
+        }
     }
 
     private void clearScreen() {

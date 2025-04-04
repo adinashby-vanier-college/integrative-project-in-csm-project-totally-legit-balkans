@@ -4,6 +4,7 @@ import edu.vanier.superspace.Application;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.Entity;
 import edu.vanier.superspace.simulation.Simulation;
+import edu.vanier.superspace.simulation.SimulationTimer;
 import edu.vanier.superspace.simulation.components.*;
 import edu.vanier.superspace.utils.*;
 import javafx.event.ActionEvent;
@@ -41,6 +42,7 @@ public class AstralCreationFXMLController {
     private boolean isVerified = false;
     private UserCatalog userCatalog;
     private Entity entity;
+    private int numOfBodies = 0;
 
     @FXML
     private Button btnReset;
@@ -170,15 +172,15 @@ public class AstralCreationFXMLController {
             btnImageSelector.setContextMenu(contextMenu);
             contextMenuStyled = true;
 
-            Entity newEntity = new Entity();
-            newEntity.addComponent(new Transform());
-            newEntity.getTransform().setPosition(Vector2.of(500, 500));
-            newEntity.addComponent(new RigidBody(200));
-            PlanetRenderer planetRenderer = new PlanetRenderer(20000 * 2,
-                    Assets.EARTH.getFilePath());
-            newEntity.addComponent(planetRenderer);
-            newEntity.register();
-            entity = newEntity;
+//            Entity newEntity = new Entity();
+//            newEntity.addComponent(new Transform());
+//            newEntity.getTransform().setPosition(Vector2.of(500, 500));
+//            newEntity.addComponent(new RigidBody(200));
+//            PlanetRenderer planetRenderer = new PlanetRenderer(20000 * 2,
+//                    Assets.EARTH.getFilePath());
+//            newEntity.addComponent(planetRenderer);
+//            newEntity.register();
+//            entity = newEntity;
         }
     }
 
@@ -205,6 +207,11 @@ public class AstralCreationFXMLController {
                     newEntity.getTransform().setPosition(finalPlanetPosition);
                     newEntity.register();
                     body = newEntity;
+                    Simulation.getInstance().Step();
+                    if (numOfBodies == 0) {
+                        newEntity.getRigidBody().getVelocity().addAssign(Vector2.of(-4, -1));
+                        numOfBodies++;
+                    }
                 }
             } else {
                 body.getTransform().setPosition(finalPlanetPosition);
@@ -242,7 +249,6 @@ public class AstralCreationFXMLController {
     @FXML
     private void onButtonMouseReleased(MouseEvent event) {
         if (body != null) {
-            body.getRigidBody().attract(entity);
             resetAstralCreation();
         }
         isSelected = false;
