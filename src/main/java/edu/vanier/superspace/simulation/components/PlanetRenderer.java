@@ -55,11 +55,11 @@ public class PlanetRenderer extends Renderer implements Tickable {
         Vector2 halfSize = estimateSize().divide(2);
         gc.drawImage(image, position.getX() - halfSize.getX(), position.getY() - halfSize.getY(), diameter, diameter);
 
-        Vector2 pos = getEntity().getTransform().getPosition();
-        gc.setStroke(Color.GREEN);
-        gc.setLineWidth(100);
-        gc.strokeLine(pos.getX() - 500, pos.getY() - 500, pos.getX() + 500, pos.getY() + 500);
-        gc.strokeLine(pos.getX() - 500, pos.getY() + 500, pos.getX() + 500, pos.getY() - 500);
+//        Vector2 pos = getEntity().getTransform().getPosition();
+//        gc.setStroke(Color.GREEN);
+//        gc.setLineWidth(100);
+//        gc.strokeLine(pos.getX() - 500, pos.getY() - 500, pos.getX() + 500, pos.getY() + 500);
+//        gc.strokeLine(pos.getX() - 500, pos.getY() + 500, pos.getX() + 500, pos.getY() - 500);
     }
 
     @Override

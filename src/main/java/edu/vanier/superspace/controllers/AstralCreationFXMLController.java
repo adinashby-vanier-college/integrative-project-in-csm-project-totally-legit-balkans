@@ -40,6 +40,7 @@ public class AstralCreationFXMLController {
     private boolean isSelected = false;
     private boolean isVerified = false;
     private UserCatalog userCatalog;
+    private Entity entity;
 
     @FXML
     private Button btnReset;
@@ -168,6 +169,16 @@ public class AstralCreationFXMLController {
             loadContextMenu();
             btnImageSelector.setContextMenu(contextMenu);
             contextMenuStyled = true;
+
+            Entity newEntity = new Entity();
+            newEntity.addComponent(new Transform());
+            newEntity.getTransform().setPosition(Vector2.of(500, 500));
+            newEntity.addComponent(new RigidBody(200));
+            PlanetRenderer planetRenderer = new PlanetRenderer(20000 * 2,
+                    Assets.EARTH.getFilePath());
+            newEntity.addComponent(planetRenderer);
+            newEntity.register();
+            entity = newEntity;
         }
     }
 
@@ -231,6 +242,7 @@ public class AstralCreationFXMLController {
     @FXML
     private void onButtonMouseReleased(MouseEvent event) {
         if (body != null) {
+            body.getRigidBody().attract(entity);
             resetAstralCreation();
         }
         isSelected = false;
