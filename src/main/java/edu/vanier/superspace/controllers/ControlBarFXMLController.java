@@ -1,13 +1,19 @@
 package edu.vanier.superspace.controllers;
 
+import edu.vanier.superspace.simulation.Entity;
 import edu.vanier.superspace.simulation.Simulation;
+import edu.vanier.superspace.simulation.Tickable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
+import lombok.Getter;
 
-public class ControlBarFXMLController {
+public class ControlBarFXMLController implements Tickable {
+    @Getter
+    private static ControlBarFXMLController instance;
+    private Entity selectedEntity;
     @FXML
     private Button pauseButton;
     @FXML
@@ -24,6 +30,22 @@ public class ControlBarFXMLController {
     private Button fastForwardButton;
     @FXML
     private Text description;
+    @FXML
+    private Text txtAvgSpeed;
+    @FXML
+    private Text txtOrbitTime;
+
+    public ControlBarFXMLController() {
+        instance = this;
+        selectedEntity = null;
+    }
+
+    public void updateSelectedEntity(Entity entity) {
+        selectedEntity = entity;
+        planetName.setText(entity.getAstralBody().getName());
+        description.setText(entity.getAstralBody().getDescription());
+
+    }
 
     @FXML
     private void onPause(ActionEvent event) {
@@ -43,5 +65,13 @@ public class ControlBarFXMLController {
     @FXML
     private void onFastForward(ActionEvent event) {
         Simulation.getInstance().Step();
+    }
+
+    @Override
+    public void onUpdate(double deltaTime) {
+        if (selectedEntity != null) {
+            txtOrbitTime.setText(String.format("%d", Simulation.getInstance().getClock().getElapsedTime()));
+            txtAvgSpeed.setText(String.format("%.2f", selectedEntity.getRigidBody().getVelocity().magnitude()));
+        }
     }
 }

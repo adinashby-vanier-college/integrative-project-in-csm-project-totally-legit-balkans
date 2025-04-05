@@ -43,6 +43,7 @@ public class AstralCreationFXMLController {
     private UserCatalog userCatalog;
     private Entity entity;
     private int numOfBodies = 0;
+    private boolean hasAttractor;
 
     @FXML
     private Button btnReset;
@@ -50,6 +51,8 @@ public class AstralCreationFXMLController {
     private Button btnRemove;
     @FXML
     private Button btnAddPreset;
+    @FXML
+    private RadioButton rdbAttractor;
     @FXML
     private ContextMenu contextMenu;
     @FXML
@@ -107,6 +110,10 @@ public class AstralCreationFXMLController {
         cmbDirection.setDisable(false);
         txtFieldDistance.setDisable(false);
         cmbReference.setDisable(false);
+
+        if (!hasAttractor) {
+            rdbAttractor.setDisable(false);
+        }
     }
 
     public void disableControls() {
@@ -120,6 +127,7 @@ public class AstralCreationFXMLController {
         cmbDirection.setDisable(true);
         txtFieldDistance.setDisable(true);
         cmbReference.setDisable(true);
+        rdbAttractor.setDisable(true);
     }
 
     public boolean addAstralBody() {
@@ -135,7 +143,6 @@ public class AstralCreationFXMLController {
                 String path = selectedAstralBody.getPath();
 
                 astralBody = new AstralBody(name, description, type, radius, mass, path, false);
-                System.out.println(txtAreaDescription.getText());
                 Simulation.getInstance().getUserCatalog().addToCatalog(astralBody);
                 return true;
             } catch (Exception e) {
@@ -205,12 +212,25 @@ public class AstralCreationFXMLController {
                             selectedAstralBody.getPath());
                     newEntity.addComponent(planetRenderer);
                     newEntity.getTransform().setPosition(finalPlanetPosition);
+                    newEntity.setAstralBody(selectedAstralBody);
                     newEntity.register();
                     body = newEntity;
                     Simulation.getInstance().Step();
-                    if (numOfBodies == 0) {
-                        newEntity.getRigidBody().getVelocity().addAssign(Vector2.of(-4, -1));
-                        numOfBodies++;
+
+                    if (rdbAttractor.isSelected()) {
+                        if (!hasAttractor) {
+                            hasAttractor = true;
+                            body.getRigidBody().setAttractor(true);
+                        }
+                    }
+
+                    if (!body.getRigidBody().isAttractor()) {
+                        if (numOfBodies == 0) {
+                            newEntity.getRigidBody().getVelocity().addAssign(Vector2.of(-1, 0));
+                            numOfBodies++;
+                        } else {
+                            newEntity.getRigidBody().getVelocity().addAssign(Vector2.of(1, 0));
+                        }
                     }
                 }
             } else {

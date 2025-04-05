@@ -21,7 +21,7 @@ public class Camera extends Entity implements Tickable {
     @Getter @Setter
     private static Camera instance;
 
-    @Setter @ToSerialize
+    @Getter @Setter @ToSerialize
     private double zoom = 1;
     @ToSerialize
     private Vector2 viewport;

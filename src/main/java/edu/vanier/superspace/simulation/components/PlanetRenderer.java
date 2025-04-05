@@ -54,7 +54,6 @@ public class PlanetRenderer extends Renderer implements Tickable {
         Vector2 position = getEntity().getTransform().getPosition();
         Vector2 halfSize = estimateSize().divide(2);
         gc.drawImage(image, position.getX() - halfSize.getX(), position.getY() - halfSize.getY(), diameter, diameter);
-
 //        Vector2 pos = getEntity().getTransform().getPosition();
 //        gc.setStroke(Color.GREEN);
 //        gc.setLineWidth(100);

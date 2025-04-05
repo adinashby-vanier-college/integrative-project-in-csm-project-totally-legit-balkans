@@ -17,8 +17,8 @@ public enum Presets{
     IO("Io", "One of Jupiter's moons", "Terrestrial", 1821, 10, Assets.IO.getFilePath(), false),
     EUROPA("Europa", "One of Jupiter's moons", "Terrestrial", 1561, 10, Assets.EUROPA.getFilePath(), false),
     SUN("Sun", "Huge star", "Star", 1.3927e6 / 2, 10, Assets.SUN.getFilePath(), false),
-    EARTHTEST("Earth", "meow", "Terrestrial", 25, 100, Assets.EARTH.getFilePath(), false),
-    MARSTEST("Mars", "Big", "Terrestrial", 25, 50, Assets.MARS.getFilePath(), false),;
+    EARTHTEST("Earth", "meow", "Terrestrial", 25, 8, Assets.EARTH.getFilePath(), false),
+    MARSTEST("Mars", "Big", "Terrestrial", 25, 8, Assets.MARS.getFilePath(), false),;
 
 
     private String name;

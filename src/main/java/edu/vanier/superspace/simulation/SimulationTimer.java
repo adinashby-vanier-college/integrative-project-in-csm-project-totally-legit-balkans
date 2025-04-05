@@ -1,5 +1,6 @@
 package edu.vanier.superspace.simulation;
 
+import edu.vanier.superspace.controllers.ControlBarFXMLController;
 import edu.vanier.superspace.dto.RenderLayers;
 import edu.vanier.superspace.mathematics.Physics;
 import edu.vanier.superspace.mathematics.Vector2;
@@ -28,6 +29,10 @@ public class SimulationTimer extends AnimationTimer {
     @Setter
     private Simulation linkedSimulation;
     private long lastUpdateTime = 0;
+    @Getter @Setter
+    private long startTime = 0;
+    @Getter @Setter
+    private long elapsedTime = 0;
 
     public void step() {
         stepOnce = true;
@@ -46,6 +51,11 @@ public class SimulationTimer extends AnimationTimer {
 //            return;
 //        }
 
+        if (startTime == 0) {
+            startTime = System.currentTimeMillis();
+        }
+
+        elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
 
         lastUpdateTime = now;
 
@@ -88,14 +98,22 @@ public class SimulationTimer extends AnimationTimer {
 
         componentsToTick.forEach((t) -> t.onUpdate(deltaTime));
 
-        Entity firstEntity = null;
+        ControlBarFXMLController.getInstance().onUpdate(deltaTime);
+
+        ArrayList<RigidBody> rigidBodies = new ArrayList<>();
         for (Tickable component : componentsToTick) {
             if (component instanceof RigidBody rigidBody) {
-                if (firstEntity == null) {
-                    firstEntity = rigidBody.getEntity();
-                } else {
-                    firstEntity.getRigidBody().attract(rigidBody.getEntity());
-                    rigidBody.attract(firstEntity);
+                if (!rigidBodies.contains(rigidBody)) {
+                    rigidBodies.add(rigidBody);
+                }
+            }
+        }
+
+        for (int i = 0; i < rigidBodies.size(); i++) {
+            for (int j = 0; j < rigidBodies.size(); j++) {
+                if (i != j) {
+                    if (!rigidBodies.get(i).isAttractor())
+                     rigidBodies.get(j).attract(rigidBodies.get(i).getEntity());
                 }
             }
         }
