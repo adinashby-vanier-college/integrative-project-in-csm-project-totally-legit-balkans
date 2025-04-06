@@ -21,7 +21,7 @@ public class Camera extends Entity implements Tickable {
     @Getter @Setter
     private static Camera instance;
 
-    @Setter @ToSerialize
+    @Getter @Setter @ToSerialize
     private double zoom = 1;
     @ToSerialize
     private Vector2 viewport;
@@ -41,7 +41,6 @@ public class Camera extends Entity implements Tickable {
         AnchorPane drawPane = ((AnchorPane) BorderPaneAutomaticResizing.getInstance().getPane().getCenter());
         viewport = Vector2.of(drawPane.getWidth(), drawPane.getHeight()).multiply(zoom);
 
-        System.out.println(AstralCreationFXMLController.getInstance().isSelected());
         if (AstralCreationFXMLController.getInstance().isSelected()) {
             return;
         }

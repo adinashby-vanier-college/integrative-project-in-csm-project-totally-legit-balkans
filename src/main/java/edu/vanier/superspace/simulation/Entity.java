@@ -3,7 +3,9 @@ package edu.vanier.superspace.simulation;
 import edu.vanier.superspace.annotations.ToSerialize;
 import edu.vanier.superspace.simulation.components.Component;
 import edu.vanier.superspace.simulation.components.Renderer;
+import edu.vanier.superspace.simulation.components.RigidBody;
 import edu.vanier.superspace.simulation.components.Transform;
+import edu.vanier.superspace.utils.AstralBody;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +19,10 @@ public class Entity {
     private UUID guid;
     protected Transform transform;
     protected Simulation simulation;
+    protected RigidBody rigidBody;
     protected Renderer renderer;
+    @Setter @ToSerialize
+    protected AstralBody astralBody;
     @Setter @ToSerialize
     protected boolean simulating;
     @Setter @ToSerialize
@@ -56,6 +61,10 @@ public class Entity {
 
         if (component instanceof Renderer r) {
             renderer = r;
+        }
+
+        if (component instanceof RigidBody rb) {
+            rigidBody = rb;
         }
 
         components.add(component);

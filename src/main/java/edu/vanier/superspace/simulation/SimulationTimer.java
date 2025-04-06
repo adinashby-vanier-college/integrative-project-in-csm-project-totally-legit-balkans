@@ -1,11 +1,10 @@
 package edu.vanier.superspace.simulation;
 
+import edu.vanier.superspace.controllers.ControlBarFXMLController;
 import edu.vanier.superspace.dto.RenderLayers;
+import edu.vanier.superspace.mathematics.Physics;
 import edu.vanier.superspace.mathematics.Vector2;
-import edu.vanier.superspace.simulation.components.Camera;
-import edu.vanier.superspace.simulation.components.Component;
-import edu.vanier.superspace.simulation.components.Renderer;
-import edu.vanier.superspace.simulation.components.Transform;
+import edu.vanier.superspace.simulation.components.*;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -24,12 +23,16 @@ public class SimulationTimer extends AnimationTimer {
     private final ArrayList<Renderer> componentsToRender = new ArrayList<>();
 
     @Setter
-    private boolean running = true;
+    private boolean running = false;
     private boolean stepOnce = false;
 
     @Setter
     private Simulation linkedSimulation;
     private long lastUpdateTime = 0;
+    @Getter @Setter
+    private long startTime = 0;
+    @Getter @Setter
+    private long elapsedTime = 0;
 
     public void step() {
         stepOnce = true;
@@ -48,6 +51,11 @@ public class SimulationTimer extends AnimationTimer {
 //            return;
 //        }
 
+        if (startTime == 0) {
+            startTime = System.currentTimeMillis();
+        }
+
+        elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
 
         lastUpdateTime = now;
 
@@ -55,6 +63,7 @@ public class SimulationTimer extends AnimationTimer {
 
         if (stepOnce) {
             tick(0.1);
+            stepOnce = false;
         }
 
         if (running) {
@@ -88,6 +97,26 @@ public class SimulationTimer extends AnimationTimer {
         componentsToTick.stream().filter((t) -> !((Component)t).isInitialized()).forEach(c -> ((Component)c).onInitialize());
 
         componentsToTick.forEach((t) -> t.onUpdate(deltaTime));
+
+        ControlBarFXMLController.getInstance().onUpdate(deltaTime);
+
+        ArrayList<RigidBody> rigidBodies = new ArrayList<>();
+        for (Tickable component : componentsToTick) {
+            if (component instanceof RigidBody rigidBody) {
+                if (!rigidBodies.contains(rigidBody)) {
+                    rigidBodies.add(rigidBody);
+                }
+            }
+        }
+
+        for (int i = 0; i < rigidBodies.size(); i++) {
+            for (int j = 0; j < rigidBodies.size(); j++) {
+                if (i != j) {
+                    if (!rigidBodies.get(i).isAttractor())
+                     rigidBodies.get(j).attract(rigidBodies.get(i).getEntity());
+                }
+            }
+        }
     }
 
     private void clearScreen() {

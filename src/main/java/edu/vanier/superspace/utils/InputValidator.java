@@ -1,5 +1,6 @@
 package edu.vanier.superspace.utils;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 public class InputValidator {
@@ -29,7 +30,11 @@ public class InputValidator {
             inputFieldToCheck.setText(String.format(inputFieldFormatter, newValue));
             return newValue;
         } catch (Exception e) {
-            // Nothing yet?
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Wrong double format!");
+            alert.setHeaderText(null);
+            alert.setContentText("You should input a valid double value, meaning that there is no text.");
+            alert.show();
         }
 
         inputFieldToCheck.setText(String.format(inputFieldFormatter, oldValue));
