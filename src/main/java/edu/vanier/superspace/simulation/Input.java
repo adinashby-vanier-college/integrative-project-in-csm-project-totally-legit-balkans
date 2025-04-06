@@ -1,8 +1,10 @@
 package edu.vanier.superspace.simulation;
 
 import edu.vanier.superspace.mathematics.Vector2;
+import edu.vanier.superspace.utils.BorderPaneAutomaticResizing;
 import javafx.scene.Scene;
 import javafx.scene.input.*;
+import javafx.scene.layout.Region;
 import lombok.Getter;
 
 import java.util.HashSet;
@@ -18,10 +20,14 @@ public class Input {
 
     private static final int MOUSE_SCANCODES_OFFSET = 0xFFFF;
 
-    private static Vector2 oldMouseScreenPosition = Vector2.of(0, 0);
+    private static Vector2 oldMouseStagePosition = Vector2.of(0, 0);
 
     @Getter
     private static Vector2 currentMouseScreenPosition = Vector2.of(0, 0);
+    @Getter
+    private static Vector2 currentMouseStagePosition = Vector2.of(0, 0);
+    @Getter
+    private static Vector2 currentMouseCanvasPosition = Vector2.of(0, 0);
 
     public static void initialize(Scene linkedScene) {
         linkedScene.addEventFilter(KeyEvent.KEY_PRESSED, Input::onKeyPressed);
@@ -37,11 +43,11 @@ public class Input {
         previouslyPressedKeys = new HashSet<>(currentlyPressedKeys);
         currentlyPressedKeys = new HashSet<>(JAVAFX_PRESSED_KEYS);
         scrollDistance = 0;
-        oldMouseScreenPosition = Vector2.copyOf(currentMouseScreenPosition);
+        oldMouseStagePosition = Vector2.copyOf(currentMouseStagePosition);
     }
 
     public static Vector2 mouseDelta() {
-        return currentMouseScreenPosition.subtract(oldMouseScreenPosition);
+        return currentMouseStagePosition.subtract(oldMouseStagePosition);
     }
 
     public static boolean isMouseButtonPressed(MouseButton button) {
@@ -91,7 +97,11 @@ public class Input {
     }
 
     private static void onMouseMoved(MouseEvent event) {
-        currentMouseScreenPosition = Vector2.of(event.getX(), event.getY());
+        currentMouseStagePosition = Vector2.of(event.getX(), event.getY());
+        currentMouseScreenPosition = Vector2.of(event.getScreenX(), event.getScreenY());
+        if (BorderPaneAutomaticResizing.getInstance() != null) {
+            currentMouseCanvasPosition = currentMouseStagePosition.subtract(Vector2.of(0, ((Region) BorderPaneAutomaticResizing.getInstance().getPane().getTop()).getHeight()));
+        }
     }
 
     private static void onKeyPressed(KeyEvent event) {
