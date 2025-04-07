@@ -70,7 +70,10 @@ public class SettingsFXMLController {
     private void onMenuImagePathClicked() {
         logger.info("Setting image path for menu...");
         File chosenFile = this.chooseFile();
-        SimulationSettings.getInstance().setMenuBackground(new Image("file:///" + chosenFile.getAbsolutePath()));
+
+        if (chosenFile != null) {
+            SimulationSettings.getInstance().setMenuBackground(new Image("file:///" + chosenFile.getAbsolutePath()));
+        }
     }
 
     @FXML @SneakyThrows
@@ -186,7 +189,11 @@ public class SettingsFXMLController {
             fileChooser.setTitle("Choose a New Image");
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg"));
-            return fileChooser.showOpenDialog(Application.getPrimaryStage());
+            File file = fileChooser.showOpenDialog(Application.getPrimaryStage());
+
+            if (file != null) {
+                return file;
+            }
         } catch (Exception e) {
             logger.info("No image chosen...");
         }

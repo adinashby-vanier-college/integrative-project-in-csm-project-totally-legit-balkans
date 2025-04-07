@@ -43,7 +43,7 @@ public class AstralCreationFXMLController {
     private UserCatalog userCatalog;
     private Entity entity;
     private int numOfBodies = 0;
-    private boolean hasAttractor;
+//    private boolean hasAttractor;
 
     @FXML
     private Button btnReset;
@@ -70,7 +70,7 @@ public class AstralCreationFXMLController {
     @FXML
     private TextField txtFieldMass;
     @FXML
-    private TextField txtFieldVelocity;
+    private TextField txtFieldVelocityMagnitude;
     @FXML
     private ComboBox<String> cmbDirection;
     @FXML
@@ -106,14 +106,17 @@ public class AstralCreationFXMLController {
         cmbType.setDisable(false);
         txtFieldRadius.setDisable(false);
         txtFieldMass.setDisable(false);
-        txtFieldVelocity.setDisable(false);
+        txtFieldVelocityMagnitude.setDisable(false);
         cmbDirection.setDisable(false);
         txtFieldDistance.setDisable(false);
         cmbReference.setDisable(false);
+        rdbAttractor.setDisable(false);
 
-        if (!hasAttractor) {
-            rdbAttractor.setDisable(false);
-        }
+        /* Used for one attractor only
+            if (!hasAttractor) {
+                rdbAttractor.setDisable(false);
+            }
+         */
     }
 
     public void disableControls() {
@@ -123,7 +126,7 @@ public class AstralCreationFXMLController {
         cmbType.setDisable(true);
         txtFieldRadius.setDisable(true);
         txtFieldMass.setDisable(true);
-        txtFieldVelocity.setDisable(true);
+        txtFieldVelocityMagnitude.setDisable(true);
         cmbDirection.setDisable(true);
         txtFieldDistance.setDisable(true);
         cmbReference.setDisable(true);
@@ -204,6 +207,19 @@ public class AstralCreationFXMLController {
         if (isVerified) {
             if (body == null) {
                 if (!isEmpty) {
+                    double velocityMagnitude = Double.parseDouble(txtFieldVelocityMagnitude.getText());
+                    Vector2 velocity = Vector2.of(0, 0);
+
+                    if (cmbDirection.getValue() != null && !rdbAttractor.isSelected()) {
+                        if (cmbDirection.getValue().equals("Clockwise")) {
+                            velocityMagnitude = velocityMagnitude / 2;
+                            velocity = Vector2.of(-1 * velocityMagnitude, -1 * velocityMagnitude);
+                        } else if (cmbDirection.getValue().equals("Counter-Clockwise")) {
+                            velocityMagnitude = velocityMagnitude / 2;
+                            velocity = Vector2.of(-1 * velocityMagnitude, velocityMagnitude);
+                        }
+                    }
+
                     Entity newEntity = new Entity();
                     newEntity.addComponent(new Transform());
                     newEntity.addComponent(new RigidBody(selectedAstralBody.getMass()));
@@ -215,22 +231,16 @@ public class AstralCreationFXMLController {
                     newEntity.setAstralBody(selectedAstralBody);
                     newEntity.register();
                     body = newEntity;
+                    newEntity.getRigidBody().setVelocity(velocity);
+
                     Simulation.getInstance().Step();
 
                     if (rdbAttractor.isSelected()) {
-                        if (!hasAttractor) {
-                            hasAttractor = true;
-                            body.getRigidBody().setAttractor(true);
-                        }
-                    }
-
-                    if (!body.getRigidBody().isAttractor()) {
-                        if (numOfBodies == 0) {
-                            newEntity.getRigidBody().getVelocity().addAssign(Vector2.of(-1, 0));
-                            numOfBodies++;
-                        } else {
-                            newEntity.getRigidBody().getVelocity().addAssign(Vector2.of(1, 0));
-                        }
+                        body.getRigidBody().setAttractor(true);
+//                        if (!hasAttractor) {
+//                            hasAttractor = true;
+//                            body.getRigidBody().setAttractor(true);
+//                        }
                     }
                 }
             } else {
@@ -243,12 +253,20 @@ public class AstralCreationFXMLController {
         try {
             double radius = Double.parseDouble(txtFieldRadius.getText());
             double mass =  Double.parseDouble(txtFieldMass.getText());
+            double velocity = Double.parseDouble(txtFieldVelocityMagnitude.getText());
             String path = txtFieldPath.getText();
             String name = txtFieldName.getText();
 
             if (mass == 0.0 || radius == 0.0) {
                 isVerified = false;
+            } else if (velocity < 0) {
+                isVerified = false;
+            } else if (rdbAttractor.isSelected() && velocity != 0) {
+                isVerified = false;
             } else if (path.isEmpty() || name.isEmpty()) {
+                isVerified = false;
+            } else if (cmbDirection.getValue() == null && !rdbAttractor.isSelected()) {
+                System.out.println("hi");
                 isVerified = false;
             } else {
                 isVerified = true;
@@ -370,10 +388,10 @@ public class AstralCreationFXMLController {
         txtFieldName.setText("");
         txtFieldDistance.setText("");
         txtAreaDescription.setText("");
-        txtFieldVelocity.setText("");
-        cmbDirection.setValue("");
-        cmbReference.setValue("");
-        cmbType.setValue("");
+        txtFieldVelocityMagnitude.setText("");
+        cmbDirection.getSelectionModel().clearSelection();
+        cmbReference.getSelectionModel().clearSelection();
+        cmbType.getSelectionModel().clearSelection();
 
         disableControls();
         btnImageSelector.setText("Choose Planet");
@@ -385,6 +403,7 @@ public class AstralCreationFXMLController {
         body = null;
         selectedAstralBody = null;
         isVerified = false;
+        rdbAttractor.setSelected(false);
     }
 
     @FXML
