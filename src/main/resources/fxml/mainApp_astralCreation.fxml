@@ -89,16 +89,11 @@
                   <Font name="Dubai Regular" size="10.0" />
                </font>
             </TextField>
-            <Text layoutX="-14.0" layoutY="462.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velocity at Periapsis:" textAlignment="RIGHT" wrappingWidth="115.13682556152344">
+            <Text layoutX="-12.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velocity magnitude:" textAlignment="RIGHT" wrappingWidth="115.13682556152344">
                <font>
                   <Font name="Dubai Regular" size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="txtFieldVelocity" alignment="CENTER" disable="true" layoutX="108.0" layoutY="441.0" onAction="#onSubmitDouble" prefHeight="60.0" prefWidth="181.0" promptText="Enter values (km/s)" styleClass="text-field">
-               <font>
-                  <Font name="Dubai Regular" size="10.0" />
-               </font>
-            </TextField>
             <Text layoutX="15.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Direction:" textAlignment="RIGHT" wrappingWidth="87.13682556152344">
                <font>
                   <Font name="Dubai Regular" size="16.0" />
@@ -124,11 +119,16 @@
             <Button fx:id="btnReset" disable="true" layoutY="136.0" mnemonicParsing="false" onAction="#onBtnResetPressed" prefHeight="32.0" prefWidth="92.0" text="Reset" />
             <Button fx:id="btnRemove" disable="true" layoutX="206.0" layoutY="136.0" mnemonicParsing="false" onAction="#onBtnRemovePressed" prefHeight="32.0" prefWidth="92.0" text="Remove" />
             <Button fx:id="btnAddPreset" disable="true" layoutX="104.0" layoutY="145.0" mnemonicParsing="false" onAction="#onBtnAddPreset" prefHeight="32.0" prefWidth="92.0" text="Add Preset" />
-            <RadioButton fx:id="rdbAttractor" contentDisplay="CENTER" layoutX="199.0" layoutY="68.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="96.0" text="Attractor">
+            <RadioButton fx:id="rdbAttractor" contentDisplay="CENTER" disable="true" layoutX="199.0" layoutY="68.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="96.0" text="Attractor">
                <font>
                   <Font size="16.0" />
                </font>
             </RadioButton>
+            <TextField fx:id="txtFieldVelocityMagnitude" alignment="CENTER" disable="true" layoutX="108.0" layoutY="441.0" onAction="#onSubmitDouble" prefHeight="55.0" prefWidth="181.0" promptText="Enter values (kg)" styleClass="text-field">
+               <font>
+                  <Font name="Dubai Regular" size="10.0" />
+               </font>
+            </TextField>
          </children>
       </Pane>
    </content>

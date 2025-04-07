@@ -69,6 +69,7 @@ public class MainMenuFXMLController {
         File[] simulationFiles = DIRECTORY_TO_SCAN.listFiles(e -> e.isFile() && e.getName().contains(FileHelper.SIMULATION_FILE_EXTENSION));
         if (simulationFiles == null || simulationFiles.length == 0) {
             hboxSceneSelector.getChildren().add(new Label("No preset simulations found."));
+            hboxSceneSelector.setSpacing(10);
         } else {
             for (File simulationFile : simulationFiles) {
                         
