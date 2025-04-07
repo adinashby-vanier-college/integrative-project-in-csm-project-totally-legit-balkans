@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -15,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TitledPane prefHeight="750.0" prefWidth="300.0" stylesheets="@../css/AstralCreationStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.AstralCreationFXMLController">
+<TitledPane prefHeight="750.0" prefWidth="300.0" stylesheets="@../css/AstralCreationStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.AstralCreationFXMLController">
    <content>
       <Pane onMouseEntered="#onPaneMouseEntered" prefHeight="231.0" prefWidth="312.0" styleClass="pane">
          <children>
@@ -124,7 +121,7 @@
                   <Font size="16.0" />
                </font>
             </RadioButton>
-            <TextField fx:id="txtFieldVelocityMagnitude" alignment="CENTER" disable="true" layoutX="108.0" layoutY="441.0" onAction="#onSubmitDouble" prefHeight="55.0" prefWidth="181.0" promptText="Enter values (kg)" styleClass="text-field">
+            <TextField fx:id="txtFieldVelocityMagnitude" alignment="CENTER" disable="true" layoutX="108.0" layoutY="441.0" onAction="#onSubmitDouble" prefHeight="55.0" prefWidth="181.0" promptText="Enter values (km/h)" styleClass="text-field">
                <font>
                   <Font name="Dubai Regular" size="10.0" />
                </font>
