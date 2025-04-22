@@ -18,7 +18,7 @@ public class Application extends javafx.application.Application {
         SaveManager.initializeFileDirectory();
         Application.primaryStage = primaryStage;
 
-        SceneManagement.loadScene(Scenes.MAIN_MENU);
+        SceneManagement.loadScene(Scenes.LOGIN);
 
         primaryStage.setTitle("Super Space Maker");
         primaryStage.setMinHeight(RenderDimensions.getApplicationMinHeight());

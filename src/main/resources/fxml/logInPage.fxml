@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="803.0" prefWidth="1381.0" styleClass="pane" stylesheets="@../css/LogInStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="803.0" prefWidth="1381.0" styleClass="pane" stylesheets="@../css/LogInStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.LogInFXMLController">
    <children>
       <Pane prefHeight="358.0" prefWidth="860.0" styleClass="pane" stylesheets="@../css/LogInStyle.css" StackPane.alignment="CENTER">
          <children>
