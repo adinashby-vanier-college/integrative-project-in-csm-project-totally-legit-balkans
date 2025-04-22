@@ -223,6 +223,7 @@ public class AstralCreationFXMLController {
                     Entity newEntity = new Entity();
                     newEntity.addComponent(new Transform());
                     newEntity.addComponent(new RigidBody(selectedAstralBody.getMass()));
+                    newEntity.addComponent(new TrailRenderer());
                     System.out.println(selectedAstralBody.getRadius() * 2);
                     PlanetRenderer planetRenderer = new PlanetRenderer(selectedAstralBody.getRadius() * 2,
                             selectedAstralBody.getPath());
