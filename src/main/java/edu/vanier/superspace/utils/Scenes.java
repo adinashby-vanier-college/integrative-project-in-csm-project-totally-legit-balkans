@@ -16,6 +16,13 @@ import javax.lang.model.util.SimpleAnnotationValueVisitor6;
 
 @Getter
 public enum Scenes {
+    
+    LOGIN((pane,reload) -> {
+        
+        pane.setCenter(SceneManagement.loadPartial(Partials.LOGIN));
+
+    }),
+    
     MAIN_MENU((pane, reload) -> {
         pane.setCenter(SceneManagement.loadPartial(Partials.MAIN_MENU));
         

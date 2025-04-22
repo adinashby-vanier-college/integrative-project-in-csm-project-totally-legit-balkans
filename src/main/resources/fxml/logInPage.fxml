@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="803.0" prefWidth="1381.0" styleClass="pane" stylesheets="@../css/LogInStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="358.0" prefWidth="860.0" styleClass="pane" stylesheets="@../css/LogInStyle.css" StackPane.alignment="CENTER">
+         <children>
+            <Button fx:id="logBtn" layoutX="565.0" layoutY="482.0" mnemonicParsing="false" onAction="#logClick" prefHeight="40.0" prefWidth="109.0" text="Log In">
+               <font>
+                  <Font name="Dubai Regular" size="20.0" />
+               </font>
+            </Button>
+            <TextField fx:id="passwordTxt" layoutX="660.0" layoutY="416.0">
+               <font>
+                  <Font name="Dubai Regular" size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="usernameTxt" layoutX="660.0" layoutY="362.0">
+               <font>
+                  <Font name="Dubai Regular" size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="565.0" layoutY="416.0" stylesheets="@../css/LogInStyle.css" text="Password:">
+               <font>
+                  <Font name="Dubai Regular" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="561.0" layoutY="362.0" text="Username:">
+               <font>
+                  <Font name="Dubai Regular" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="messageTxt" layoutX="663.0" layoutY="541.0" text="WARNING" textFill="RED" />
+            <Label layoutX="505.0" layoutY="245.0" text="Super Space Simulator">
+               <font>
+                  <Font name="Dubai Regular" size="40.0" />
+               </font>
+            </Label>
+            <Button fx:id="signBtn" layoutX="691.0" layoutY="482.0" mnemonicParsing="false" onAction="#signClick" prefHeight="40.0" prefWidth="109.0" text="Sign Up">
+               <font>
+                  <Font name="Dubai Regular" size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</StackPane>
