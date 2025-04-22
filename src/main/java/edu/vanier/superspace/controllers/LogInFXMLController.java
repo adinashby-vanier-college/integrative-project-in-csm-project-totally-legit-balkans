@@ -1,5 +1,8 @@
 package edu.vanier.superspace.controllers;
 
+import edu.vanier.superspace.utils.Account;
+import edu.vanier.superspace.utils.SceneManagement;
+import edu.vanier.superspace.utils.Scenes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -28,10 +31,25 @@ public class LogInFXMLController{
      @FXML
     void logClick(ActionEvent event) {
         
+        for(int i = 0; i < Account.accounts.size(); i++){
+            
+
+            if(Account.accounts.get(i).getUsername().equalsIgnoreCase(usernameTxt.getText())) {
+                if(Account.accounts.get(i).getPassword().equalsIgnoreCase(passwordTxt.getText())){
+                    SceneManagement.loadScene(Scenes.MAIN_MENU);
+                }
+            }
+              
+        }
+        
     }
 
     @FXML
     void signClick(ActionEvent event) {
+        
+        Account.accounts.add(new Account(usernameTxt.getText(),passwordTxt.getText()));
+        Account.save();
+        
         
     }
 
