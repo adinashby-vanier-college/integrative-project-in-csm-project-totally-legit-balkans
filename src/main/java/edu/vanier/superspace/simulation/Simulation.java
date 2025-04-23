@@ -4,6 +4,7 @@ import edu.vanier.superspace.annotations.ToSerialize;
 import edu.vanier.superspace.dto.RenderLayers;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.components.Camera;
+import edu.vanier.superspace.simulation.components.DebugCircleRenderer;
 import edu.vanier.superspace.utils.SaveManager;
 import edu.vanier.superspace.utils.AstralBody;
 import edu.vanier.superspace.utils.UserCatalog;
@@ -58,6 +59,10 @@ public class Simulation {
         clock.setLinkedSimulation(this);
         clock.start();
 
+        Entity cursorTracker = new Entity();
+        cursorTracker.addComponent(new DebugCircleRenderer());
+        cursorTracker.register();
+
         userCatalog = new UserCatalog();
     }
 
@@ -86,11 +91,11 @@ public class Simulation {
         clock.removeComponentsLinkedToEntity(entity);
     }
 
-    public void Run() {
+    public void run() {
         clock.setRunning(true);
     }
 
-    public void Stop() {
+    public void stop() {
         clock.setRunning(false);
     }
 
