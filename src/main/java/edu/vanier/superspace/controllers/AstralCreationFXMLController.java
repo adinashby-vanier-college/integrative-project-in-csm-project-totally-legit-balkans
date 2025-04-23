@@ -266,7 +266,6 @@ public class AstralCreationFXMLController {
             } else if (path.isEmpty() || name.isEmpty()) {
                 isVerified = false;
             } else if (cmbDirection.getValue() == null && !rdbAttractor.isSelected()) {
-                System.out.println("hi");
                 isVerified = false;
             } else {
                 isVerified = true;
