@@ -38,7 +38,7 @@ public class SceneManagement {
                 }
 
                 if (closestEntity != null) {
-                    ControlBarFXMLController.getInstance().updateSelectedEntity(closestEntity);
+                    ControlBarFXMLController.getInstance().selectEntity(closestEntity);
                 }
             }
         });
@@ -51,6 +51,11 @@ public class SceneManagement {
 
     @SneakyThrows
     public static Parent loadPartial(Partials partial) {
-        return FXMLHelper.loadFXML(partial.getFilepath());
+        return loadPartial(partial, null);
+    }
+
+    @SneakyThrows
+    public static Parent loadPartial(Partials partial, Object controller) {
+        return FXMLHelper.loadFXML(partial.getFilepath(), controller);
     }
 }
