@@ -9,6 +9,7 @@ import java.util.ArrayList;
 @Getter
 public class UserCatalog {
     private final ArrayList<AstralBody> catalog = new ArrayList<>();
+    private final ArrayList<AstralBody> customCatalog = new ArrayList<>();
 
     public UserCatalog() {
         addPresetsToCatalog();
@@ -40,10 +41,12 @@ public class UserCatalog {
 
     public void addToCatalog(AstralBody body) {
         Simulation.getInstance().getUserCatalog().catalog.add(body);
+        Simulation.getInstance().getUserCatalog().customCatalog.add(body);
         AstralCreationFXMLController.getInstance().addToContextMenu(body);
     }
 
     public void removeFromCatalog(AstralBody body) {
         Simulation.getInstance().getUserCatalog().catalog.remove(body);
+        Simulation.getInstance().getUserCatalog().customCatalog.remove(body);
     }
 }
