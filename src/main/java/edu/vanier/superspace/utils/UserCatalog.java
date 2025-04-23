@@ -1,5 +1,6 @@
 package edu.vanier.superspace.utils;
 
+import edu.vanier.superspace.annotations.ToSerialize;
 import edu.vanier.superspace.controllers.AstralCreationFXMLController;
 import edu.vanier.superspace.simulation.Simulation;
 import lombok.Getter;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 @Getter
 public class UserCatalog {
     private final ArrayList<AstralBody> catalog = new ArrayList<>();
+
+    @ToSerialize
     private final ArrayList<AstralBody> customCatalog = new ArrayList<>();
 
     public UserCatalog() {
@@ -33,10 +36,8 @@ public class UserCatalog {
         }
     }
 
-    private void loadUserSavedAstralBodies() {}
+    public void saveUserPresetsToFile() {
 
-    private void refreshCatalog() {
-        loadUserSavedAstralBodies();
     }
 
     public void addToCatalog(AstralBody body) {

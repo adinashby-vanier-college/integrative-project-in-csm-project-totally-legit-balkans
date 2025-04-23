@@ -41,9 +41,6 @@ public class AstralCreationFXMLController {
     private boolean isSelected = false;
     private boolean isVerified = false;
     private UserCatalog userCatalog;
-    private Entity entity;
-    private int numOfBodies = 0;
-//    private boolean hasAttractor;
 
     @FXML
     private Button btnReset;
@@ -51,6 +48,8 @@ public class AstralCreationFXMLController {
     private Button btnRemove;
     @FXML
     private Button btnAddPreset;
+    @FXML
+    private Button btnSpawnAtPeriapsis;
     @FXML
     private RadioButton rdbAttractor;
     @FXML
@@ -174,6 +173,11 @@ public class AstralCreationFXMLController {
     }
 
     @FXML
+    private void onBtnSpawnAtPeriapsis(ActionEvent event) {
+
+    }
+
+    @FXML
     private void onPaneMouseEntered(MouseEvent event) throws IOException {
         if (!contextMenuStyled) {
             btnImageSelector.getScene().getStylesheets().add(getClass().getResource("/css/ContextMenuStyle.css").toExternalForm());
@@ -181,16 +185,6 @@ public class AstralCreationFXMLController {
             loadContextMenu();
             btnImageSelector.setContextMenu(contextMenu);
             contextMenuStyled = true;
-
-//            Entity newEntity = new Entity();
-//            newEntity.addComponent(new Transform());
-//            newEntity.getTransform().setPosition(Vector2.of(500, 500));
-//            newEntity.addComponent(new RigidBody(200));
-//            PlanetRenderer planetRenderer = new PlanetRenderer(20000 * 2,
-//                    Assets.EARTH.getFilePath());
-//            newEntity.addComponent(planetRenderer);
-//            newEntity.register();
-//            entity = newEntity;
         }
     }
 
@@ -237,10 +231,6 @@ public class AstralCreationFXMLController {
 
                     if (rdbAttractor.isSelected()) {
                         body.getRigidBody().setAttractor(true);
-//                        if (!hasAttractor) {
-//                            hasAttractor = true;
-//                            body.getRigidBody().setAttractor(true);
-//                        }
                     }
                 }
             } else {
@@ -399,6 +389,7 @@ public class AstralCreationFXMLController {
         btnReset.setDisable(true);
         btnRemove.setDisable(true);
         btnAddPreset.setDisable(true);
+        btnSpawnAtPeriapsis.setDisable(true);
         isEmpty = true;
         body = null;
         selectedAstralBody = null;
@@ -423,6 +414,7 @@ public class AstralCreationFXMLController {
         btnReset.setDisable(false);
         btnAddPreset.setDisable(false);
         selectedAstralBody.setPreset(false);
+        btnSpawnAtPeriapsis.setDisable(false);
     }
 
     private void updateUserPresetValues(AstralBody astralBody, Node graphic) {
@@ -441,6 +433,7 @@ public class AstralCreationFXMLController {
         btnReset.setDisable(false);
         btnRemove.setDisable(false);
         btnAddPreset.setDisable(false);
+        btnSpawnAtPeriapsis.setDisable(false);
     }
 
     private void updatePresetValues(AstralBody astralBody, Node graphic, boolean isPreset) {
@@ -457,6 +450,7 @@ public class AstralCreationFXMLController {
         btnImageSelector.setText("");
         btnImageSelector.setGraphic(graphic);
         btnReset.setDisable(false);
+        btnSpawnAtPeriapsis.setDisable(false);
         btnRemove.setDisable(!isPreset);
     }
 }

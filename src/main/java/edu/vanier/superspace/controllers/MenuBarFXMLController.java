@@ -1,5 +1,7 @@
 package edu.vanier.superspace.controllers;
 
+import edu.vanier.superspace.mathematics.Vector2;
+import edu.vanier.superspace.simulation.components.Camera;
 import edu.vanier.superspace.utils.SaveManager;
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.Scenes;
@@ -45,6 +47,15 @@ public class MenuBarFXMLController {
     @FXML
     private void onRequestPreferencesMenu(ActionEvent event) {
         SceneManagement.loadScene(Scenes.SETTINGS);
+    }
+
+    @FXML
+    private void onRequestCenterCamera(ActionEvent event) {
+        if (Camera.getInstance() != null) {
+            Camera.getInstance().setZoom(1);
+            Camera.getInstance().getViewport().setX(0);
+            Camera.getInstance().getTransform().setPosition(Vector2.zero());
+        }
     }
 
     @FXML

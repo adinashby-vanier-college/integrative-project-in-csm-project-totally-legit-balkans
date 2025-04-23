@@ -16,7 +16,7 @@ import javax.naming.event.NamespaceChangeListener;
 
 @Getter
 public class Camera extends Entity implements Tickable {
-    private static final double timeToDoubleZoom = 1;
+    private static final double timeToDoubleZoom = 20;
 
     @Getter @Setter
     private static Camera instance;
