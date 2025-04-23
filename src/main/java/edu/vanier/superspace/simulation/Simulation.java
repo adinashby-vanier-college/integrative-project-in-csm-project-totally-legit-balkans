@@ -33,7 +33,7 @@ public class Simulation {
     @Getter
     private final Canvas[] canvases = new Canvas[RenderLayers.values().length];
     @Getter
-    private final EnumSet<RenderLayers> activeRenderLayers = EnumSet.of(RenderLayers.DEBUG,
+    private final EnumSet<RenderLayers> activeRenderLayers = EnumSet.of(RenderLayers.TRAIL, RenderLayers.DEBUG,
             RenderLayers.SPACE_SIMULATION);
 
     @Getter
