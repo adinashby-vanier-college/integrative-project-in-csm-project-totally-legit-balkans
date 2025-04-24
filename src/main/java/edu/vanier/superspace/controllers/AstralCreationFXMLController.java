@@ -246,43 +246,80 @@ public class AstralCreationFXMLController {
             } else {
                 body.getTransform().setPosition(finalPlanetPosition);
             }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Astral Creation Warning");
+            alert.setContentText("Missing Astral Vody Values");
+            
+            alert.showAndWait();
         }
     }
 
     private void verifySelectedAstralBody() {
-        try {
-            double radius = Double.parseDouble(txtFieldRadius.getText());
-            double mass =  Double.parseDouble(txtFieldMass.getText());
-            double velocity = Double.parseDouble(txtFieldVelocityMagnitude.getText());
-            String path = txtFieldPath.getText();
-            String name = txtFieldName.getText();
+    try {
+        double radius = Double.parseDouble(txtFieldRadius.getText());
+        double mass = Double.parseDouble(txtFieldMass.getText());
+        double velocity = Double.parseDouble(txtFieldVelocityMagnitude.getText());
+        String path = txtFieldPath.getText();
+        String name = txtFieldName.getText();
+        String type = cmbType.getValue();
+        String direction = cmbDirection.getValue();
 
-            if (mass == 0.0 || radius == 0.0) {
-                isVerified = false;
-            } else if (velocity < 0) {
-                isVerified = false;
-            } else if (rdbAttractor.isSelected() && velocity != 0) {
-                isVerified = false;
-            } else if (path.isEmpty() || name.isEmpty()) {
-                isVerified = false;
-            } else if (cmbDirection.getValue() == null && !rdbAttractor.isSelected()) {
-                System.out.println("hi");
-                isVerified = false;
-            } else {
-                isVerified = true;
-                if (!selectedAstralBody.isPreset()) {
-                    selectedAstralBody.setName(txtFieldName.getText());
-                    selectedAstralBody.setDescription(txtAreaDescription.getText());
-                    selectedAstralBody.setType(cmbType.getValue());
-                    selectedAstralBody.setRadius(Double.parseDouble(txtFieldRadius.getText()));
-                    selectedAstralBody.setMass(Double.parseDouble(txtFieldMass.getText()));
-                    selectedAstralBody.setPath(txtFieldPath.getText());
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Wrong input");
+        String errorMessage = null;
+        
+        if (mass <= 0.0) {
+            errorMessage = "- Mass must be greater than 0\n";
         }
+        else if (radius <= 0.0) {
+            errorMessage = "- Radius must be greater than 0\n";
+        }
+        else if (velocity < 0) {
+            errorMessage = "- Velocity cannot be negative\n";
+        }
+        else if (rdbAttractor.isSelected() && velocity != 0) {
+            errorMessage = "- Attractor must have zero velocity\n";
+        }
+        else if (path.isEmpty()) {
+            errorMessage = "- Image path is required\n";
+        }
+        else if (name.isEmpty()) {
+            errorMessage = "- Name is required\n";
+        }
+        else if (type == null) {
+            errorMessage = "- Type must be selected\n";
+        }
+        else if (direction == null && !rdbAttractor.isSelected()) {
+            errorMessage = "- Direction must be selected\n";
+        }
+
+        if (errorMessage != null) {
+            isVerified = false;
+            // Show detailed error message
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validation Error");
+            alert.setHeaderText("Please fix the following issues:");
+            alert.setContentText(errorMessage);
+            alert.showAndWait();
+        } else {
+            isVerified = true;
+            if (!selectedAstralBody.isPreset()) {
+                selectedAstralBody.setName(txtFieldName.getText());
+                selectedAstralBody.setDescription(txtAreaDescription.getText());
+                selectedAstralBody.setType(cmbType.getValue());
+                selectedAstralBody.setRadius(Double.parseDouble(txtFieldRadius.getText()));
+                selectedAstralBody.setMass(Double.parseDouble(txtFieldMass.getText()));
+                selectedAstralBody.setPath(txtFieldPath.getText());
+            }
+        }
+    } catch (NumberFormatException e) {
+        isVerified = false;
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Invalid Input");
+        alert.setHeaderText("Numerical fields contain invalid values");
+        alert.setContentText("Please enter valid numbers for radius, mass, and velocity.");
+        alert.showAndWait();
     }
+}
 
     @FXML
     private void onButtonMouseReleased(MouseEvent event) {
