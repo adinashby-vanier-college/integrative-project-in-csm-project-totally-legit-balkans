@@ -17,6 +17,9 @@ public class TrailRenderer extends Renderer implements Tickable{
     private ArrayList<Vector2> points = new ArrayList<>();
     private final static double distanceToNextPoint = 10;
     private boolean firstFrame = true;
+    
+    public static int thickness = 10;
+    public static int skip = 0;
 
     public TrailRenderer() {
         super(RenderLayers.TRAIL);
@@ -24,11 +27,23 @@ public class TrailRenderer extends Renderer implements Tickable{
 
     @Override
     public void onDraw(GraphicsContext gc) {
+        
+        int skipCount = 1;
+        
         for(int i = 0; i < points.size()-1; i++){
             
-            gc.setStroke(Color.WHITE);
-            gc.setLineWidth(10);
-            gc.strokeLine(points.get(i).getX(), points.get(i).getY(), points.get(i+1).getX(), points.get(i+1).getY());
+            if(skipCount==skip){
+                skipCount = 1;
+            }else{
+            
+                gc.setStroke(Color.WHITE);
+                gc.setLineWidth(thickness);
+                gc.strokeLine(points.get(i).getX(), points.get(i).getY(), points.get(i+1).getX(), points.get(i+1).getY());
+                skipCount++;
+                
+            }
+            
+            
             
         }
     }
