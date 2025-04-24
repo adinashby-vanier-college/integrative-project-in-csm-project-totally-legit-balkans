@@ -7,6 +7,8 @@ import edu.vanier.superspace.simulation.Tickable;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+
 /**
  * A component that also extends the Tickable interface and is used to calculate the force upon an astral body
  */
@@ -43,7 +45,7 @@ public class RigidBody extends Component implements Tickable  {
      * Attraction physics with another entity that are based on the law of universal gravitation
      * @param entity the second entity
      */
-    public void attract(Entity entity) {
+    public void attract(Entity entity, double deltaTime) {
         Vector2 distance = getEntity().getTransform().getPosition().subtract(entity.getTransform().getPosition());
         double distanceMag = distance.magnitude();
 
@@ -54,7 +56,7 @@ public class RigidBody extends Component implements Tickable  {
                     getEntity().getRigidBody().getMass() *
                     entity.getRigidBody().getMass()) / Math.pow(distanceMag, 2));
 
-            entity.getRigidBody().addForce(force);
+            entity.getRigidBody().addForce(force.multiply(deltaTime));
         }
     }
 
@@ -66,6 +68,16 @@ public class RigidBody extends Component implements Tickable  {
      */
     @Override
     public void onUpdate(double deltaTime) {
+        for (Entity entity2 : entity.getSimulation().getEntities()) {
+            if (entity2 == entity) continue;
+
+            if (entity2.getRigidBody() != null) {
+                if (entity2.getRigidBody().isAttractor) continue;
+
+                entity2.getRigidBody().attract(this.entity, deltaTime);
+            }
+        }
+        
         velocity.addAssign(acceleration);
         getEntity().getTransform().getPosition().addAssign(velocity);
         acceleration = Vector2.of(0,0);

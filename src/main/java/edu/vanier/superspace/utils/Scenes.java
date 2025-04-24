@@ -17,17 +17,12 @@ import javax.lang.model.util.SimpleAnnotationValueVisitor6;
 
 @Getter
 public enum Scenes {
-    
     LOGIN((pane,reload) -> {
-        
         pane.setCenter(SceneManagement.loadPartial(Partials.LOGIN));
-
     }),
-    
     MAIN_MENU((pane, reload) -> {
         pane.setCenter(SceneManagement.loadPartial(Partials.MAIN_MENU));
-        
-            }),
+    }),
     SIMULATION((pane, reload) -> {
         AnchorPane center = new AnchorPane();
 //        center.setStyle("-fx-border-color:#ff0000;");
@@ -50,8 +45,6 @@ public enum Scenes {
 
         if (reload) {
             new Simulation(canvasStack);
-        } else {
-
         }
 
         center.setOnMouseClicked(Simulation.getInstance()::onSceneClicked);

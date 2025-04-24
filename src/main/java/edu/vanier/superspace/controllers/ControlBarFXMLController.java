@@ -98,6 +98,7 @@ public class ControlBarFXMLController {
      */
     private void onTimeMultiplierMoved(Observable observable, Number oldValue, Number newValue) {
         timeFeedback.setText(getTimeString((int)timeMultiplier.getValue()));
+        Simulation.getInstance().getClock().setTimeMultiplier(Math.pow(10, (int)timeMultiplier.getValue()));
     }
     
     /**
