@@ -2,6 +2,9 @@ package edu.vanier.superspace.utils;
 
 import lombok.Getter;
 
+/**
+ * Contains the file path to each of the planets
+ */
 @Getter
 public enum Assets {
     PLANET_1("Planet-1"),

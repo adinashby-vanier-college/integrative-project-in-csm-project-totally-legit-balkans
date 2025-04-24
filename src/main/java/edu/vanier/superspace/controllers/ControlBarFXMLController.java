@@ -10,6 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import lombok.Getter;
 
+/**
+ * FXML Controller class for the control bar.
+ */
 public class ControlBarFXMLController implements Tickable {
     @Getter
     private static ControlBarFXMLController instance;
@@ -35,11 +38,18 @@ public class ControlBarFXMLController implements Tickable {
     @FXML
     private Text txtOrbitTime;
 
+    /**
+     * Default constructor
+     */
     public ControlBarFXMLController() {
         instance = this;
         selectedEntity = null;
     }
 
+    /**
+     * Updates the values of the selected entity
+     * @param entity the selected entity
+     */
     public void updateSelectedEntity(Entity entity) {
         selectedEntity = entity;
         planetName.setText(entity.getAstralBody().getName());
@@ -47,26 +57,46 @@ public class ControlBarFXMLController implements Tickable {
 
     }
 
+    /**
+     * Action happens when the simulation is paused.
+     * @param event the pause button pressed event
+     */
     @FXML
     private void onPause(ActionEvent event) {
         Simulation.getInstance().Stop();
     }
 
+    /**
+     * Action happens when the user zooms.
+     * @param event user zooms event
+     */
     @FXML
     private void onZoom(ActionEvent event) {
 
     }
 
+    /**
+     * Actions happens when the simulation is played
+     * @param event user presses the play button event
+     */
     @FXML
     private void onPlay(ActionEvent event) {
         Simulation.getInstance().Run();
     }
 
+    /**
+     * Action happens when the fast-forward button is pressed.
+     * @param event user presses fast-forward button event
+     */
     @FXML
     private void onFastForward(ActionEvent event) {
         Simulation.getInstance().Step();
     }
 
+    /**
+     * Happens on each update because this class is a part of the Tickable interface.
+     * @param deltaTime delta time
+     */
     @Override
     public void onUpdate(double deltaTime) {
         if (selectedEntity != null) {

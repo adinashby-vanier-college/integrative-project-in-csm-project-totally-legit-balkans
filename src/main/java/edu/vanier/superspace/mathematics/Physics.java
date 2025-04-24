@@ -3,7 +3,15 @@ package edu.vanier.superspace.mathematics;
 import edu.vanier.superspace.simulation.Entity;
 import edu.vanier.superspace.simulation.PhysicsEntity;
 
+/**
+ * Class that handles the physics of the simulation
+ */
 public class Physics {
+    /**
+     * Application of the law of universal gravitation with the actual gravitational constant
+     * @param entity1 the first entity
+     * @param entity2 the second entity
+     */
     public static void computeAndApplyNewtonGravitation(PhysicsEntity entity1, PhysicsEntity entity2) {
         
         Vector2 totalForce1_2 = Vector2.of(0, 0);
@@ -21,6 +29,11 @@ public class Physics {
         entity2.getRigidBody().addForce(totalForce2_1);
     }
 
+    /**
+     * Application of the law of universal gravitation with the simulation gravitational constant
+     * @param entity1 the first entity
+     * @param entity2 the second entity
+     */
     public static void computeAndApplyNewtonGravitation(Entity entity1, Entity entity2) {
 
         Vector2 totalForce1_2 = Vector2.of(0, 0);

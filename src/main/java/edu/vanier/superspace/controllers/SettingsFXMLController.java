@@ -55,17 +55,26 @@ public class SettingsFXMLController {
     private RadioButton rdbArial;
     @FXML
     private RadioButton rdbDubai;
-    
+
+    /**
+     * FXML Controller initializer
+     */
     public void initialize() {
         logger.info("Initializing SettingsFXMLController...");
     }
 
+    /**
+     * Brings you back to the simulation.
+     */
     @FXML
     private void onBackButtonClicked() {
         logger.info("Back to the simulation...");
         SceneManagement.loadScene(Scenes.SIMULATION, false);
     }
 
+    /**
+     * Changes the image for the main menu
+     */
     @FXML @SneakyThrows
     private void onMenuImagePathClicked() {
         logger.info("Setting image path for menu...");
@@ -76,6 +85,9 @@ public class SettingsFXMLController {
         }
     }
 
+    /**
+     * Changes the simulation image
+     */
     @FXML @SneakyThrows
     private void onSimImagePathClicked() {
         logger.info("Setting image path for simulation...");
@@ -83,105 +95,165 @@ public class SettingsFXMLController {
         
     }
 
+    /**
+     * Changes the disabled values of the radio buttons on click.
+     */
     @FXML
     private void onRdbDashedClicked() {
         astralPathStyle(true, false, false);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons click.
+     */
     @FXML
     private void onRdbDottedClicked() {
         astralPathStyle(false, true, false);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons click.
+     */
     @FXML
     private void onRdbFullClicked() {
         astralPathStyle(false, false, true);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons click.
+     */
     @FXML
     private void onRdbThinClicked() {
         astralPathsThickness(true, false, false);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons click.
+     */
     @FXML
     private void onRdbThicknessMediumClicked() {
         astralPathsThickness(false, true, false);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons click.
+     */
     @FXML
     private void onRdbThick() {
         astralPathsThickness(false, false, true);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons click.
+     */
     @FXML
     private void onRdbLightClicked() {
         theme(true, false);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons click.
+     */
     @FXML
     private void onRdbDarkClicked() {
         theme(false, true);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons click.
+     */
     @FXML
     private void onRdbSmallClicked() {
         fontSize(true, false, false);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons click.
+     */
     @FXML
     private void onRdbFontMediumClicked() {
         fontSize(false, true, false);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons click.
+     */
     @FXML
     private void onRdbBigClicked() {
         fontSize(false, false, true);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons click.
+     */
     @FXML
     private void onRdbCalibriClicked() {
         font(true, false, false);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons click.
+     */
     @FXML
     private void onRdbArialClicked() {
         font(false, true, false);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons click.
+     */
     @FXML
     private void onRdbDubaiClicked() {
         font(false, false, true);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons.
+     */
     private void astralPathStyle(boolean dashed, boolean dotted, boolean full) {
         rdbDashed.setSelected(dashed);
         rdbDotted.setSelected(dotted);
         rdbFull.setSelected(full);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons.
+     */
     private void astralPathsThickness(boolean thin, boolean medium, boolean thick) {
         rdbThin.setSelected(thin);
         rdbThicknessMedium.setSelected(medium);
         rdbThick.setSelected(thick);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons.
+     */
     private void theme(boolean light, boolean dark) {
         rdbLight.setSelected(light);
         rdbDark.setSelected(dark);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons.
+     */
     private void fontSize(boolean small, boolean medium, boolean big) {
         rdbSmall.setSelected(small);
         rdbFontMedium.setSelected(medium);
         rdbBig.setSelected(big);
     }
 
+    /**
+     * Changes the disabled values of the radio buttons.
+     */
     private void font(boolean calibri, boolean arial, boolean dubai) {
         rdbCalibri.setSelected(calibri);
         rdbArial.setSelected(arial);
         rdbDubai.setSelected(dubai);
     }
-    
+
+    /**
+     * Opens the file explorer and user can pick an image.
+     */
     @SneakyThrows
     public File chooseFile(){
         try {

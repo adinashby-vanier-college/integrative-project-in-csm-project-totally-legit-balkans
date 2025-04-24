@@ -40,6 +40,9 @@ public class MainMenuFXMLController {
     @FXML
     private HBox hboxSceneSelector;
 
+    /**
+     * FXML Controller initializer
+     */
     public void initialize() {
         instance = this;
         imgViewBackground.setImage(SimulationSettings.getInstance().getMenuBackground());
@@ -49,6 +52,9 @@ public class MainMenuFXMLController {
         repopulateSimulationFiles();
     }
 
+    /**
+     * Action happens when the user quits the simulation, which basically closes it.
+     */
     @FXML
     private void onQuitButtonClicked() {
         //TODO: Add some animation to the button on hover
@@ -58,13 +64,19 @@ public class MainMenuFXMLController {
         currentStage.close();
     }
 
+    /**
+     * Action occurs when the add simulation button is pressed and this while bring you to a new simulation
+     */
     @FXML
     private void onAddButtonClicked() {
         logger.info("Adding a simulation...");
 
         SceneManagement.loadScene(Scenes.SIMULATION, true);
     }
-    
+
+    /**
+     * Displays all the saved simulations by the user.
+     */
     private void repopulateSimulationFiles() {
         File[] simulationFiles = DIRECTORY_TO_SCAN.listFiles(e -> e.isFile() && e.getName().contains(FileHelper.SIMULATION_FILE_EXTENSION));
         if (simulationFiles == null || simulationFiles.length == 0) {
@@ -77,8 +89,13 @@ public class MainMenuFXMLController {
             }
         }
     }
-    
-     private Button createNewFileButton(File loadFile) {
+
+    /**
+     * Creates a new load simulation in the simulation files chooser
+     * @param loadFile the file to load
+     * @return the button that is liked with the loaded file
+     */
+    private Button createNewFileButton(File loadFile) {
         Button newSelectorButton = new Button(loadFile.getName());
 
         try {

@@ -6,11 +6,18 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Class that helps with files, meaning simulation saves
+ */
 public class FileHelper {
-    
     public static final String SIMULATION_FILE_EXTENSION = ".sim";
     public static final String SIMULATION_ICON_EXTENSION = ".icon";
-    
+
+    /**
+     * Reads all the lines of a file
+     * @param filepath the file path
+     * @return what's in the file
+     */
     public static String readFileCompletely(String filepath) {
         try {
             File newFile = new File(filepath);
@@ -32,6 +39,11 @@ public class FileHelper {
         return null;
     }
 
+    /**
+     * Writes data to a file
+     * @param filepath the file path to write to
+     * @param data the data to be written
+     */
     public static void writeFileCompletely(String filepath, String data) {
         try {
             FileWriter writer = new FileWriter(filepath);

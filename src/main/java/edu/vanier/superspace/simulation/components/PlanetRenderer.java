@@ -13,6 +13,9 @@ import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Renders the actual planets upon the simulation and is a component
+ */
 @Getter
 public class PlanetRenderer extends Renderer implements Tickable {
     private static final Logger logger = LoggerFactory.getLogger(PlanetRenderer.class);
@@ -24,16 +27,27 @@ public class PlanetRenderer extends Renderer implements Tickable {
 
     private Image image;
 
+    /**
+     * Default constructor
+     */
     public PlanetRenderer() {
         super(RenderLayers.SPACE_SIMULATION);
     }
 
+    /**
+     * Parameterized constructor
+     * @param diameter diameter of the planet
+     * @param imagePath path of the image for the planet
+     */
     public PlanetRenderer(double diameter, String imagePath) {
         this();
         this.diameter = diameter;
         this.imagePath = imagePath;
     }
 
+    /**
+     * Applied when the planet is initialized
+     */
     @Override
     public void onInitialize() {
         super.onInitialize();
@@ -45,6 +59,10 @@ public class PlanetRenderer extends Renderer implements Tickable {
         }
     }
 
+    /**
+     * Draws the image to the graphics context of the simulation
+     * @param gc the graphics context
+     */
     @Override
     public void onDraw(GraphicsContext gc) {
         if (image == null) {
@@ -61,11 +79,19 @@ public class PlanetRenderer extends Renderer implements Tickable {
 //        gc.strokeLine(pos.getX() - 500, pos.getY() + 500, pos.getX() + 500, pos.getY() - 500);
     }
 
+    /**
+     * Estimates the size
+     * @return size estimate as a vector value
+     */
     @Override
     public Vector2 estimateSize() {
         return Vector2.of(diameter, diameter);
     }
 
+    /**
+     * Sets the image path of a planet
+     * @param imagePath the path
+     */
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
         try {
@@ -76,6 +102,10 @@ public class PlanetRenderer extends Renderer implements Tickable {
         }
     }
 
+    /**
+     * On update due to Tickable interface
+     * @param deltaTime delta time
+     */
     @Override
     public void onUpdate(double deltaTime) {
 

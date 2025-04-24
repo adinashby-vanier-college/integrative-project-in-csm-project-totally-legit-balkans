@@ -8,6 +8,9 @@ import edu.vanier.superspace.utils.SimulationSettings;
 import javafx.stage.Stage;
 import lombok.Getter;
 
+/**
+ * Application class where everything is instantiated
+ */
 public class Application extends javafx.application.Application {
     @Getter
     private static Stage primaryStage;

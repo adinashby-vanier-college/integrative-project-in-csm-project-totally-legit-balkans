@@ -35,6 +35,8 @@ public enum Scenes {
 
         if (reload) {
             new Simulation(canvasStack);
+        } else {
+
         }
 
         center.setOnMouseClicked(Simulation.getInstance()::onSceneClicked);
