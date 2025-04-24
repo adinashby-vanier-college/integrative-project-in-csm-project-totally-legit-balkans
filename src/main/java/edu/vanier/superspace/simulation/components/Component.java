@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 public abstract class Component {
     @Setter
-    private Entity entity;
+    protected Entity entity;
     private boolean initialized = false;
 
     /**

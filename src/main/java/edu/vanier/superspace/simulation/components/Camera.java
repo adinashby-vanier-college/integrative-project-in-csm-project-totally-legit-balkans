@@ -2,6 +2,7 @@ package edu.vanier.superspace.simulation.components;
 
 import edu.vanier.superspace.annotations.ToSerialize;
 import edu.vanier.superspace.controllers.AstralCreationFXMLController;
+import edu.vanier.superspace.controllers.ControlBarFXMLController;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.*;
 import edu.vanier.superspace.utils.BorderPaneAutomaticResizing;
@@ -51,8 +52,7 @@ public class Camera extends Entity implements Tickable {
      */
     @Override
     public void onUpdate(double deltaTime) {
-        AnchorPane drawPane = ((AnchorPane) BorderPaneAutomaticResizing.getInstance().getPane().getCenter());
-        viewport = Vector2.of(drawPane.getWidth(), drawPane.getHeight()).multiply(zoom);
+        recalculateViewport();
 
         if (AstralCreationFXMLController.getInstance().isSelected()) {
             return;
@@ -77,15 +77,30 @@ public class Camera extends Entity implements Tickable {
             xVelocity -= 20 * deltaTime;
         }
 
+        Vector2 mousePos =  Input.getCurrentMouseCanvasPosition();
         if (Input.getScrollDistance() < 0) {
+            Vector2 start = screenSpaceToWorldSpace(mousePos);
+
             zoom *= -Input.getScrollDistance() * deltaTime * timeToDoubleZoom;
+            ControlBarFXMLController.getInstance().getZoomSlider().setValue(zoom);
+            recalculateViewport();
+
+            Vector2 end = screenSpaceToWorldSpace(mousePos);
+            this.getTransform().getPosition().addAssign(start.subtract(end));
         } else if (Input.getScrollDistance() > 0) {
+            Vector2 start = screenSpaceToWorldSpace(mousePos);
+
             zoom /= Input.getScrollDistance() * deltaTime * timeToDoubleZoom;
+            ControlBarFXMLController.getInstance().getZoomSlider().setValue(zoom);
+            recalculateViewport();
+
+            Vector2 end = screenSpaceToWorldSpace(mousePos);
+            this.getTransform().getPosition().addAssign(start.subtract(end));
         }
 
         Vector2 mouseMovement = Vector2.zero();
         if (Input.isMouseButtonHeld(MouseButton.PRIMARY)) {
-            mouseMovement = Input.mouseDelta().negateOnRenderAxis();
+            mouseMovement = Input.mouseDelta().divide(zoom).negate();
         }
 
         Vector2 velocity = Vector2.of(xVelocity, yVelocity);
@@ -97,9 +112,14 @@ public class Camera extends Entity implements Tickable {
      * @param screenSpace the simulation dimensions
      * @return dimensions as vector value
      */
+    private void recalculateViewport() {
+        AnchorPane drawPane = ((AnchorPane) BorderPaneAutomaticResizing.getInstance().getPane().getCenter());
+        viewport = Vector2.of(drawPane.getWidth(), drawPane.getHeight()).multiply(zoom);
+    }
+  
     public Vector2 screenSpaceToWorldSpace(Vector2 screenSpace) {
-        Vector2 realDimensions = screenSpace.divide(zoom);
-        return transform.getPosition().add(realDimensions);
+        Vector2 realDimensions = Vector2.of(screenSpace.getX() / zoom, screenSpace.getY() / zoom);
+        return this.transform.getPosition().add(realDimensions);
     }
 
     /**

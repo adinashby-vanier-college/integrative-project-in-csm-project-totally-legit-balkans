@@ -210,8 +210,8 @@ public class SimulationTimer extends AnimationTimer {
      */
     private void correctForCameraPositionAndDraw(double zoom, Vector2 position, GraphicsContext graphicsContext, DrawCallback callback) {
         graphicsContext.save();
-        graphicsContext.translate(position.getX(), position.getY());
         graphicsContext.scale(zoom, zoom);
+        graphicsContext.translate(position.getX(), -position.getY());
         callback.onDraw(graphicsContext);
         graphicsContext.restore();
     }

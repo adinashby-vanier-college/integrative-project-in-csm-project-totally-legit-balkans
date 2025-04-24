@@ -2,6 +2,7 @@ package edu.vanier.superspace.controllers;
 
 import edu.vanier.superspace.Application;
 import edu.vanier.superspace.utils.FileHelper;
+import edu.vanier.superspace.utils.SaveManager;
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.Scenes;
 import edu.vanier.superspace.utils.SimulationSettings;
@@ -113,8 +114,8 @@ public class MainMenuFXMLController {
         }
 
         newSelectorButton.setOnAction(e -> {
-//            SceneManagement.loadScene(loadFile);
-//            hide();
+           SaveManager.load(loadFile);
+            
         });
 
         newSelectorButton.setContentDisplay(ContentDisplay.TOP);

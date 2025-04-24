@@ -6,7 +6,7 @@ import lombok.Getter;
  * Enum containing the different partial scenes
  */
 @Getter
-public enum Partials {
+public enum  Partials {
     MAIN_MENU("mainMenu"),
     //MAIN_APP("mainApp"),
     ASTRAL_CREATION("mainApp_astralCreation"),

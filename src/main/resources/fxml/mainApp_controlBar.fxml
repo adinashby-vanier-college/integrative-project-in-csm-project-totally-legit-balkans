@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,26 +11,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TitledPane stylesheets="@../css/ControlBarStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.ControlBarFXMLController">
+<TitledPane stylesheets="@../css/ControlBarStyle.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.ControlBarFXMLController">
    <content>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="anchor-pane">
          <children>
-            <Button fx:id="pauseButton" layoutX="36.0" layoutY="56.0" mnemonicParsing="false" onAction="#onPause" prefHeight="38.0" prefWidth="31.0" styleClass="control-button">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Images/Pause.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Text layoutX="20.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Control Bar">
-               <font>
-                  <Font name="Dubai Regular" size="40.0" />
-               </font>
-            </Text>
             <Rectangle arcHeight="20.0" arcWidth="20.0" fill="TRANSPARENT" height="178.0" layoutX="316.0" layoutY="12.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" width="458.0" />
-            <Label fx:id="planetName" layoutX="537.0" layoutY="4.0" prefHeight="54.0" prefWidth="159.0" text="Terrus">
+            <Label fx:id="planetName" layoutX="537.0" layoutY="4.0" prefHeight="54.0" prefWidth="159.0" text="--">
                <font>
                   <Font name="Dubai Regular" size="30.0" />
                </font>
@@ -45,25 +26,7 @@
                   <Font name="Dubai Regular" size="30.0" />
                </font>
             </Text>
-            <Button fx:id="playButton" layoutX="78.0" layoutY="56.0" mnemonicParsing="false" onAction="#onPlay" styleClass="control-button">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Images/Play.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="fastForwardButton" layoutX="114.0" layoutY="58.0" mnemonicParsing="false" onAction="#onFastForward" styleClass="control-button">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Images/FF.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Text fx:id="description" layoutX="326.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Terrus is a planet mostly cover bywater. The planet’s atmosphere ismade of nitrogen. Terrus has organiclife present on it.  " wrappingWidth="438.9366455078125">
+            <Text fx:id="description" layoutX="326.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="438.9366455078125">
                <font>
                   <Font name="Dubai Regular" size="24.0" />
                </font>
@@ -164,11 +127,46 @@
                   <Font name="Dubai Regular" size="18.0" />
                </font>
             </Text>
-            <Button layoutX="35.0" layoutY="110.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="129.0" styleClass="zoom-button" stylesheets="@../css/ControlBarStyle.css" text="Zoom">
+            <Slider fx:id="timeMultiplier" layoutX="29.0" layoutY="34.0" majorTickUnit="1.0" max="8.0" minorTickCount="0" prefHeight="38.0" prefWidth="272.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+            <ImageView fx:id="stepButtonIcon" fitHeight="30.0" fitWidth="60.0" layoutX="214.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/FF.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="playButtonIcon" fitHeight="30.0" fitWidth="60.0" layoutX="151.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/Play.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="pauseButtonIcon" fitHeight="30.0" fitWidth="60.0" layoutX="81.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/Pause.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="pauseButton" layoutX="78.0" layoutY="151.0" mnemonicParsing="false" onAction="#onPause" prefHeight="38.0" prefWidth="31.0" styleClass="control-button" />
+            <Button fx:id="playButton" layoutX="148.0" layoutY="157.0" mnemonicParsing="false" onAction="#onPlay" prefHeight="25.0" prefWidth="33.0" styleClass="control-button" />
+            <Button fx:id="tickButton" layoutX="213.0" layoutY="158.0" mnemonicParsing="false" onAction="#onTick" prefHeight="25.0" prefWidth="48.0" styleClass="control-button" />
+            <Slider fx:id="zoomSlider" layoutX="29.0" layoutY="102.0" majorTickUnit="1" max="10" prefHeight="38.0" prefWidth="272.0" showTickLabels="true" showTickMarks="true" />
+            <Text layoutX="29.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time Mult. (log10)">
                <font>
-                  <Font name="Dubai Regular" size="24.0" />
+                  <Font size="18.0" />
                </font>
-            </Button>
+            </Text>
+            <Text layoutX="29.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Camera Zoom">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="181.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Camera Zoom">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="timeFeedback" layoutX="181.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="250 s / s" textAlignment="RIGHT" wrappingWidth="118.1904296875">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </content>

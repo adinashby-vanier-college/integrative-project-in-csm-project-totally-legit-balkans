@@ -3,13 +3,15 @@ package edu.vanier.superspace.simulation.components;
 import edu.vanier.superspace.dto.RenderLayers;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.Entity;
+import edu.vanier.superspace.simulation.Input;
+import edu.vanier.superspace.simulation.Tickable;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 /**
  * Circle renderer used for debugging, so a default circle for testing.
  */
-public class DebugCircleRenderer extends Renderer {
+public class DebugCircleRenderer extends Renderer implements Tickable {
     private final double diameter = 1700 * 2;
 
     /**
@@ -28,8 +30,8 @@ public class DebugCircleRenderer extends Renderer {
         Transform tf = getEntity().getTransform();
         Vector2 pos = tf.getPosition();
         double radius = diameter / 2;
-        gc.setFill(Color.BLUE);
-        gc.fillOval(tf.getPosition().getX() - radius, tf.getPosition().getY() - radius, diameter, diameter);
+//        gc.setFill(Color.BLUE);
+//        gc.fillOval(tf.getPosition().getX() - radius, tf.getPosition().getY() - radius, diameter, diameter);
 
         gc.setStroke(Color.GREEN);
         gc.setLineWidth(2);
@@ -46,5 +48,10 @@ public class DebugCircleRenderer extends Renderer {
     @Override
     public Vector2 estimateSize() {
         return Vector2.of(diameter, diameter);
+    }
+
+    @Override
+    public void onUpdate(double deltaTime) {
+        getEntity().getTransform().setPosition(Camera.getInstance().screenSpaceToWorldSpace(Input.getCurrentMouseCanvasPosition()));
     }
 }

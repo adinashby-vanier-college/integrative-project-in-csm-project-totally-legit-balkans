@@ -4,6 +4,7 @@ import edu.vanier.superspace.annotations.ToSerialize;
 import edu.vanier.superspace.dto.RenderLayers;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.components.Camera;
+import edu.vanier.superspace.simulation.components.DebugCircleRenderer;
 import edu.vanier.superspace.utils.SaveManager;
 import edu.vanier.superspace.utils.AstralBody;
 import edu.vanier.superspace.utils.UserCatalog;
@@ -15,6 +16,9 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
+import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.image.WritableImage;
 
 /**
  * Main class for the simulation and that handles almost everything related with the simulation
@@ -35,7 +39,7 @@ public class Simulation {
     @Getter
     private final Canvas[] canvases = new Canvas[RenderLayers.values().length];
     @Getter
-    private final EnumSet<RenderLayers> activeRenderLayers = EnumSet.of(RenderLayers.DEBUG,
+    private final EnumSet<RenderLayers> activeRenderLayers = EnumSet.of(RenderLayers.TRAIL, RenderLayers.DEBUG,
             RenderLayers.SPACE_SIMULATION);
 
     @Getter
@@ -64,6 +68,10 @@ public class Simulation {
 
         clock.setLinkedSimulation(this);
         clock.start();
+
+        Entity cursorTracker = new Entity();
+        cursorTracker.addComponent(new DebugCircleRenderer());
+        cursorTracker.register();
 
         userCatalog = new UserCatalog();
     }
@@ -115,14 +123,14 @@ public class Simulation {
     /**
      * Runs the simulation
      */
-    public void Run() {
+    public void run() {
         clock.setRunning(true);
     }
-
+    
     /**
      * Stops the simulation
      */
-    public void Stop() {
+    public void stop() {
         clock.setRunning(false);
     }
 
@@ -160,5 +168,9 @@ public class Simulation {
         instance = null;
         Camera.setInstance(null);
         Platform.exit();
+    }
+    
+    public WritableImage getIconScreenshot() {
+        return canvasStack.snapshot(new SnapshotParameters(), null);
     }
 }

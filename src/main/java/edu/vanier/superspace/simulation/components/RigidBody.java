@@ -52,7 +52,7 @@ public class RigidBody extends Component implements Tickable  {
 
             Vector2 force = distance.normalized().multiply((Constants.SIMULATION_GRAVITATIONAL_CONSTANT *
                     getEntity().getRigidBody().getMass() *
-                    entity.getRigidBody().getMass() )/ Math.pow(distanceMag, 2));
+                    entity.getRigidBody().getMass()) / Math.pow(distanceMag, 2));
 
             entity.getRigidBody().addForce(force);
         }
