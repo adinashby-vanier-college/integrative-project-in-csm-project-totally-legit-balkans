@@ -132,6 +132,7 @@ public class Input {
      * @param event the scrolling
      */
     private static void onScroll(ScrollEvent event) {
+        if (!isInFocus) return;
         scrollDistance += event.getDeltaY();
     }
 
