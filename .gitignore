@@ -1,6 +1,11 @@
 .DS_Store
 imgs/.DS_Store
 
+
+### Simulation Saves
+*.sim
+*.icon
+
 ### Gradle template
 .gradle/
 build/

@@ -5,7 +5,9 @@ import edu.vanier.superspace.simulation.Simulation;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import lombok.Getter;
@@ -77,7 +79,7 @@ public class SaveManager {
         return load(loadPath);
     }
 
-    private static boolean load(File filepath) {
+    public static boolean load(File filepath) {
         String jsonRead = FileHelper.readFileCompletely(filepath.getAbsolutePath());
         JsonHelper.deserialize(jsonRead, Simulation.class);
         
@@ -98,8 +100,8 @@ public class SaveManager {
         gr.drawImage(bff, 100, 150, null);
         gr.dispose();
         ImageIO.write(bff, "png", iconWriteFile);
-//        WritableImage sceneIcon = Simulation.getInstance().getIconScreenshot();
-//        ImageIO.write(SwingFXUtils.fromFXImage(sceneIcon, null), "png", iconWriteFile);
+        WritableImage sceneIcon = Simulation.getInstance().getIconScreenshot();
+        ImageIO.write(SwingFXUtils.fromFXImage(sceneIcon, null), "png", iconWriteFile);
     }
     
     public static void clear() {

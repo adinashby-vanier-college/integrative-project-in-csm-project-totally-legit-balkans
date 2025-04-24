@@ -16,6 +16,9 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
+import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.image.WritableImage;
 
 public class Simulation {
     @Getter
@@ -118,5 +121,9 @@ public class Simulation {
         instance = null;
         Camera.setInstance(null);
         Platform.exit();
+    }
+    
+    public WritableImage getIconScreenshot() {
+        return canvasStack.snapshot(new SnapshotParameters(), null);
     }
 }
