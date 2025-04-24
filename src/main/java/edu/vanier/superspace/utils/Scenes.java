@@ -2,6 +2,7 @@ package edu.vanier.superspace.utils;
 
 import com.sun.prism.impl.PrismSettings;
 import edu.vanier.superspace.Application;
+import edu.vanier.superspace.controllers.ControlBarFXMLController;
 import edu.vanier.superspace.simulation.Simulation;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Border;

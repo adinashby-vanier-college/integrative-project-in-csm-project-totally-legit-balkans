@@ -71,7 +71,29 @@ public class Entity {
         component.setEntity(this);
     }
 
-    public <T extends Component> void getComponentOfType(Class<T> type) {
+    public <T extends Component> T getComponentOfType(Class<T> type) {
+        for (Component component : components) {
+            if (component.getClass().equals(type)) {
+                return (T)component;
+            }
+        }
 
+        return null;
+    }
+
+    public <T extends Component> ArrayList<T> getComponentsOfType(Class<T> type) {
+        ArrayList<T> retVal = new ArrayList<>();
+
+        for (Component component : components) {
+            if (component.getClass().equals(type)) {
+                retVal.add((T)component);
+            }
+        }
+
+        if (retVal.isEmpty()) {
+            return null;
+        }
+
+        return retVal;
     }
 }

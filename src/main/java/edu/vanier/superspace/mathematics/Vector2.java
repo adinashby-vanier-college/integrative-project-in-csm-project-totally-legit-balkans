@@ -338,7 +338,7 @@ public class Vector2 {
      * Calculates the normal between two vectors (Pointing 90 degrees to the left of the original vector).
      * @return a new instance of a vector containing the normal's components
      */
-    public Vector2 perpendicular(Vector2 other) {
+    public Vector2 perpendicular() {
         return new Vector2(this.y, -this.x);
     }
 

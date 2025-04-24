@@ -56,6 +56,21 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
 
     implementation 'com.google.code.gson:gson:2.11.0'
+
+    // JUnit
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'org.junit.jupiter:junit-jupiter:5.11.1'
+}
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
+
+    maxHeapSize = '1G'
+
+    testLogging {
+        events "passed"
+    }
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -64,8 +79,9 @@ java {
         languageVersion = JavaLanguageVersion.of(22)
     }
 }
-application {       
-   // TODO: Specify the fully-qualified name of the class 
-   //       that contains the main method to be executed.
-   mainClass = 'edu.vanier.superspace.Main'
+
+application {
+    // TODO: Specify the fully-qualified name of the class
+    //       that contains the main method to be executed.
+    mainClass = 'edu.vanier.superspace.Main'
 }

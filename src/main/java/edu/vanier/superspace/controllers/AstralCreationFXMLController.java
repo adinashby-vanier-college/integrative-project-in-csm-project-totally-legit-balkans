@@ -223,6 +223,7 @@ public class AstralCreationFXMLController {
                     Entity newEntity = new Entity();
                     newEntity.addComponent(new Transform());
                     newEntity.addComponent(new RigidBody(selectedAstralBody.getMass()));
+                    newEntity.addComponent(new TrailRenderer());
                     System.out.println(selectedAstralBody.getRadius() * 2);
                     PlanetRenderer planetRenderer = new PlanetRenderer(selectedAstralBody.getRadius() * 2,
                             selectedAstralBody.getPath());
@@ -294,10 +295,9 @@ public class AstralCreationFXMLController {
 
         if (errorMessage != null) {
             isVerified = false;
-            // Show detailed error message
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Validation Error");
-            alert.setHeaderText("Please fix the following issues:");
+            alert.setHeaderText("Please fix the following issues in the Astral Creation Menu:");
             alert.setContentText(errorMessage);
             alert.showAndWait();
         } else {
