@@ -38,6 +38,10 @@ public class SaveManager {
     }
 
     public static boolean save() {
+        if (lastSaveFilepath == null) {
+            lastSaveFilepath = saveFileChooser.showSaveDialog(Application.getPrimaryStage().getOwner());
+        }
+
         return saveAs(lastSaveFilepath);
     }
 
@@ -81,12 +85,10 @@ public class SaveManager {
     }
 
     public static boolean load(File filepath) {
+        SceneManagement.loadScene(Scenes.SIMULATION);
+
         String jsonRead = FileHelper.readFileCompletely(filepath.getAbsolutePath());
         JsonHelper.deserialize(jsonRead, Simulation.class);
-        
-        for (var entity : Simulation.getInstance().getEntities()) {
-            entity.registerFromLoadedFile();
-        }
 
         return true;
     }

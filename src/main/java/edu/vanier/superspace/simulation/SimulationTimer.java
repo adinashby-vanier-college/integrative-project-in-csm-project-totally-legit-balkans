@@ -8,6 +8,7 @@ import edu.vanier.superspace.simulation.components.*;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,6 +37,9 @@ public class SimulationTimer extends AnimationTimer {
     private long startTime = 0;
     @Getter @Setter
     private long elapsedTime = 0;
+
+    @Getter @Setter
+    private double timeMultiplier = 1;
 
     /**
      * Steps the simulation
@@ -75,16 +79,17 @@ public class SimulationTimer extends AnimationTimer {
         double deltaTime = (double)elapsedNanoseconds / 1e9;
 
         if (stepOnce) {
-            tick(0.1);
+            tick(0.1 * timeMultiplier);
             stepOnce = false;
         }
 
         if (running) {
-            tick(deltaTime);
+            tick(deltaTime * timeMultiplier);
         }
 
         Camera.getInstance().onUpdate(deltaTime);
         Input.update();
+        tickSelectionCheck();
         clearScreen();
         draw();
     }
@@ -144,6 +149,50 @@ public class SimulationTimer extends AnimationTimer {
         }
     }
 
+    private void tickSelectionCheck() {
+        if (!Input.isMouseButtonPressed(MouseButton.PRIMARY)) {
+            return;
+        }
+
+        Vector2 worldCoordinates = Camera.getInstance().screenSpaceToWorldSpace(Input.getCurrentMouseScreenPosition());
+
+        double closestDistance = Double.MAX_VALUE;
+        Entity selectedEntity = null;
+
+        for (Entity entity : Simulation.getInstance().getEntities()) {
+            if (entity.getRenderer() instanceof PlanetRenderer) {
+                double distance = entity.getTransform().getPosition().distanceTo(worldCoordinates);
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    selectedEntity = entity;
+                }
+            }
+        }
+
+        System.out.println("selected:");
+        System.out.println(selectedEntity);
+        //System.out.println(selectedEntity.getTransform().getPosition());
+
+        System.out.println(worldCoordinates);
+        //System.out.println("Dist: " + selectedEntity.getTransform().getPosition().distanceTo(worldCoordinates));
+        //System.out.println("Tgt : " + ((PlanetRenderer) selectedEntity.getRenderer()).getDiameter() / 2);
+
+        // Discard if we didn't click on the planet directly.
+        if (selectedEntity != null && selectedEntity.getTransform().getPosition().distanceTo(worldCoordinates) > ((PlanetRenderer) selectedEntity.getRenderer()).getDiameter() / 2) {
+            selectedEntity = null;
+        }
+
+        if (ControlBarFXMLController.getInstance().getSelectedEntity() != null) {
+            ControlBarFXMLController.getInstance().getSelectedEntity().setSelected(false);
+        }
+
+        ControlBarFXMLController.getInstance().selectEntity(selectedEntity);
+
+        if (selectedEntity != null) {
+            selectedEntity.setSelected(true);
+        }
+    }
+
     /**
      * Clears the screen
      */
@@ -163,7 +212,7 @@ public class SimulationTimer extends AnimationTimer {
      */
     private void draw() {
         Camera camera = Camera.getInstance();
-        Vector2 cameraPos = camera.getTransform().getPosition().negateOnRenderAxis();
+        Vector2 cameraPos = camera.getTransform().getPosition().negate();
 
         for (int i = 0; i < linkedSimulation.getCanvases().length; i++) {
             if (!linkedSimulation.getActiveRenderLayers().contains(RenderLayers.values()[i])) {
@@ -186,12 +235,7 @@ public class SimulationTimer extends AnimationTimer {
             });
         }
 
-        GraphicsContext debugCanvas = linkedSimulation.getCanvases()[RenderLayers.DEBUG.ordinal()].getGraphicsContext2D();
-//        correctForCameraPositionAndDraw(camera.getZoom(), Vector2.zero(), debugCanvas, (gc) -> {
-//            gc.setStroke(Color.RED);
-//            gc.setLineWidth(3);
-//            gc.strokeRect(camera.getTransform().getPosition().getX(), camera.getTransform().getPosition().getY(), camera.getViewport().getX(), camera.getViewport().getY());
-//        });
+//        GraphicsContext debugCanvas = linkedSimulation.getCanvases()[RenderLayers.DEBUG.ordinal()].getGraphicsContext2D();
     }
 
     /**
@@ -211,7 +255,7 @@ public class SimulationTimer extends AnimationTimer {
     private void correctForCameraPositionAndDraw(double zoom, Vector2 position, GraphicsContext graphicsContext, DrawCallback callback) {
         graphicsContext.save();
         graphicsContext.scale(zoom, zoom);
-        graphicsContext.translate(position.getX(), -position.getY());
+        graphicsContext.translate(position.getX(), position.getY());
         callback.onDraw(graphicsContext);
         graphicsContext.restore();
     }

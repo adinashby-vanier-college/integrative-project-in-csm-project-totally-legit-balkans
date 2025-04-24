@@ -28,10 +28,25 @@ public class Entity {
     protected AstralBody astralBody;
     @Setter @ToSerialize
     protected boolean simulating;
+
+    @Override
+    public String toString() {
+        return "Entity{" +
+                "guid=" + guid +
+                ", astralBody=" + astralBody +
+                ", simulating=" + simulating +
+                ", name='" + name + '\'' +
+                ", components=" + components +
+                '}';
+    }
+
     @Setter @ToSerialize
     protected String name;
     @ToSerialize
     protected final ArrayList<Component> components = new ArrayList<>();
+
+    @Getter @Setter
+    protected boolean selected;
 
     /**
      * Default constructor

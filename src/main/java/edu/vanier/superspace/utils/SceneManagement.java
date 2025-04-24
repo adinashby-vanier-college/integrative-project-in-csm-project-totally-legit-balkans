@@ -22,27 +22,6 @@ public class SceneManagement {
         BorderPane root = new BorderPane();
         scene.getInitializer().initialize(root, reload);
 
-        root.setOnMouseClicked(event -> {
-            if (Simulation.getInstance() != null) {
-                Entity closestEntity = null;
-                double closestDistance = 100;
-                for (Entity entity : Simulation.getInstance().getEntities()) {
-                    Vector2 entityPosition = Vector2.of(entity.getTransform().getPosition().getX(), entity.getTransform().getPosition().getY());
-                    Vector2 mousePosition = Vector2.of(event.getSceneX(), event.getSceneY());
-                    double distance = entityPosition.distanceTo(mousePosition);
-
-                    if (closestDistance > distance) {
-                        closestEntity = entity;
-                        closestDistance = distance;
-                    }
-                }
-
-                if (closestEntity != null) {
-                    ControlBarFXMLController.getInstance().selectEntity(closestEntity);
-                }
-            }
-        });
-
         Scene loadedScene = new Scene(root, RenderDimensions.getApplicationTargetWidth(), RenderDimensions.getApplicationTargetHeight());
         Input.initialize(loadedScene);
         Application.getPrimaryStage().setScene(loadedScene);

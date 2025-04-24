@@ -39,6 +39,7 @@ public class ControlBarFXMLController {
     @FXML @Getter
     private Slider zoomSlider;
 
+    @Getter
     private Entity selectedEntity;
 
     @FXML
@@ -82,8 +83,14 @@ public class ControlBarFXMLController {
      */
     public void selectEntity(Entity entity) {
         selectedEntity = entity;
-        planetName.setText(entity.getAstralBody().getName());
-        description.setText(entity.getAstralBody().getDescription());
+
+        if (entity == null) {
+            planetName.setText("--");
+            description.setText("");
+        } else {
+            planetName.setText(entity.getAstralBody().getName());
+            description.setText(entity.getAstralBody().getDescription());
+        }
     }
     
     /**
