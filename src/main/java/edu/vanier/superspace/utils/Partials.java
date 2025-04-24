@@ -2,6 +2,9 @@ package edu.vanier.superspace.utils;
 
 import lombok.Getter;
 
+/**
+ * Enum containing the different partial scenes
+ */
 @Getter
 public enum Partials {
     LOGIN("logInPage"),

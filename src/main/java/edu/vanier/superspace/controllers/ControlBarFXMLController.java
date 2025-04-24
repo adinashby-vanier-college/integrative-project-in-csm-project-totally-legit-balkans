@@ -17,6 +17,9 @@ import javafx.scene.text.Text;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * FXML Controller class for the control bar.
+ */
 public class ControlBarFXMLController {
     @Getter
     private static ControlBarFXMLController instance;
@@ -45,10 +48,18 @@ public class ControlBarFXMLController {
         zoomSlider.valueProperty().addListener(this::onZoomMultiplierMoved);
     }
 
+    /**
+     * Action happens when the simulation is paused.
+     * @param event the pause button pressed event
+     */
     public void onPause(ActionEvent event) {
         Simulation.getInstance().stop();
     }
-
+    
+    /**
+     * Actions happens when the simulation is played
+     * @param event user presses the play button event
+     */
     public void onPlay(ActionEvent event) {
         Simulation.getInstance().run();
     }
@@ -56,25 +67,42 @@ public class ControlBarFXMLController {
     public void onTick(ActionEvent event) {
         Simulation.getInstance().getClock().step();
     }
-
+    
+    /**
+     * Happens on each update because this class is a part of the Tickable interface.
+     * @param deltaTime delta time
+     */
     public void onUpdate(double deltaTime) {
 
     }
-
+    
+    /**
+     * Selects an entity
+     * @param entity the entity to be selected
+     */
     public void selectEntity(Entity entity) {
         selectedEntity = entity;
         planetName.setText(entity.getAstralBody().getName());
         description.setText(entity.getAstralBody().getDescription());
     }
-
+    
+    /**
+     * Changes time when the time multiplier is moved
+     */
     private void onTimeMultiplierMoved(Observable observable, Number oldValue, Number newValue) {
         timeFeedback.setText(getTimeString((int)timeMultiplier.getValue()));
     }
-
+    
+    /**
+     * Changes the zoom of the camera when the zoom multiplier is moved
+     */
     private void onZoomMultiplierMoved(Observable observable, Number oldValue, Number newValue) {
         Camera.getInstance().setZoom(newValue.doubleValue());
     }
-
+    
+    /**
+     * Gets the time as a string
+     */
     private String getTimeString(int timeExponent) {
         return switch (timeExponent) {
             case 0 -> "Real time";

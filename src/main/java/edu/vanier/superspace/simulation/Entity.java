@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
 
+/**
+ * Entity class for the entities to be rendered in the simulation.
+ */
 @Getter
 public class Entity {
     @ToSerialize
@@ -30,30 +33,50 @@ public class Entity {
     @ToSerialize
     protected final ArrayList<Component> components = new ArrayList<>();
 
+    /**
+     * Default constructor
+     */
     public Entity() {
         this(UUID.randomUUID());
     }
 
+    /**
+     * Parameterized constructor
+     * @param existingUUID existing UUID
+     */
     public Entity (UUID existingUUID) {
         guid = existingUUID;
         transform = new Transform();
         System.out.println(transform);
     }
 
+    /**
+     * Registers entity from a loaded file
+     */
     public void registerFromLoadedFile() {
         simulation = Simulation.getInstance();
         Simulation.getInstance().registerFromLoadedFile(this);
     }
 
+    /**
+     * Registers an entity to the simulation
+     */
     public void register() {
         simulation = Simulation.getInstance();
         Simulation.getInstance().createEntity(this);
     }
 
+    /**
+     * Destroys/removes an entity from the simulation
+     */
     public void destroy() {
         Simulation.getInstance().destroyEntity(this);
     }
 
+    /**
+     * Adds a component to the entity.
+     * @param component the given component
+     */
     public void addComponent(Component component) {
         if (component instanceof Transform tf) {
             transform = tf;
@@ -71,6 +94,11 @@ public class Entity {
         component.setEntity(this);
     }
 
+    /**
+     * Getter for a given type of component.
+     * @param type the type of the component searched
+     * @param <T> the class of the component
+     */
     public <T extends Component> T getComponentOfType(Class<T> type) {
         for (Component component : components) {
             if (component.getClass().equals(type)) {
