@@ -3,7 +3,8 @@ package edu.vanier.superspace.utils;
 import lombok.Getter;
 
 @Getter
-public enum  Partials {
+public enum Partials {
+    LOGIN("logInPage"),
     MAIN_MENU("mainMenu"),
     //MAIN_APP("mainApp"),
     ASTRAL_CREATION("mainApp_astralCreation"),

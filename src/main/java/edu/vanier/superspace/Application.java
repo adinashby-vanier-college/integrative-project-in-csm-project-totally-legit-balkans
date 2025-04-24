@@ -1,5 +1,6 @@
 package edu.vanier.superspace;
 
+import edu.vanier.superspace.utils.Account;
 import edu.vanier.superspace.utils.RenderDimensions;
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.SaveManager;
@@ -18,7 +19,8 @@ public class Application extends javafx.application.Application {
         SaveManager.initializeFileDirectory();
         Application.primaryStage = primaryStage;
 
-        SceneManagement.loadScene(Scenes.MAIN_MENU);
+        SceneManagement.loadScene(Scenes.LOGIN);
+        Account.load();
 
         primaryStage.setTitle("Super Space Maker");
         primaryStage.setMinHeight(RenderDimensions.getApplicationMinHeight());

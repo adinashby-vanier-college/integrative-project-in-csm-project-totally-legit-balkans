@@ -44,6 +44,7 @@ public class SaveManager {
     public static boolean saveAs() {
         saveFileChooser.setTitle("Save Simulation Project");
         File saveLocation = saveFileChooser.showSaveDialog(Application.getPrimaryStage().getOwner());
+        System.out.println(saveLocation);
 
         if (saveLocation == null) {
             return false;
