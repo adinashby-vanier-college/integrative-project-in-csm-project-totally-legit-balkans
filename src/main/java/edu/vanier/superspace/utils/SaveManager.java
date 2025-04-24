@@ -79,7 +79,7 @@ public class SaveManager {
         return load(loadPath);
     }
 
-    private static boolean load(File filepath) {
+    public static boolean load(File filepath) {
         String jsonRead = FileHelper.readFileCompletely(filepath.getAbsolutePath());
         JsonHelper.deserialize(jsonRead, Simulation.class);
         
