@@ -1,6 +1,7 @@
 package edu.vanier.superspace.controllers;
 
 import edu.vanier.superspace.Application;
+import edu.vanier.superspace.simulation.components.TrailRenderer;
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.Scenes;
 import edu.vanier.superspace.utils.SimulationSettings;
@@ -157,12 +158,30 @@ public class SettingsFXMLController {
         rdbDashed.setSelected(dashed);
         rdbDotted.setSelected(dotted);
         rdbFull.setSelected(full);
+        
+        if(rdbFull.isSelected()){
+            TrailRenderer.skip=0;
+        }else if(rdbDotted.isSelected()){
+            TrailRenderer.skip = 2;
+        }else if(rdbDashed.isSelected()){
+            TrailRenderer.skip = 10;
+        }
+        
     }
 
     private void astralPathsThickness(boolean thin, boolean medium, boolean thick) {
         rdbThin.setSelected(thin);
         rdbThicknessMedium.setSelected(medium);
         rdbThick.setSelected(thick);
+        
+        if(rdbThin.isSelected()){
+            TrailRenderer.thickness = 5;
+        }else if(rdbThicknessMedium.isSelected()){
+            TrailRenderer.thickness = 10;
+        }else if(rdbThick.isSelected()){
+            TrailRenderer.thickness = 20;
+        }
+        
     }
 
     private void theme(boolean light, boolean dark) {
