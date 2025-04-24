@@ -21,6 +21,9 @@ import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.image.WritableImage;
 
+/**
+ * Main class for the simulation and that handles almost everything related with the simulation
+ */
 public class Simulation {
     @Getter
     private static Simulation instance = null;
@@ -42,6 +45,10 @@ public class Simulation {
     @Getter
     private final SimulationTimer clock = new SimulationTimer();
 
+    /**
+     * Parameterized constructor
+     * @param canvasStack the canvas stack
+     */
     public Simulation(StackPane canvasStack) {
         this.canvasStack = canvasStack;
 
@@ -70,10 +77,17 @@ public class Simulation {
         userCatalog = new UserCatalog();
     }
 
+    /**
+     * Adds a camera to the simulation and to the components to tick
+     * @param camera the instance of the camera
+     */
     public void registerCamera(Camera camera) {
         clock.getComponentsToTick().add(camera);
     }
 
+    /**
+     * Sets the initial heights of the canvas
+     */
     public void setInitialCanvasHeights() {
         for (Canvas canvas : canvases) {
             canvas.setWidth(canvasStack.getWidth());
@@ -81,39 +95,72 @@ public class Simulation {
         }
     }
 
+    /**
+     * Registers an entity from a loaded file
+     * @param entity an entity to be registered
+     */
     public void registerFromLoadedFile(Entity entity) {
         clock.registerEntityToUpdate(entity);
     }
 
+    /**
+     * Adds an entity to the simulation an entities to be rendered
+     * @param entity the entity to be added
+     */
     public void createEntity(Entity entity) {
         entities.add(entity);
         clock.registerEntityToUpdate(entity);
     }
 
+    /**
+     * Removes an entity from the simulation
+     * @param entity the entity to be removed
+     */
     public void destroyEntity(Entity entity) {
         entities.removeIf((e) -> e.getGuid() == entity.getGuid());
         clock.removeComponentsLinkedToEntity(entity);
     }
 
+    /**
+     * Runs the simulation
+     */
     public void run() {
         clock.setRunning(true);
     }
-
+    
+    /**
+     * Stops the simulation
+     */
     public void stop() {
         clock.setRunning(false);
     }
 
+    /**
+     * Makes the simulation go faster
+     */
     public void Step() {
         clock.step();
     }
 
+    /**
+     * Gets when the scene is clicked
+     * @param event mouse click event
+     */
     public void onSceneClicked(MouseEvent event) {
     }
 
+    /**
+     * Gets when the scene is clicked but as a vector position
+     * @param position position in vector notation
+     */
     public void onSceneClicked(Vector2 position) {
 
     }
 
+    /**
+     * Stops and closes the simulation
+     * @param saveBeforeQuitting if true it saves the simulation before closing the application
+     */
     public void StopAndClose(boolean saveBeforeQuitting) {
         clock.setRunning(false);
         if (saveBeforeQuitting) {

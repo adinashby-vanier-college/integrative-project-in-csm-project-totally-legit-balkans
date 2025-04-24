@@ -2,6 +2,9 @@ package edu.vanier.superspace.utils;
 
 import lombok.Getter;
 
+/**
+ * Presets with their properties
+ */
 @Getter
 public enum Presets{
     EARTH("Earth", "A friendly planet!", "Terrestrial", 25, 10, Assets.EARTH.getFilePath(), false),
@@ -41,6 +44,11 @@ public enum Presets{
         this.isPreset = isPreset;
     }
 
+    /**
+     * Gets the real world radius of a chosen planet
+     * @param preset the preset to get the radius from
+     * @return the radius
+     */
     public double getActualRadius(Presets preset) {
         double actualRadius = 0;
 

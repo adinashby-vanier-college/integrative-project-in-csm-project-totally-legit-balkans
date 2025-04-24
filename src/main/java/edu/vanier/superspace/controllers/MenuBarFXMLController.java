@@ -1,5 +1,7 @@
 package edu.vanier.superspace.controllers;
 
+import edu.vanier.superspace.mathematics.Vector2;
+import edu.vanier.superspace.simulation.components.Camera;
 import edu.vanier.superspace.utils.SaveManager;
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.Scenes;
@@ -8,6 +10,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 
+/**
+ * FXML Controller class for the menu bar.
+ */
 public class MenuBarFXMLController {
     public MenuItem loadFromDiskButton;
     @FXML
@@ -15,16 +20,25 @@ public class MenuBarFXMLController {
     @FXML
     private MenuItem saveAsButton;
 
+    /**
+     * Takes you back to the main menu.
+     */
     @FXML
     private void onEdit(ActionEvent event) {
         SceneManagement.loadScene(Scenes.MAIN_MENU);
     }
 
+    /**
+     * Saves the simulation if it has already been saved as.
+     */
     @FXML
     private void onSave(ActionEvent event) {
         SaveManager.save();
     }
 
+    /**
+     * Saves the simulation in the files of the program.
+     */
     @FXML
     private void onSaveAs(ActionEvent event) {
         boolean success = SaveManager.saveAs();
@@ -33,18 +47,39 @@ public class MenuBarFXMLController {
         }
     }
 
+    /**
+     * Loads a file from disk.
+     */
     public void onLoadFromDisk(ActionEvent event) {
         SaveManager.load();
     }
 
+    /**
+     * Exits the applicaiton with no saving.
+     */
     @FXML
     private void onExit(ActionEvent event) {
         Platform.exit();
     }
 
+    /**
+     * Opens the preferences menu.
+     */
     @FXML
     private void onRequestPreferencesMenu(ActionEvent event) {
         SceneManagement.loadScene(Scenes.SETTINGS);
+    }
+
+    /**
+     * Centers the camera so the user can come back to the original positionning.
+     */
+    @FXML
+    private void onRequestCenterCamera(ActionEvent event) {
+        if (Camera.getInstance() != null) {
+            Camera.getInstance().setZoom(1);
+            Camera.getInstance().getViewport().setX(0);
+            Camera.getInstance().getTransform().setPosition(Vector2.zero());
+        }
     }
 
     @FXML

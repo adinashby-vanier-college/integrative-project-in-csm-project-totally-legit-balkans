@@ -18,6 +18,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Vector;
 
+/**
+ * Handles all the updates and components to tick/render
+ */
 public class SimulationTimer extends AnimationTimer {
     @Getter
     private final ArrayList<Tickable> componentsToTick = new ArrayList<>();
@@ -38,10 +41,20 @@ public class SimulationTimer extends AnimationTimer {
     @Getter @Setter
     private double timeMultiplier = 1;
 
+    /**
+     * Steps the simulation
+     */
     public void step() {
         stepOnce = true;
     }
 
+    /**
+     * AnimationTimer handle method
+     * @param now
+     *            The timestamp of the current frame given in nanoseconds. This
+     *            value will be the same for all {@code AnimationTimers} called
+     *            during one frame.
+     */
     @Override
     public void handle(long now) {
         if (lastUpdateTime == 0) {
@@ -81,6 +94,10 @@ public class SimulationTimer extends AnimationTimer {
         draw();
     }
 
+    /**
+     * Checks for components that are to tick and to render and adds them to the ArrayList
+     * @param entity the said entity
+     */
     public void registerEntityToUpdate(Entity entity) {
         for (Component component : entity.getComponents()) {
             if (component instanceof Tickable tickable) {
@@ -93,11 +110,19 @@ public class SimulationTimer extends AnimationTimer {
         }
     }
 
+    /**
+     * Removes any components that are linked to an entity from the simulation
+     * @param entity the entity
+     */
     public void removeComponentsLinkedToEntity(Entity entity) {
         componentsToTick.removeIf((c) -> ((Component)c).getEntity().getGuid() == entity.getGuid());
         componentsToRender.removeIf((c) -> c.getEntity().getGuid() == entity.getGuid());
     }
 
+    /**
+     * Each tick it updates the values of the simulation
+     * @param deltaTime delta time
+     */
     private void tick(double deltaTime) {
         componentsToTick.stream().filter((t) -> !((Component)t).isInitialized()).forEach(c -> ((Component)c).onInitialize());
 
@@ -168,6 +193,9 @@ public class SimulationTimer extends AnimationTimer {
         }
     }
 
+    /**
+     * Clears the screen
+     */
     private void clearScreen() {
         for (Canvas canvas : linkedSimulation.getCanvases()) {
             GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -179,6 +207,9 @@ public class SimulationTimer extends AnimationTimer {
         gc.fillRect(0, 0, linkedSimulation.getCanvasStack().getWidth(), linkedSimulation.getCanvasStack().getHeight());
     }
 
+    /**
+     * Draws on the screen
+     */
     private void draw() {
         Camera camera = Camera.getInstance();
         Vector2 cameraPos = camera.getTransform().getPosition().negate();
@@ -207,10 +238,20 @@ public class SimulationTimer extends AnimationTimer {
 //        GraphicsContext debugCanvas = linkedSimulation.getCanvases()[RenderLayers.DEBUG.ordinal()].getGraphicsContext2D();
     }
 
+    /**
+     * A draw callback
+     */
     private interface DrawCallback {
         void onDraw(GraphicsContext gc);
     }
 
+    /**
+     * Corrects the camera position and draws
+     * @param zoom the zoom correction
+     * @param position the position correction
+     * @param graphicsContext the graphics context correction
+     * @param callback the callback correction
+     */
     private void correctForCameraPositionAndDraw(double zoom, Vector2 position, GraphicsContext graphicsContext, DrawCallback callback) {
         graphicsContext.save();
         graphicsContext.scale(zoom, zoom);
