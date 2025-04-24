@@ -12,8 +12,11 @@ import edu.vanier.superspace.utils.deserializers.SimulationDeserializer;
 import edu.vanier.superspace.utils.serializers.ComponentSerializer;
 import edu.vanier.superspace.utils.serializers.EntitySerializer;
 import edu.vanier.superspace.utils.serializers.SimulationSerializer;
+import lombok.Getter;
 
 public class JsonHelper {
+    
+    @Getter
     private static final Gson defaultGson = new GsonBuilder()
             .setPrettyPrinting()
             .serializeNulls()
@@ -46,4 +49,5 @@ public class JsonHelper {
     public static String toJson(Object object) {
         return defaultGson.toJson(object);
     }
+    
 }

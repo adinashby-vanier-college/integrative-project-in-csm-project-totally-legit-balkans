@@ -4,7 +4,10 @@
  */
 package edu.vanier.superspace.utils;
 
+import com.google.gson.reflect.TypeToken;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 
 
@@ -27,7 +30,36 @@ public class Account {
         this.password = password;
     }
     
-    public static ArrayList<Account> encrypt(){
+    public static boolean matchAccount(String uName, String password){
+        
+        for(int i = 0; i < accounts.size(); i++){
+            
+            if(uName.equals(accounts.get(i).getUsername())&&
+                    password.equals(accounts.get(i).getPassword())){
+                return true;
+            }
+            
+        }
+        
+        return false;
+    }
+    
+    public static boolean sameUsername(String uName){
+
+        for(int i = 0; i < accounts.size(); i++){
+            
+            if(uName.equals(accounts.get(i).getUsername())){
+                
+                return true;
+                
+            }
+            
+        }
+        
+        return false;
+    }
+    
+    private static ArrayList<Account> encrypt(){
         
         ArrayList<Account> toReturn = new ArrayList<>();
         
@@ -41,7 +73,7 @@ public class Account {
         
     }
     
-    public static void decrypt(ArrayList<Account> toTreat){
+    private static void decrypt(ArrayList<Account> toTreat){
         
         for(int i = 0; i < toTreat.size(); i++){
             
@@ -53,7 +85,24 @@ public class Account {
     
     public static void save(){
         
-        String asJson = JsonHelper.serialize(encrypt());
+        File file = new File("savedAccount.txt");
+        String filePath = file.getAbsolutePath();
+        
+        String asJson = JsonHelper.getDefaultGson().toJson(encrypt());
+
+        FileHelper.writeFileCompletely(filePath, asJson);
+        
+    }
+    
+    
+    public static void load(){
+        
+        File file = new File("savedAccount.txt");
+        String filePath = file.getAbsolutePath();
+        
+        String data = FileHelper.readFileCompletely(filePath);
+        
+        decrypt(JsonHelper.getDefaultGson().fromJson(data,new TypeToken<List<Account>>(){}.getType()));
         
     }
     
