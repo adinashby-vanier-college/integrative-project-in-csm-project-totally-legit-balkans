@@ -50,13 +50,8 @@ public class TrailRenderer extends Renderer implements Tickable{
             return;
         }
         
-        System.out.println("D: "+points.getFirst());
-        
         if(points.getLast().distanceTo(entity.getTransform().getPosition())>distanceToNextPoint){
            points.add(Vector2.copyOf(entity.getTransform().getPosition()));
-            return;
         }
-        
-        
     }
 }

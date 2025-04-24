@@ -49,7 +49,6 @@ public class RigidBody extends Component implements Tickable  {
     public void onUpdate(double deltaTime) {
         velocity.addAssign(acceleration);
         getEntity().getTransform().getPosition().addAssign(velocity);
-        System.out.println(velocity);
         acceleration = Vector2.of(0,0);
     }
 }

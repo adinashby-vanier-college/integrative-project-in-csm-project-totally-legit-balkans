@@ -5,6 +5,7 @@ import edu.vanier.superspace.dto.RenderLayers;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.components.Camera;
 import edu.vanier.superspace.simulation.components.DebugCircleRenderer;
+import edu.vanier.superspace.simulation.components.MousePositionTracker;
 import edu.vanier.superspace.utils.SaveManager;
 import edu.vanier.superspace.utils.AstralBody;
 import edu.vanier.superspace.utils.UserCatalog;
@@ -36,8 +37,7 @@ public class Simulation {
     @Getter
     private final Canvas[] canvases = new Canvas[RenderLayers.values().length];
     @Getter
-    private final EnumSet<RenderLayers> activeRenderLayers = EnumSet.of(RenderLayers.TRAIL, RenderLayers.DEBUG,
-            RenderLayers.SPACE_SIMULATION);
+    private final EnumSet<RenderLayers> activeRenderLayers = EnumSet.of(RenderLayers.TRAIL, RenderLayers.SPACE_SIMULATION, RenderLayers.DEBUG);
 
     @Getter
     private final SimulationTimer clock = new SimulationTimer();
@@ -64,6 +64,7 @@ public class Simulation {
 
         Entity cursorTracker = new Entity();
         cursorTracker.addComponent(new DebugCircleRenderer());
+        cursorTracker.addComponent(new MousePositionTracker());
         cursorTracker.register();
 
         userCatalog = new UserCatalog();
@@ -120,7 +121,6 @@ public class Simulation {
         }
         instance = null;
         Camera.setInstance(null);
-        Platform.exit();
     }
     
     public WritableImage getIconScreenshot() {

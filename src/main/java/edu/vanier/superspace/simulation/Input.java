@@ -29,6 +29,8 @@ public class Input {
     @Getter
     private static Vector2 currentMouseCanvasPosition = Vector2.of(0, 0);
 
+    private static boolean isInFocus = false;
+
     public static void initialize(Scene linkedScene) {
         linkedScene.addEventFilter(KeyEvent.KEY_PRESSED, Input::onKeyPressed);
         linkedScene.addEventFilter(KeyEvent.KEY_RELEASED, Input::onKeyReleased);
@@ -44,6 +46,11 @@ public class Input {
         currentlyPressedKeys = new HashSet<>(JAVAFX_PRESSED_KEYS);
         scrollDistance = 0;
         oldMouseStagePosition = Vector2.copyOf(currentMouseStagePosition);
+
+        Vector2 mousePos = currentMouseCanvasPosition;
+        double maxHeight = ((Region) BorderPaneAutomaticResizing.getInstance().getPane().getCenter()).getHeight();
+        double maxWidth = ((Region) BorderPaneAutomaticResizing.getInstance().getPane().getCenter()).getWidth();
+        isInFocus = mousePos.getX() > 0 && mousePos.getX() < maxWidth && mousePos.getY() > 0 && mousePos.getY() < maxHeight;
     }
 
     public static Vector2 mouseDelta() {
@@ -52,17 +59,17 @@ public class Input {
 
     public static boolean isMouseButtonPressed(MouseButton button) {
         int scancode = MOUSE_SCANCODES_OFFSET + button.ordinal();
-        return currentlyPressedKeys.contains(scancode) && !previouslyPressedKeys.contains(scancode);
+        return currentlyPressedKeys.contains(scancode) && !previouslyPressedKeys.contains(scancode) && isInFocus;
     }
 
     public static boolean isMouseButtonHeld(MouseButton button) {
         int scancode = MOUSE_SCANCODES_OFFSET + button.ordinal();
-        return currentlyPressedKeys.contains(scancode);
+        return currentlyPressedKeys.contains(scancode) && isInFocus;
     }
 
     public static boolean isMouseButtonReleased(MouseButton button) {
         int scancode = MOUSE_SCANCODES_OFFSET + button.ordinal();
-        return currentlyPressedKeys.contains(scancode) && !previouslyPressedKeys.contains(scancode);
+        return currentlyPressedKeys.contains(scancode) && !previouslyPressedKeys.contains(scancode) && isInFocus;
     }
 
     public static boolean isKeyPressed(KeyCode code) {

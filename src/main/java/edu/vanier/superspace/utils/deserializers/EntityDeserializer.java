@@ -1,12 +1,13 @@
 package edu.vanier.superspace.utils.deserializers;
 
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.*;
 import edu.vanier.superspace.simulation.Entity;
+
+import java.lang.reflect.Field;
 import java.lang.reflect.Type;
+
+import edu.vanier.superspace.simulation.components.Component;
+import edu.vanier.superspace.utils.serializers.SerializationExclusionStrategy;
 import lombok.SneakyThrows;
 
 
@@ -14,33 +15,31 @@ public class EntityDeserializer implements JsonDeserializer<Entity>{
 
     @Override @SneakyThrows
     public Entity deserialize(JsonElement json, Type type, JsonDeserializationContext jdc) throws JsonParseException {
-        
-        JsonObject deserialized = json.getAsJsonObject();
-        String fullyQualifiedName = deserialized.get("className").getAsString();
-        Class<?> objectClass = Class.forName(fullyQualifiedName);
+        Entity entity = new Entity();
+        JsonObject jsonObject = json.getAsJsonObject();
         
         try {
-            if (objectClass.getConstructor().getParameterCount() != 0) 
-                throw new Exception();
-            Entity object = (Entity)objectClass.getConstructor().newInstance();
-            DeserializerHelper.readField(object, objectClass, deserialized, jdc);
-
-            for (int i = 0; i < object.getComponents().size();i++){
-
-                for(var field : objectClass.getDeclaredFields()){
-
-                    if(field.getClass().equals(object.getComponents().get(i).getClass())){
-
-                        field.setAccessible(true);
-                        field.set(object,object.getComponents().get(i));
-
-                    }
+            for (Field declaredField : Entity.class.getDeclaredFields()) {
+                if (SerializationExclusionStrategy.toSkip(new FieldAttributes(declaredField))) {
+                    continue;
                 }
 
+                if (declaredField.getName().equals("components")) {
+                    Component[] components = jdc.deserialize(jsonObject.getAsJsonArray("components"), Component[].class);
+                    for (Component component : components) {
+                        entity.addComponent(component);
+                    }
+                    continue;
+                }
+
+                declaredField.setAccessible(true);
+                declaredField.set(entity, jdc.deserialize(jsonObject.get(declaredField.getName()), declaredField.getType()));
             }
-            return object;
+
+            System.out.println(entity.getName());
+            return entity;
         } catch(Exception exception){
-            System.out.println("Invalid number of parameters in constructor!");
+            System.out.println(exception.getMessage());
         }
         
         return null;

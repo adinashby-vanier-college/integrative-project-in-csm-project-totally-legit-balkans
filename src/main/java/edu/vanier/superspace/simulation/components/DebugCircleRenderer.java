@@ -8,7 +8,7 @@ import edu.vanier.superspace.simulation.Tickable;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class DebugCircleRenderer extends Renderer implements Tickable {
+public class DebugCircleRenderer extends Renderer {
     private final double diameter = 1700 * 2;
 
     public DebugCircleRenderer() {
@@ -34,10 +34,5 @@ public class DebugCircleRenderer extends Renderer implements Tickable {
     @Override
     public Vector2 estimateSize() {
         return Vector2.of(diameter, diameter);
-    }
-
-    @Override
-    public void onUpdate(double deltaTime) {
-        getEntity().getTransform().setPosition(Camera.getInstance().screenSpaceToWorldSpace(Input.getCurrentMouseCanvasPosition()));
     }
 }
