@@ -24,7 +24,14 @@ public enum Scenes {
     SIMULATION((pane, reload) -> {
         AnchorPane center = new AnchorPane();
 //        center.setStyle("-fx-border-color:#ff0000;");
-        StackPane canvasStack = new StackPane();
+        StackPane canvasStack;
+
+        if (!reload) {
+            canvasStack = Simulation.getInstance().getCanvasStack();
+        } else {
+            canvasStack  = new StackPane();
+        }
+
         center.getChildren().add(canvasStack);
         pane.setCenter(center);
         pane.setTop(SceneManagement.loadPartial(Partials.MENU_BAR));

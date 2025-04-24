@@ -35,6 +35,9 @@ public class SimulationTimer extends AnimationTimer {
     @Getter @Setter
     private long elapsedTime = 0;
 
+    @Getter @Setter
+    private double timeMultiplier = 1;
+
     public void step() {
         stepOnce = true;
     }
@@ -63,12 +66,12 @@ public class SimulationTimer extends AnimationTimer {
         double deltaTime = (double)elapsedNanoseconds / 1e9;
 
         if (stepOnce) {
-            tick(0.1);
+            tick(0.1 * timeMultiplier);
             stepOnce = false;
         }
 
         if (running) {
-            tick(deltaTime);
+            tick(deltaTime * timeMultiplier);
         }
 
         Camera.getInstance().onUpdate(deltaTime);
@@ -143,11 +146,11 @@ public class SimulationTimer extends AnimationTimer {
 
         System.out.println("selected:");
         System.out.println(selectedEntity);
-        System.out.println(selectedEntity.getTransform().getPosition());
+        //System.out.println(selectedEntity.getTransform().getPosition());
 
         System.out.println(worldCoordinates);
-        System.out.println("Dist: " + selectedEntity.getTransform().getPosition().distanceTo(worldCoordinates));
-        System.out.println("Tgt : " + ((PlanetRenderer) selectedEntity.getRenderer()).getDiameter() / 2);
+        //System.out.println("Dist: " + selectedEntity.getTransform().getPosition().distanceTo(worldCoordinates));
+        //System.out.println("Tgt : " + ((PlanetRenderer) selectedEntity.getRenderer()).getDiameter() / 2);
 
         // Discard if we didn't click on the planet directly.
         if (selectedEntity != null && selectedEntity.getTransform().getPosition().distanceTo(worldCoordinates) > ((PlanetRenderer) selectedEntity.getRenderer()).getDiameter() / 2) {

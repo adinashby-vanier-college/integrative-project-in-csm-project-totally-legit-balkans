@@ -38,6 +38,10 @@ public class SaveManager {
     }
 
     public static boolean save() {
+        if (lastSaveFilepath == null) {
+            lastSaveFilepath = saveFileChooser.showSaveDialog(Application.getPrimaryStage().getOwner());
+        }
+
         return saveAs(lastSaveFilepath);
     }
 
