@@ -98,8 +98,6 @@ public class Camera extends Entity implements Tickable {
             this.getTransform().getPosition().addAssign(start.subtract(end));
         }
 
-        zoom = Math.clamp(zoom, 0.1, 10);
-
         Vector2 mouseMovement = Vector2.zero();
         if (Input.isMouseButtonHeld(MouseButton.PRIMARY)) {
             mouseMovement = Input.mouseDelta().divide(zoom).negate();

@@ -18,13 +18,5 @@
   {
     "username": "1",
     "password": "b"
-  },
-  {
-    "username": "ahjsjasd",
-    "password": "ÂÔÅÅÔÂÅÂÔ"
-  },
-  {
-    "username": "a",
-    "password": "Ã"
   }
 ]

@@ -280,7 +280,7 @@ public class AstralCreationFXMLController {
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Astral Creation Warning");
-            alert.setContentText("Missing Astral Body Values");
+            alert.setContentText("Missing Astral Vody Values");
             
             alert.showAndWait();
         }
@@ -503,7 +503,7 @@ public class AstralCreationFXMLController {
         btnReset.setDisable(true);
         btnRemove.setDisable(true);
         btnAddPreset.setDisable(true);
-        //btnSpawnAtPeriapsis.setDisable(true);
+        btnSpawnAtPeriapsis.setDisable(true);
         isEmpty = true;
         body = null;
         selectedAstralBody = null;
@@ -583,7 +583,7 @@ public class AstralCreationFXMLController {
         btnImageSelector.setText("");
         btnImageSelector.setGraphic(graphic);
         btnReset.setDisable(false);
-        //btnSpawnAtPeriapsis.setDisable(false);
+        btnSpawnAtPeriapsis.setDisable(false);
         btnRemove.setDisable(!isPreset);
     }
 }

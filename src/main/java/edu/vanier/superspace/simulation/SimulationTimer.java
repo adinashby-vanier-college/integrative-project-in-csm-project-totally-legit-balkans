@@ -129,6 +129,24 @@ public class SimulationTimer extends AnimationTimer {
         componentsToTick.forEach((t) -> t.onUpdate(deltaTime));
 
         ControlBarFXMLController.getInstance().onUpdate(deltaTime);
+
+        ArrayList<RigidBody> rigidBodies = new ArrayList<>();
+        for (Tickable component : componentsToTick) {
+            if (component instanceof RigidBody rigidBody) {
+                if (!rigidBodies.contains(rigidBody)) {
+                    rigidBodies.add(rigidBody);
+                }
+            }
+        }
+
+        for (int i = 0; i < rigidBodies.size(); i++) {
+            for (int j = 0; j < rigidBodies.size(); j++) {
+                if (i != j) {
+                    if (!rigidBodies.get(i).isAttractor())
+                     rigidBodies.get(j).attract(rigidBodies.get(i).getEntity());
+                }
+            }
+        }
     }
 
     private void tickSelectionCheck() {
@@ -151,11 +169,11 @@ public class SimulationTimer extends AnimationTimer {
             }
         }
 
-//        System.out.println("selected:");
-//        System.out.println(selectedEntity);
+        System.out.println("selected:");
+        System.out.println(selectedEntity);
         //System.out.println(selectedEntity.getTransform().getPosition());
 
-//        System.out.println(worldCoordinates);
+        System.out.println(worldCoordinates);
         //System.out.println("Dist: " + selectedEntity.getTransform().getPosition().distanceTo(worldCoordinates));
         //System.out.println("Tgt : " + ((PlanetRenderer) selectedEntity.getRenderer()).getDiameter() / 2);
 
