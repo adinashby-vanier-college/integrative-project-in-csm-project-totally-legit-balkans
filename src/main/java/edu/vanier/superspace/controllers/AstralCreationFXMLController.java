@@ -49,10 +49,6 @@ public class AstralCreationFXMLController {
     @FXML
     private Button btnAddPreset;
     @FXML
-    private Button btnSpawnAtPeriapsis;
-    @FXML
-    private RadioButton rdbAttractor;
-    @FXML
     private ContextMenu contextMenu;
     @FXML
     private Button btnImageSelector;
@@ -72,10 +68,6 @@ public class AstralCreationFXMLController {
     private TextField txtFieldVelocityMagnitude;
     @FXML
     private ComboBox<String> cmbDirection;
-    @FXML
-    private TextField txtFieldDistance;
-    @FXML
-    private ComboBox<String> cmbReference;
 
     /**
      * Default constructor
@@ -116,15 +108,6 @@ public class AstralCreationFXMLController {
         txtFieldMass.setDisable(false);
         txtFieldVelocityMagnitude.setDisable(false);
         cmbDirection.setDisable(false);
-        txtFieldDistance.setDisable(false);
-        cmbReference.setDisable(false);
-        rdbAttractor.setDisable(false);
-
-        /* Used for one attractor only
-            if (!hasAttractor) {
-                rdbAttractor.setDisable(false);
-            }
-         */
     }
 
     /**
@@ -139,9 +122,6 @@ public class AstralCreationFXMLController {
         txtFieldMass.setDisable(true);
         txtFieldVelocityMagnitude.setDisable(true);
         cmbDirection.setDisable(true);
-        txtFieldDistance.setDisable(true);
-        cmbReference.setDisable(true);
-        rdbAttractor.setDisable(true);
     }
 
     /**
@@ -193,13 +173,6 @@ public class AstralCreationFXMLController {
     }
 
     /**
-     * Spawns an entity at the periapsis
-     * @param event the button click
-     */
-    @FXML
-    private void onBtnSpawnAtPeriapsis(ActionEvent event) {}
-
-    /**
      * Whenever the user hovers its mouse on the astral creation the css for the context
      * menu is loaded. This happens because it can't be done in the initialize class and
      * only here.
@@ -218,7 +191,7 @@ public class AstralCreationFXMLController {
     }
 
     /**
-     * On the drag of the planet, it places the entity where the user drags it but it first verifies the inputs
+     * On the drag of the planet, it places the entity where the user drags it, but it first verifies the inputs
      * are correct.
      * @param event the dragging of the mouse
      */
@@ -242,7 +215,7 @@ public class AstralCreationFXMLController {
                     double velocityMagnitude = Double.parseDouble(txtFieldVelocityMagnitude.getText());
                     Vector2 velocity = Vector2.of(0, 0);
 
-                    if (cmbDirection.getValue() != null && !rdbAttractor.isSelected()) {
+                    if (cmbDirection.getValue() != null) {
                         if (cmbDirection.getValue().equals("Clockwise")) {
                             velocityMagnitude = velocityMagnitude / 2;
                             velocity = Vector2.of(-1 * velocityMagnitude, -1 * velocityMagnitude);
@@ -269,10 +242,6 @@ public class AstralCreationFXMLController {
                     newEntity.getRigidBody().setVelocity(velocity);
 
                     Simulation.getInstance().Step();
-
-                    if (rdbAttractor.isSelected()) {
-                        body.getRigidBody().setAttractor(true);
-                    }
                 }
             } else {
                 body.getTransform().setPosition(finalPlanetPosition);
@@ -315,9 +284,6 @@ public class AstralCreationFXMLController {
           else if (velocity < 0) {
               errorMessage = "- Velocity cannot be negative\n";
           }
-          else if (rdbAttractor.isSelected() && velocity != 0) {
-              errorMessage = "- Attractor must have zero velocity\n";
-          }
           else if (path.isEmpty()) {
               errorMessage = "- Image path is required\n";
           }
@@ -327,7 +293,7 @@ public class AstralCreationFXMLController {
           else if (type == null) {
               errorMessage = "- Type must be selected\n";
           }
-          else if (direction == null && !rdbAttractor.isSelected()) {
+          else if (direction == null) {
               errorMessage = "- Direction must be selected\n";
           }
 
@@ -490,11 +456,9 @@ public class AstralCreationFXMLController {
         txtFieldRadius.setText("");
         txtFieldMass.setText("");
         txtFieldName.setText("");
-        txtFieldDistance.setText("");
         txtAreaDescription.setText("");
         txtFieldVelocityMagnitude.setText("");
         cmbDirection.getSelectionModel().clearSelection();
-        cmbReference.getSelectionModel().clearSelection();
         cmbType.getSelectionModel().clearSelection();
 
         disableControls();
@@ -503,12 +467,10 @@ public class AstralCreationFXMLController {
         btnReset.setDisable(true);
         btnRemove.setDisable(true);
         btnAddPreset.setDisable(true);
-        //btnSpawnAtPeriapsis.setDisable(true);
         isEmpty = true;
         body = null;
         selectedAstralBody = null;
         isVerified = false;
-        rdbAttractor.setSelected(false);
     }
 
     /**
@@ -536,7 +498,6 @@ public class AstralCreationFXMLController {
         btnReset.setDisable(false);
         btnAddPreset.setDisable(false);
         selectedAstralBody.setPreset(false);
-        btnSpawnAtPeriapsis.setDisable(false);
     }
 
     /**
@@ -560,7 +521,6 @@ public class AstralCreationFXMLController {
         btnReset.setDisable(false);
         btnRemove.setDisable(false);
         btnAddPreset.setDisable(false);
-        btnSpawnAtPeriapsis.setDisable(false);
     }
 
     /**
@@ -583,7 +543,6 @@ public class AstralCreationFXMLController {
         btnImageSelector.setText("");
         btnImageSelector.setGraphic(graphic);
         btnReset.setDisable(false);
-        //btnSpawnAtPeriapsis.setDisable(false);
         btnRemove.setDisable(!isPreset);
     }
 }

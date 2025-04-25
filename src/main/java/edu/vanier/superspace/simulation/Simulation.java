@@ -7,9 +7,7 @@ import edu.vanier.superspace.simulation.components.Camera;
 import edu.vanier.superspace.simulation.components.DebugCircleRenderer;
 import edu.vanier.superspace.simulation.components.MousePositionTracker;
 import edu.vanier.superspace.utils.SaveManager;
-import edu.vanier.superspace.utils.AstralBody;
 import edu.vanier.superspace.utils.UserCatalog;
-import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
@@ -17,7 +15,6 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
-import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.image.WritableImage;
 

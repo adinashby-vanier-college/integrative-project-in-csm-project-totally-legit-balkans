@@ -90,6 +90,10 @@ public class SaveManager {
         String jsonRead = FileHelper.readFileCompletely(filepath.getAbsolutePath());
         JsonHelper.deserialize(jsonRead, Simulation.class);
 
+        if (Simulation.getInstance() != null) {
+            Simulation.getInstance().Step();
+        }
+
         return true;
     }
 
