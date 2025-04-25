@@ -110,7 +110,7 @@ class Vector2Test {
     void magnitude() {
         Vector2 vec = Vector2.of(1, 1);
         double magnitude = vec.magnitude();
-        assertEquals(1, magnitude);
+        assertEquals(Math.sqrt(2), magnitude);
 
         vec = Vector2.of(2, 2);
         magnitude = vec.magnitude();

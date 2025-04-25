@@ -39,13 +39,13 @@ public class Physics {
         double distanceMag = distance.magnitude();
 
         if (distanceMag < 2500) {
-            distanceMag = Math.max(5, Math.min(distanceMag, 25));
+           // distanceMag = Math.max(5, Math.min(distanceMag, 25));
 
             Vector2 force = distance.normalized().multiply((Constants.SIMULATION_GRAVITATIONAL_CONSTANT *
                     entity2.getRigidBody().getMass() *
                     entity1.getRigidBody().getMass()) / Math.pow(distanceMag, 2));
 
-            entity1.getRigidBody().addForce(force.multiply(deltaTime));
+            entity1.getRigidBody().addForce(force);
         }
     }
 }

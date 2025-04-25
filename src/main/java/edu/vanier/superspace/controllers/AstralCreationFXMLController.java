@@ -246,13 +246,14 @@ public class AstralCreationFXMLController {
             } else {
                 body.getTransform().setPosition(finalPlanetPosition);
             }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Astral Creation Warning");
-            alert.setContentText("Missing Astral Body Values");
-            
-            alert.showAndWait();
-        }
+        } 
+//        else {
+//            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.setTitle("Astral Creation Warning");
+//            alert.setContentText("Missing Astral Body Values");
+//            
+//            alert.showAndWait();
+//        }
     }
 
     /**
