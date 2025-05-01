@@ -74,7 +74,9 @@ public class ControlBarFXMLController {
      * @param deltaTime delta time
      */
     public void onUpdate(double deltaTime) {
-
+        if (selectedEntity != null) {
+            txtAvgSpeed.setText(String.format("%.2f", selectedEntity.getRigidBody().getVelocity().magnitude()));
+        }
     }
     
     /**
@@ -87,9 +89,11 @@ public class ControlBarFXMLController {
         if (entity == null) {
             planetName.setText("--");
             description.setText("");
+            txtAvgSpeed.setText("-");
         } else {
             planetName.setText(entity.getAstralBody().getName());
             description.setText(entity.getAstralBody().getDescription());
+            txtAvgSpeed.setText(String.format("%.2f", entity.getRigidBody().getVelocity().magnitude()));
         }
     }
     

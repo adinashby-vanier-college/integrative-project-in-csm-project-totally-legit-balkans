@@ -230,7 +230,6 @@ public class AstralCreationFXMLController {
                     newEntity.addComponent(new DebugCircleRenderer());
                     newEntity.addComponent(new RigidBody(selectedAstralBody.getMass()));
                     newEntity.addComponent(new TrailRenderer());
-                    System.out.println(selectedAstralBody.getRadius() * 2);
                     PlanetRenderer planetRenderer = new PlanetRenderer(selectedAstralBody.getRadius() * 2,
                             selectedAstralBody.getPath());
                     newEntity.addComponent(planetRenderer);
@@ -238,7 +237,6 @@ public class AstralCreationFXMLController {
                     newEntity.setAstralBody(selectedAstralBody);
                     newEntity.register();
                     body = newEntity;
-                    System.out.println(newEntity.getAstralBody().getPath());
                     newEntity.getRigidBody().setVelocity(velocity);
 
                     Simulation.getInstance().Step();
@@ -246,12 +244,12 @@ public class AstralCreationFXMLController {
             } else {
                 body.getTransform().setPosition(finalPlanetPosition);
             }
-        } 
+        }
 //        else {
 //            Alert alert = new Alert(Alert.AlertType.WARNING);
 //            alert.setTitle("Astral Creation Warning");
 //            alert.setContentText("Missing Astral Body Values");
-//            
+//
 //            alert.showAndWait();
 //        }
     }
