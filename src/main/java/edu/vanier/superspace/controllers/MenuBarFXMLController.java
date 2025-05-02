@@ -82,8 +82,9 @@ public class MenuBarFXMLController {
         }
     }
 
+    /**
+     * Opens the help screen that contains the user guide
+     */
     @FXML
-    private void onDebugView(ActionEvent event) {
-        // Load debug view
-    }
+    private void onGuide(ActionEvent event) {}
 }

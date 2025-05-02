@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 
-<MenuBar stylesheets="@../css/MenuBarStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.MenuBarFXMLController">
+<MenuBar stylesheets="@../css/MenuBarStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.MenuBarFXMLController">
    <menus>
       <Menu mnemonicParsing="false" text="File">
          <items>
@@ -21,9 +23,9 @@
             <MenuItem mnemonicParsing="false" onAction="#onRequestCenterCamera" text="Center Camera" />
          </items>
       </Menu>
-      <Menu mnemonicParsing="false" text="Debug">
+      <Menu mnemonicParsing="false" text="Help">
          <items>
-            <MenuItem mnemonicParsing="false" onAction="#onDebugView" text="View" />
+            <MenuItem mnemonicParsing="false" onAction="#onGuide" text="Guide" />
          </items>
       </Menu>
    </menus>

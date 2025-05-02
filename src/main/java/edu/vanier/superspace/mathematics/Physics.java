@@ -34,20 +34,18 @@ public class Physics {
      * @param entity1 the first entity
      * @param entity2 the second entity
      */
-    public static void computeAndApplyNewtonGravitation(Entity entity1, Entity entity2) {
+    public static void computeAndApplyNewtonGravitation(Entity entity1, Entity entity2, double deltaTime) {
+        Vector2 distance = entity2.getTransform().getPosition().subtract(entity1.getTransform().getPosition());
+        double distanceMag = distance.magnitude();
 
-        Vector2 totalForce1_2 = Vector2.of(0, 0);
-        Vector2 totalForce2_1 = Vector2.of(0, 0);
+        if (distanceMag < 2500) {
+           // distanceMag = Math.max(5, Math.min(distanceMag, 25));
 
-        Vector2 distance = entity1.getTransform().getPosition().subtract(entity2.getTransform().getPosition());
+            Vector2 force = distance.normalized().multiply((Constants.SIMULATION_GRAVITATIONAL_CONSTANT *
+                    entity2.getRigidBody().getMass() *
+                    entity1.getRigidBody().getMass()) / Math.pow(distanceMag, 2));
 
-        totalForce1_2 = distance.normalized().multiply((Constants.SIMULATION_GRAVITATIONAL_CONSTANT *
-                entity1.getRigidBody().getMass() *
-                entity2.getRigidBody().getMass() )/ Math.pow(distance.magnitude(), 2));
-
-        totalForce2_1 = totalForce1_2.negate();
-
-        entity1.getRigidBody().addForce(totalForce1_2);
-        entity2.getRigidBody().addForce(totalForce2_1);
+            entity1.getRigidBody().addForce(force);
+        }
     }
 }

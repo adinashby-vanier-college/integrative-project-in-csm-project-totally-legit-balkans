@@ -151,16 +151,31 @@ public class SimulationTimer extends AnimationTimer {
             }
         }
 
+//        System.out.println("Selected: " + selectedEntity.getTransform().getPosition());
+//        System.out.println("Closest: " + closestDistance);
+//        System.out.println("World: " + worldCoordinates);
+//        System.out.println("Zoom: " + Camera.getInstance().getZoom());
+//        System.out.println("World2: " + worldCoordinates);
+
 //        System.out.println("selected:");
 //        System.out.println(selectedEntity);
         //System.out.println(selectedEntity.getTransform().getPosition());
 
 //        System.out.println(worldCoordinates);
-        //System.out.println("Dist: " + selectedEntity.getTransform().getPosition().distanceTo(worldCoordinates));
-        //System.out.println("Tgt : " + ((PlanetRenderer) selectedEntity.getRenderer()).getDiameter() / 2);
+//        System.out.println("Dist: " + selectedEntity.getTransform().getPosition().distanceTo(worldCoordinates));
+//        System.out.println("Tgt : " + ((PlanetRenderer) selectedEntity.getRenderer()).getDiameter() / 2);
+
+        double selectedEntityRadius = 0;
+        if (selectedEntity != null) {
+            selectedEntityRadius = ((PlanetRenderer) selectedEntity.getRenderer()).getDiameter() / 2;
+
+            if (Camera.getInstance().getZoom() < 1.5) {
+                selectedEntityRadius += (selectedEntityRadius *Camera.getInstance().getZoom());
+            }
+        }
 
         // Discard if we didn't click on the planet directly.
-        if (selectedEntity != null && selectedEntity.getTransform().getPosition().distanceTo(worldCoordinates) > ((PlanetRenderer) selectedEntity.getRenderer()).getDiameter() / 2) {
+        if (selectedEntity != null && selectedEntity.getTransform().getPosition().distanceTo(worldCoordinates) > selectedEntityRadius) {
             selectedEntity = null;
         }
 

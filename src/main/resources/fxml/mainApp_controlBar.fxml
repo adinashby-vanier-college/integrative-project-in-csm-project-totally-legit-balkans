@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
@@ -11,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TitledPane stylesheets="@../css/ControlBarStyle.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.ControlBarFXMLController">
+<TitledPane stylesheets="@../css/ControlBarStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.ControlBarFXMLController">
    <content>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="anchor-pane">
          <children>
@@ -31,121 +37,55 @@
                   <Font name="Dubai Regular" size="24.0" />
                </font>
             </Text>
-            <Text layoutX="810.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Periapsis">
-               <font>
-                  <Font name="Dubai Regular" size="24.0" />
-               </font>
-            </Text>
-            <Text layoutX="807.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apoapsis" wrappingWidth="93.7999496459961">
-               <font>
-                  <Font name="Dubai Regular" size="24.0" />
-               </font>
-            </Text>
             <Text layoutX="998.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orbit Details">
                <font>
                   <Font name="Dubai Regular" size="30.0" />
                </font>
             </Text>
-            <Text layoutX="918.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Distance (km):" wrappingWidth="112.1998519897461">
+            <Text layoutX="967.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orbit Time (s):" textAlignment="RIGHT" wrappingWidth="112.1998519897461">
                <font>
                   <Font name="Dubai Regular" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="918.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Distance (km):" wrappingWidth="112.1998519897461">
+            <Text layoutX="903.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Average Speed (km/s):" textAlignment="RIGHT" wrappingWidth="176.9997787475586">
                <font>
                   <Font name="Dubai Regular" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="918.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed (km/s):" wrappingWidth="112.1998519897461">
+            <Text fx:id="txtOrbitTime" layoutX="1087.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" textAlignment="CENTER" wrappingWidth="45.799949645996094">
                <font>
                   <Font name="Dubai Regular" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="918.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed (km/s):" wrappingWidth="112.1998519897461">
+            <Text fx:id="txtAvgSpeed" layoutX="1087.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" textAlignment="CENTER" wrappingWidth="45.799949645996094">
                <font>
                   <Font name="Dubai Regular" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="1031.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="45.799949645996094">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="156.0" layoutX="900.0" layoutY="43.0" stroke="BLACK" strokeType="INSIDE" width="3.0" />
+            <Text layoutX="949.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mass (kg):" textAlignment="RIGHT" wrappingWidth="130.5997543334961">
                <font>
                   <Font name="Dubai Regular" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="1031.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="45.799949645996094">
+            <Text layoutX="1087.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" textAlignment="CENTER" wrappingWidth="45.799949645996094">
                <font>
                   <Font name="Dubai Regular" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="1031.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="45.799949645996094">
-               <font>
-                  <Font name="Dubai Regular" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="1031.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="45.799949645996094">
-               <font>
-                  <Font name="Dubai Regular" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="1158.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orbit Time (s):" textAlignment="RIGHT" wrappingWidth="112.1998519897461">
-               <font>
-                  <Font name="Dubai Regular" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="1094.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Average Speed (km/s):" textAlignment="RIGHT" wrappingWidth="176.9997787475586">
-               <font>
-                  <Font name="Dubai Regular" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="1140.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Eccentricity (%):" textAlignment="RIGHT" wrappingWidth="130.5997543334961">
-               <font>
-                  <Font name="Dubai Regular" size="18.0" />
-               </font>
-            </Text>
-            <Text fx:id="txtOrbitTime" layoutX="1278.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="45.799949645996094">
-               <font>
-                  <Font name="Dubai Regular" size="18.0" />
-               </font>
-            </Text>
-            <Text fx:id="txtAvgSpeed" layoutX="1278.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="45.799949645996094">
-               <font>
-                  <Font name="Dubai Regular" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="1278.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="45.799949645996094">
-               <font>
-                  <Font name="Dubai Regular" size="18.0" />
-               </font>
-            </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="156.0" layoutX="1072.0" layoutY="43.0" stroke="BLACK" strokeType="INSIDE" width="3.0" />
-            <Text layoutX="1140.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mass (kg):" textAlignment="RIGHT" wrappingWidth="130.5997543334961">
-               <font>
-                  <Font name="Dubai Regular" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="1278.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="45.799949645996094">
-               <font>
-                  <Font name="Dubai Regular" size="18.0" />
-               </font>
-            </Text>
-            <Slider fx:id="timeMultiplier" layoutX="29.0" layoutY="34.0" majorTickUnit="1.0" max="8.0" minorTickCount="0" prefHeight="38.0" prefWidth="272.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
-            <ImageView fx:id="stepButtonIcon" fitHeight="30.0" fitWidth="60.0" layoutX="214.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/FF.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="playButtonIcon" fitHeight="30.0" fitWidth="60.0" layoutX="151.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+            <Slider fx:id="timeMultiplier" layoutX="29.0" layoutY="34.0" majorTickUnit="1.0" max="4.0" minorTickCount="0" prefHeight="38.0" prefWidth="272.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+            <ImageView fx:id="playButtonIcon" fitHeight="30.0" fitWidth="60.0" layoutX="187.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/Play.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="pauseButtonIcon" fitHeight="30.0" fitWidth="60.0" layoutX="81.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="pauseButtonIcon" fitHeight="30.0" fitWidth="60.0" layoutX="117.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/Pause.png" />
                </image>
             </ImageView>
-            <Button fx:id="pauseButton" layoutX="78.0" layoutY="151.0" mnemonicParsing="false" onAction="#onPause" prefHeight="38.0" prefWidth="31.0" styleClass="control-button" />
-            <Button fx:id="playButton" layoutX="148.0" layoutY="157.0" mnemonicParsing="false" onAction="#onPlay" prefHeight="25.0" prefWidth="33.0" styleClass="control-button" />
-            <Button fx:id="tickButton" layoutX="213.0" layoutY="158.0" mnemonicParsing="false" onAction="#onTick" prefHeight="25.0" prefWidth="48.0" styleClass="control-button" />
+            <Button fx:id="pauseButton" layoutX="114.0" layoutY="152.0" mnemonicParsing="false" onAction="#onPause" prefHeight="38.0" prefWidth="31.0" styleClass="control-button" />
+            <Button fx:id="playButton" layoutX="184.0" layoutY="158.0" mnemonicParsing="false" onAction="#onPlay" prefHeight="25.0" prefWidth="33.0" styleClass="control-button" />
             <Slider fx:id="zoomSlider" layoutX="29.0" layoutY="102.0" majorTickUnit="1" max="10" prefHeight="38.0" prefWidth="272.0" showTickLabels="true" showTickMarks="true" />
             <Text layoutX="29.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time Mult. (log10)">
                <font>
