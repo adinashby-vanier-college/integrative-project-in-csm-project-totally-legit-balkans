@@ -13,8 +13,8 @@ import lombok.Setter;
 import lombok.SneakyThrows;
 
 /**
- *
- * @author 2361272
+ * Class to store the chosen settings from the settings menu
+ * 
  */
 public class SimulationSettings {
     
@@ -35,7 +35,9 @@ public class SimulationSettings {
     public static void initialize() {
         SimulationSettings.instance = new SimulationSettings();
     }
-    
+    /**
+     * Saves the selected settings to a Json File
+     */
     @SneakyThrows
     public static void saveToFile(){
         String json = JsonHelper.toJson(instance);
@@ -47,7 +49,9 @@ public class SimulationSettings {
         }
         FileHelper.writeFileCompletely(writeFile.getAbsolutePath(), json);
     }
-    
+    /**
+     * Loads the saved settings on application startup
+     */
     @SneakyThrows
     public static void loadFromFile(){
         File saveFile = new File(SIMULATION_SETTINGS_FILEPATH);

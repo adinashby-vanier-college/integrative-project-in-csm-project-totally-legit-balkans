@@ -14,7 +14,10 @@ import java.util.function.Function;
 import javafx.scene.shape.Rectangle;
 
 import javax.lang.model.util.SimpleAnnotationValueVisitor6;
-
+/**
+ * Enum class for the list of scenes
+ * @author mrcoc
+ */
 @Getter
 public enum Scenes {
     LOGIN((pane,reload) -> {

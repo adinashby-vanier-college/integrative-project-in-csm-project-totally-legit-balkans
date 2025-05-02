@@ -12,7 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 public class LogInFXMLController{
-    
+ /**
+ * FXML Controller class for the login page.
+ */
     private static LogInFXMLController instance;
 
     @FXML
@@ -30,7 +32,11 @@ public class LogInFXMLController{
     @FXML
     private TextField usernameTxt;
     
-     @FXML
+    /**
+     * Calls the account manager class to check for existing account username and password when login is clicked
+     * @param event 
+     */
+    @FXML
     void logClick(ActionEvent event) {
         
         if(Account.matchAccount(usernameTxt.getText(), passwordTxt.getText())){
@@ -42,7 +48,10 @@ public class LogInFXMLController{
         
         
     }
-
+    /**
+     * Action when sign up is clicked, creates a new account and allows the user to login with it
+     * @param event 
+     */
     @FXML
     void signClick(ActionEvent event) {
         
