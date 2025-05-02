@@ -182,7 +182,11 @@ public class AstralCreationFXMLController {
     @FXML
     private void onPaneMouseEntered(MouseEvent event) throws IOException {
         if (!contextMenuStyled) {
-            btnImageSelector.getScene().getStylesheets().add(getClass().getResource("/css/ContextMenuStyle.css").toExternalForm());
+            if(ThemeChanger.light){
+                btnImageSelector.getScene().getStylesheets().add(getClass().getResource("/css/ContextMenuStyle.css").toExternalForm());
+            }else{
+                btnImageSelector.getScene().getStylesheets().add(getClass().getResource("/css/ContextMenuStyleDark.css").toExternalForm());
+            }
             userCatalog = Simulation.getInstance().getUserCatalog();
             loadContextMenu();
             btnImageSelector.setContextMenu(contextMenu);
