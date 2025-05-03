@@ -5,6 +5,8 @@ import edu.vanier.superspace.mathematics.Constants;
 import edu.vanier.superspace.mathematics.Physics;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.Entity;
+import edu.vanier.superspace.simulation.Simulation;
+import edu.vanier.superspace.simulation.SimulationTimer;
 import edu.vanier.superspace.simulation.Tickable;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +20,8 @@ import java.util.ArrayList;
 public class RigidBody extends Component implements Tickable  {
     @ToSerialize
     private Vector2 velocity = Vector2.of(0, 0);
+    @ToSerialize
+    private double travelledDistance = 0;
     private double mass = 1.0;
     private Vector2 acceleration = Vector2.of(0, 0);
 
@@ -67,7 +71,8 @@ public class RigidBody extends Component implements Tickable  {
                 entity2.getRigidBody().attract(this.entity, deltaTime);
             }
         }
-        
+
+        travelledDistance += velocity.magnitude() * Simulation.getInstance().getClock().getTimeMultiplier();
         velocity.addAssign(acceleration.multiply(deltaTime));
         getEntity().getTransform().getPosition().addAssign(velocity.multiply(deltaTime));
         acceleration = Vector2.of(0,0);

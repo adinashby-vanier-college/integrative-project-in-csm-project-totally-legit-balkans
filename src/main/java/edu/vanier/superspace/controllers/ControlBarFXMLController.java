@@ -31,9 +31,13 @@ public class ControlBarFXMLController {
     @FXML
     private Text description;
     @FXML
-    private Text txtOrbitTime;
+    private Text txtDistance;
+    @FXML
+    private Text txtMass;
     @FXML
     private Text txtAvgSpeed;
+    @FXML
+    private Text txtRadius;
     @FXML @Getter
     private Slider timeMultiplier;
     @FXML @Getter
@@ -76,6 +80,7 @@ public class ControlBarFXMLController {
     public void onUpdate(double deltaTime) {
         if (selectedEntity != null) {
             txtAvgSpeed.setText(String.format("%.2f", selectedEntity.getRigidBody().getVelocity().magnitude()));
+            txtDistance.setText(String.format("%.2f", selectedEntity.getRigidBody().getTravelledDistance()));
         }
     }
     
@@ -90,10 +95,16 @@ public class ControlBarFXMLController {
             planetName.setText("--");
             description.setText("");
             txtAvgSpeed.setText("-");
+            txtMass.setText("-");
+            txtDistance.setText("-");
+            txtRadius.setText("-");
         } else {
             planetName.setText(entity.getAstralBody().getName());
             description.setText(entity.getAstralBody().getDescription());
             txtAvgSpeed.setText(String.format("%.2f", entity.getRigidBody().getVelocity().magnitude()));
+            txtMass.setText(String.format("%.2f", entity.getAstralBody().getMass()));
+            txtDistance.setText(String.format("%.2f", entity.getRigidBody().getTravelledDistance()));
+            txtRadius.setText(String.format("%.2f", entity.getAstralBody().getRadius()));
         }
     }
     

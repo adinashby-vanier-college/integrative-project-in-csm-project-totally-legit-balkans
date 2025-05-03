@@ -64,14 +64,19 @@ public class SaveManager {
             logger.error("The simulation was never created!");
             return false;
         }
-        generateAndWriteSaveIcon(saveFile);
-        lastSaveFilepath = saveFile;
-        lastSaveFilepathParent = saveFile.getParentFile();
-        saveFileChooser.setInitialDirectory(lastSaveFilepathParent);
-        
-        String asJson = JsonHelper.serialize(sim);
-        FileHelper.writeFileCompletely(saveFile.getAbsolutePath(), asJson);
-        return true;
+
+        if (saveFile != null) {
+            generateAndWriteSaveIcon(saveFile);
+            lastSaveFilepath = saveFile;
+            lastSaveFilepathParent = saveFile.getParentFile();
+            saveFileChooser.setInitialDirectory(lastSaveFilepathParent);
+
+            String asJson = JsonHelper.serialize(sim);
+            FileHelper.writeFileCompletely(saveFile.getAbsolutePath(), asJson);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static boolean load() {

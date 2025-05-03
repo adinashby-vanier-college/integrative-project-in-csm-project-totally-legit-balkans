@@ -1,12 +1,13 @@
 package edu.vanier.superspace.utils;
 
+import edu.vanier.superspace.annotations.ToSerialize;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * Astral body is an instance that contains some properties of an entity and is a parameter for the Entity class
  */
-@Getter @Setter
+@Getter @Setter @ToSerialize
 public class AstralBody {
     private String name;
     private String description;
