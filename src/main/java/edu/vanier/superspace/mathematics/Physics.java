@@ -38,7 +38,7 @@ public class Physics {
         Vector2 distance = entity2.getTransform().getPosition().subtract(entity1.getTransform().getPosition());
         double distanceMag = distance.magnitude();
 
-        if (distanceMag < 2500) {
+        if (distanceMag < 10000) {
            // distanceMag = Math.max(5, Math.min(distanceMag, 25));
 
             Vector2 force = distance.normalized().multiply((Constants.SIMULATION_GRAVITATIONAL_CONSTANT *
