@@ -14,6 +14,7 @@ import java.util.function.Function;
 import javafx.scene.shape.Rectangle;
 
 import javax.lang.model.util.SimpleAnnotationValueVisitor6;
+import lombok.SneakyThrows;
 
 @Getter
 public enum Scenes {

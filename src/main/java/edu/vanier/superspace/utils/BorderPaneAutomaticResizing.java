@@ -16,6 +16,7 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Vector;
+import lombok.SneakyThrows;
 
 public class BorderPaneAutomaticResizing {
     @Getter
@@ -81,7 +82,14 @@ public class BorderPaneAutomaticResizing {
 
         double finalHeight = height;
         double finalWidth = width;
-        ((StackPane)anchorPane.getChildren().getFirst()).getChildren().forEach(c -> ((Canvas)c).setHeight(finalHeight));
-        ((StackPane)anchorPane.getChildren().getFirst()).getChildren().forEach(c -> ((Canvas)c).setWidth(finalWidth));
+ 
+        //Java moment
+        try{
+            ((StackPane)anchorPane.getChildren().getFirst()).getChildren().forEach(c -> ((Canvas)c).setHeight(finalHeight));
+            ((StackPane)anchorPane.getChildren().getFirst()).getChildren().forEach(c -> ((Canvas)c).setWidth(finalWidth));
+        }catch(Exception e){
+            
+        }
+        
     }
 }
