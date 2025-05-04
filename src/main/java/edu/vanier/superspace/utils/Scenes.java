@@ -22,7 +22,6 @@ import javax.lang.model.util.SimpleAnnotationValueVisitor6;
 
 import lombok.SneakyThrows;
 
-main
 @Getter
 public enum Scenes {
     LOGIN((pane,reload) -> {
