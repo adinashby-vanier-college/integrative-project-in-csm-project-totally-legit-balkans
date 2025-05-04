@@ -2,9 +2,11 @@ package edu.vanier.superspace.controllers;
 
 import edu.vanier.superspace.Application;
 import edu.vanier.superspace.simulation.components.TrailRenderer;
+import edu.vanier.superspace.utils.Partials;
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.Scenes;
 import edu.vanier.superspace.utils.SimulationSettings;
+import edu.vanier.superspace.utils.ThemeChanger;
 import java.io.File;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -219,9 +221,9 @@ public class SettingsFXMLController {
         if(rdbFull.isSelected()){
             TrailRenderer.skip=0;
         }else if(rdbDotted.isSelected()){
-            TrailRenderer.skip = 2;
+            TrailRenderer.skip = 1;
         }else if(rdbDashed.isSelected()){
-            TrailRenderer.skip = 10;
+            TrailRenderer.skip = 5;
         }
         
     }
@@ -235,11 +237,11 @@ public class SettingsFXMLController {
         rdbThick.setSelected(thick);
         
         if(rdbThin.isSelected()){
-            TrailRenderer.thickness = 5;
+            TrailRenderer.thickness = 1;
         }else if(rdbThicknessMedium.isSelected()){
-            TrailRenderer.thickness = 10;
+            TrailRenderer.thickness = 5;
         }else if(rdbThick.isSelected()){
-            TrailRenderer.thickness = 20;
+            TrailRenderer.thickness = 10;
         }
         
     }
@@ -250,6 +252,18 @@ public class SettingsFXMLController {
     private void theme(boolean light, boolean dark) {
         rdbLight.setSelected(light);
         rdbDark.setSelected(dark);
+        ThemeChanger changer = new ThemeChanger();
+        
+        rdbLight.getScene().getStylesheets().clear();
+        
+        if(rdbDark.isSelected()){
+            ThemeChanger.light=false;
+        }else if(rdbLight.isSelected()){
+            ThemeChanger.light=true;
+        }
+        
+        changer.changeTheme(rdbLight.getScene());
+        
     }
 
     /**

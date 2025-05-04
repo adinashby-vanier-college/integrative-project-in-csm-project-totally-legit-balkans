@@ -1,0 +1,278 @@
+/* Main Menu */
+.main-menu-anchor-pane{
+    -fx-background-color: #BEBEBE;
+    -fx-background-radius: 1.5em;
+}
+
+.main-menu-quit-button{
+    -fx-background-color:transparent;
+}
+
+.main-menu-quit-button:hover{
+    -fx-text-fill: #ffffff;
+}
+
+.main-menu-scroll-pane > .viewport{
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    -fx-background-color: transparent;
+}
+
+.main-menu-anchor-pane-saves{
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+}
+
+.main-menu-hbox{
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+}
+
+.main-menu-plus-button{
+    -fx-background-radius: 5.5em;
+    -fx-border-radius: 5.5em;
+    -fx-background-color: #BEBEBE;
+    -fx-border-color: #000000;
+}
+
+.main-menu-plus-button:hover{
+    -fx-background-color:#cfcccc;
+}
+
+/* Settings */
+
+.settings-border-pane{
+    -fx-background-color: #BEBEBE;
+}
+
+.settings-button-path{
+    -fx-background-color: #BEBEbE;
+    -fx-text-fill: #ffffff;
+    -fx-border-width: 1em;
+    -fx-border-color: #000000;
+    -fx-border-width: 0.05em;
+    -fx-background-radius: 0.25em;
+    -fx-border-radius: 0.25em;
+}
+
+.button-path:hover{
+    -fx-background-color:#cfcccc;
+}
+
+.radio-button .radio{
+    -fx-background-color:#BEBEBE;
+}
+
+.settings-radio-button .radio .dot{
+    -fx-background-color:#BEBEBE;
+    -fx-background-insets: 0;
+}
+
+.radio-button .radio:hover{
+    -fx-background-color:#cfcccc;
+}
+
+.radio-button:selected .radio .dot{
+    -fx-background-color:#000000;
+    -fx-background-insets: 0;
+}
+
+.settings-button-back{
+    -fx-background-color: transparent;
+}
+
+.button-back:hover{
+    -fx-text-fill: #ffffff;
+}
+
+/*Menu Bar*/
+
+.menu-bar-menu-bar{
+    -fx-background-color:  #BEBEBE;
+}
+
+.context-menu {
+    -fx-background-color: #BEBEBE;
+    -fx-padding: 10;
+    -fx-max-height: 200px;
+    -fx-background-radius: 1em;
+}
+
+.menu{
+    -fx-background-color:  #BEBEBE;
+}
+
+.menu:hover{
+    -fx-background-color:  #cfcccc;
+    -fx-background-radius: 1em;
+}
+
+.menu .label{
+    -fx-text-fill: #000000;
+    -fx-font-family: Dubai;
+    -fx-font-size: 14;
+}
+
+.menu .label:hover{
+    -fx-text-fill: #000000;
+}
+
+.menu-item{
+    -fx-background-color:  #BEBEBE;
+}
+
+.menu-item .label{
+    -fx-text-fill: #000000;
+    -fx-font-family: Dubai;
+    -fx-font-size: 14;
+}
+
+.menu-item:hover{
+    -fx-background-color:  #cfcccc; 
+    -fx-background-radius: 1em;
+}
+
+/*Astral Creation*/
+
+.aa-titled-pane{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.titled-pane .title{
+    -fx-background-color:#BEBEBE;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.titled-pane .title:hover{
+    -fx-background-color:#cfcccc;
+}
+
+.aa-text-field{
+    -fx-background-color: #D9D9D9;
+    -fx-border-color: #000000;
+}
+
+.text-field:hover{
+    -fx-background-color: #cfcccc;
+}
+
+.aa-text-area{
+    -fx-background-color: #D9D9D9;
+    -fx-border-color: #000000;
+}
+
+.text-area:hover{
+    -fx-background-color: #cfcccc;
+}
+
+.aa-combo-box{
+    -fx-background-color: #D9D9D9;
+    -fx-border-color: #000000;
+}
+
+.combo-box:hover{
+    -fx-background-color: #cfcccc;
+    -fx-background-radius: 1em;
+}
+
+.combo-box .list-view .list-cell{
+    -fx-background-color: #D9D9D9;
+}
+
+.combo-box .list-view .list-cell:focused{
+    -fx-background-color: #737373;
+}
+
+.combo-box .list-view .list-cell:hover{
+    -fx-background-color: #cfcccc;
+    -fx-text-fill: #000000;
+}
+
+.aa-pane{
+    -fx-background-color: #BEBEBE;
+}
+
+.aa-button{
+    -fx-border-radius: 6em;
+    -fx-background-radius: 6em;
+    -fx-background-color: #D9D9D9;
+    -fx-border-color: #000000;
+}
+
+.button:hover{
+    -fx-background-color: #cfcccc;
+}
+
+
+/*Control Bar*/
+.cb-titled-pane{
+    -fx-background-color:  #BEBEBE;
+}
+
+.titled-pane .title{
+    -fx-background-color:#BEBEBE;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.titled-pane .title:hover{
+    -fx-background-color:#cfcccc;
+}
+
+.cb-anchor-pane{
+    -fx-background-color:  #BEBEBE;
+}
+
+.cb-control-button{
+    -fx-background-color: transparent;
+}
+
+.control-button:hover{
+    -fx-background-color:  #cfcccc;
+}
+
+.cb-zoom-button{
+    -fx-background-color:  #8C8C8C;
+    -fx-border-color:  #000000;
+    -fx-background-radius: 0.25em;
+    -fx-border-radius: 0.25em;
+}
+
+.zoom-button:hover{
+    -fx-background-color:  #cfcccc;
+}
+
+.cb-rectangle{
+    -fx-background-color:  #BEBEBE;
+}
+
+.cb-slider{
+
+}
+
+.slider:hover .track{
+    -fx-background-color: #cfcccc;
+}
+
+.slider .track{
+    -fx-background-color: #8C8C8C;
+}
+
+.slider .thumb{
+    -fx-background-color: #000000;
+}
+
+/*Extra*/
+
+.settings-button-back{
+    -fx-background-radius: 0em;
+    -fx-border-radius: 0em;
+}
+
+.main-menu-quit-button{
+    -fx-background-radius: 0.5em;
+    -fx-border-radius: 0.5em;
+}
+
