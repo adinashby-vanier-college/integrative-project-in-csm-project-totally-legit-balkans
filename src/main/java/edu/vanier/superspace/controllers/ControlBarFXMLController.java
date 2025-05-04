@@ -89,16 +89,8 @@ public class ControlBarFXMLController {
      * @param entity the entity to be selected
      */
     public void selectEntity(Entity entity) {
-        selectedEntity = entity;
-
-        if (entity == null) {
-            planetName.setText("--");
-            description.setText("");
-            txtAvgSpeed.setText("-");
-            txtMass.setText("-");
-            txtDistance.setText("-");
-            txtRadius.setText("-");
-        } else {
+        if (entity != null) {
+            selectedEntity = entity;
             planetName.setText(entity.getAstralBody().getName());
             description.setText(entity.getAstralBody().getDescription());
             txtAvgSpeed.setText(String.format("%.2f", entity.getRigidBody().getVelocity().magnitude()));
