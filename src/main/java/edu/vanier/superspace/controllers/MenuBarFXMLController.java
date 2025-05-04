@@ -1,14 +1,22 @@
 package edu.vanier.superspace.controllers;
 
+import edu.vanier.superspace.Application;
 import edu.vanier.superspace.mathematics.Vector2;
 import edu.vanier.superspace.simulation.components.Camera;
 import edu.vanier.superspace.utils.SaveManager;
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.Scenes;
+import javafx.application.HostServices;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 /**
  * FXML Controller class for the menu bar.
@@ -86,5 +94,10 @@ public class MenuBarFXMLController {
      * Opens the help screen that contains the user guide
      */
     @FXML
-    private void onGuide(ActionEvent event) {}
+    private void onGuide(ActionEvent event) throws IOException, URISyntaxException {
+        URL url = getClass().getResource("/UserGuide/UserGuide.pdf");
+        File file = new File(url.toURI());
+
+        Desktop.getDesktop().open(file);
+    }
 }

@@ -110,15 +110,18 @@ public class Camera extends Entity implements Tickable {
     }
 
     /**
-     * Translates simulation dimensions to real world dimensions
-     * @param screenSpace the simulation dimensions
-     * @return dimensions as vector value
+     * Recalculates the value of the viewport
      */
     private void recalculateViewport() {
         AnchorPane drawPane = ((AnchorPane) BorderPaneAutomaticResizing.getInstance().getPane().getCenter());
         viewport = Vector2.of(drawPane.getWidth(), drawPane.getHeight()).multiply(zoom);
     }
-  
+
+    /**
+     * Translates simulation dimensions to real world dimensions
+     * @param screenSpace the simulation dimensions
+     * @return dimensions as vector value
+     */
     public Vector2 screenSpaceToWorldSpace(Vector2 screenSpace) {
         Vector2 realDimensions = Vector2.of(screenSpace.getX() / zoom, screenSpace.getY() / zoom);
         return this.transform.getPosition().add(realDimensions);

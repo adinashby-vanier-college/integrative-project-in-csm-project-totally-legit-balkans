@@ -92,7 +92,7 @@ public class AstralCreationFXMLController {
 
         cmbDirection.getItems().addAll(
                 "Clockwise",
-                "Counter-clockwise"
+                "Counter-Clockwise"
         );
     }
 
@@ -222,10 +222,10 @@ public class AstralCreationFXMLController {
                     if (cmbDirection.getValue() != null) {
                         if (cmbDirection.getValue().equals("Clockwise")) {
                             velocityMagnitude = velocityMagnitude / 2;
-                            velocity = Vector2.of(-1 * velocityMagnitude, -1 * velocityMagnitude);
+                            velocity = Vector2.of(-1 * velocityMagnitude, velocityMagnitude);
                         } else if (cmbDirection.getValue().equals("Counter-Clockwise")) {
                             velocityMagnitude = velocityMagnitude / 2;
-                            velocity = Vector2.of(-1 * velocityMagnitude, velocityMagnitude);
+                            velocity = Vector2.of(-1 * velocityMagnitude, -1 * velocityMagnitude);
                         }
                     }
 
