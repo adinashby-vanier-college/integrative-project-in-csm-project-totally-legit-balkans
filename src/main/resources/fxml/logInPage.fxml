@@ -40,7 +40,7 @@
                <font>
                   <Font name="Dubai Regular" size="18.0" />
                </font></Label>
-            <Label layoutX="517.0" layoutY="246.0" text="Super Space Maker">
+            <Label layoutX="533.0" layoutY="245.0" text="Super Space Maker">
                <font>
                   <Font name="Dubai Regular" size="40.0" />
                </font>
