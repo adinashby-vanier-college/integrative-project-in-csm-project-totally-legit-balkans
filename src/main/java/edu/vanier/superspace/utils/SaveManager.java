@@ -15,6 +15,10 @@ import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Class for managing saving and loading project files
+ * @author mrcoc
+ */
 public class SaveManager {
     
     private static Logger logger = LoggerFactory.getLogger(SaveManager.class);
@@ -36,7 +40,10 @@ public class SaveManager {
         saveFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Simulation File", "*" + FileHelper.SIMULATION_FILE_EXTENSION));
         saveFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*")); 
     }
-
+/**
+ * If an existing file path exists, it will update the saved data in the file
+ * @return 
+ */
     public static boolean save() {
         if (lastSaveFilepath == null) {
             lastSaveFilepath = saveFileChooser.showSaveDialog(Application.getPrimaryStage().getOwner());
@@ -44,7 +51,10 @@ public class SaveManager {
 
         return saveAs(lastSaveFilepath);
     }
-
+/**
+ * Opens a file chooser to allow user to select name and location to save the project file to.
+ * @return 
+ */
     public static boolean saveAs() {
         saveFileChooser.setTitle("Save Simulation Project");
         File saveLocation = saveFileChooser.showSaveDialog(Application.getPrimaryStage().getOwner());
@@ -56,7 +66,11 @@ public class SaveManager {
 
         return saveAs(saveLocation);
     }
-
+/**
+ * Saves the project to the chosen file location by calling the required Json methods
+ * @param saveFile
+ * @return 
+ */
     private static boolean saveAs(File saveFile) {
         Simulation sim = Simulation.getInstance();
         
@@ -73,7 +87,10 @@ public class SaveManager {
         FileHelper.writeFileCompletely(saveFile.getAbsolutePath(), asJson);
         return true;
     }
-
+/**
+ * Opens a file chooser to allow the user to select the file they want to load
+ * @return 
+ */
     public static boolean load() {
         File loadPath = saveFileChooser.showOpenDialog(Application.getPrimaryStage());
 
@@ -83,7 +100,11 @@ public class SaveManager {
 
         return load(loadPath);
     }
-
+/**
+ * Loads the selected simulation through the JsonHelper class
+ * @param filepath
+ * @return 
+ */
     public static boolean load(File filepath) {
         SceneManagement.loadScene(Scenes.SIMULATION);
 
@@ -96,7 +117,11 @@ public class SaveManager {
 
         return true;
     }
-
+/**
+ * When a file is saved, a icon is generated from a screenshot of the simulation.
+ * The icon is found in the main menu on the button that allows the file to be loaded easily
+ * @param jsonWritePath 
+ */
     @SneakyThrows
     private static void generateAndWriteSaveIcon(File jsonWritePath) {
         String iconWritePath = jsonWritePath.getAbsolutePath().substring(0, jsonWritePath.getAbsolutePath().length() - 4);

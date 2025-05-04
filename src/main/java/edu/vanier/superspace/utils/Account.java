@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 
-
+/**
+ * Class for managing account creating and loading
+ * @author mrcoc
+ */
 public class Account {
     
     @Getter
@@ -30,6 +33,12 @@ public class Account {
         this.password = password;
     }
     
+    /**
+     * Method to check if there is an existing account with the entered username and password
+     * @param uName
+     * @param password
+     * @return 
+     */
     public static boolean matchAccount(String uName, String password){
         
         for(int i = 0; i < accounts.size(); i++){
@@ -44,6 +53,11 @@ public class Account {
         return false;
     }
     
+    /**
+     * Boolean to return if the passed username is part of an existing account
+     * @param uName
+     * @return 
+     */
     public static boolean sameUsername(String uName){
 
         for(int i = 0; i < accounts.size(); i++){
@@ -58,7 +72,10 @@ public class Account {
         
         return false;
     }
-    
+    /**
+     * Method that encrypts the list of accounts, and saves them to an ArrayList
+     * @return 
+     */
     private static ArrayList<Account> encrypt(){
         
         ArrayList<Account> toReturn = new ArrayList<>();
@@ -72,7 +89,10 @@ public class Account {
         return toReturn; 
         
     }
-    
+    /**
+     * Decrypts the ArrayList of accounts in order to access the accounts
+     * @param toTreat 
+     */
     private static void decrypt(ArrayList<Account> toTreat){
         
         for(int i = 0; i < toTreat.size(); i++){
@@ -82,7 +102,9 @@ public class Account {
         }
         
     }
-    
+    /**
+     * Saves the accounts and credentials to a Json file, in an encrypted format
+     */
     public static void save(){
         
         File file = new File("savedAccount.txt");
@@ -94,7 +116,9 @@ public class Account {
         
     }
     
-    
+    /**
+     * Loads and decrypts the data to be used
+     */
     public static void load(){
         
         File file = new File("savedAccount.txt");

@@ -12,12 +12,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import lombok.SneakyThrows;
-
+/**
+ * Class to manage the loading of scenes for different or new projects
+ * @author mrcoc
+ */
 public class SceneManagement {
     public static void loadScene(Scenes scene) {
         SceneManagement.loadScene(scene, true);
     }
-
+/**
+ * Loads the selected scene, from the chosen FXML file.
+ * @param scene
+ * @param reload 
+ */
     public static void loadScene(Scenes scene, boolean reload) {
         BorderPane root = new BorderPane();
         scene.getInitializer().initialize(root, reload);
