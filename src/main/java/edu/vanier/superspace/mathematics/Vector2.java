@@ -203,7 +203,14 @@ public class Vector2 {
      */
     public Vector2 normalized() {
         double magnitude = magnitude();
+        
+        //the only time normalize could not be calculated is when Vector(0,0)
+        //in that case we return Vector divided by 1 to avoid  division by 0
+        if(magnitude==0) magnitude = 1;
+        
+        
         return new Vector2(x / magnitude, y / magnitude);
+        
     }
 
     /**
@@ -213,34 +220,15 @@ public class Vector2 {
      */
     public Vector2 normalize() {
         double magnitude = magnitude();
+        
+        //the only time normalize could not be calculated is when Vector(0,0)
+        //in that case we return Vector divided by 1 to avoid  division by 0
+        if(magnitude==0) magnitude = 1;
+        
         this.x /= magnitude;
         this.y /= magnitude;
         return this;
     }
-
-    /**
-     * Projects vector onto another.
-     * @param other Vector to project onto.
-     * @return A new vector projected onto the other.
-     */
-    public Vector2 project(Vector2 other) {
-        double dotAB = this.dot(other);
-        double dotBB = other.dot(other);
-        return other.multiply(dotAB / dotBB);
-    }
-
-    /**
-     * Projects vector onto another.
-     * @param other Vector to project onto.
-     * @return This vector projected onto the other vector.
-     */
-    public Vector2 projectAssign(Vector2 other) {
-        Vector2 projected = project(other);
-        this.x = projected.x;
-        this.y = projected.y;
-        return this;
-    }
-
 
     /**
      * Multiplies its components by a given scalar.
@@ -364,6 +352,9 @@ public class Vector2 {
      * @return a new instance of a vector with the new components after being rotated
      */
     public Vector2 rotate(double angle) {
+        
+        angle = Math.toRadians(angle);
+        
         double cos = Math.cos(angle);
         double sin = Math.sin(angle);
 
