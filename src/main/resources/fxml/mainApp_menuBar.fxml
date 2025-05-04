@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 
-<MenuBar stylesheets="@../css/MenuBarStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.MenuBarFXMLController">
+<MenuBar styleClass="menu-bar-menu-bar" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.MenuBarFXMLController">
    <menus>
       <Menu mnemonicParsing="false" text="File">
          <items>

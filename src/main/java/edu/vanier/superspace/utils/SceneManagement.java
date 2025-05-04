@@ -28,9 +28,13 @@ public class SceneManagement {
     public static void loadScene(Scenes scene, boolean reload) {
         BorderPane root = new BorderPane();
         scene.getInitializer().initialize(root, reload);
+        ThemeChanger changer = new ThemeChanger();
 
         Scene loadedScene = new Scene(root, RenderDimensions.getApplicationTargetWidth(), RenderDimensions.getApplicationTargetHeight());
         Input.initialize(loadedScene);
+        changer.changeTheme(loadedScene);
+        
+        
         Application.getPrimaryStage().setScene(loadedScene);
         Application.getPrimaryStage().sizeToScene();
     }

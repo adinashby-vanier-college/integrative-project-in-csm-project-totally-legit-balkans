@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
@@ -17,11 +11,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TitledPane stylesheets="@../css/ControlBarStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.ControlBarFXMLController">
+<TitledPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.ControlBarFXMLController">
    <content>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="anchor-pane">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="cb-anchor-pane">
          <children>
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="TRANSPARENT" height="178.0" layoutX="316.0" layoutY="12.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" width="458.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="TRANSPARENT" height="178.0" layoutX="316.0" layoutY="12.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" styleClass="cb-rectangle" width="458.0" />
             <Label fx:id="planetName" layoutX="537.0" layoutY="4.0" prefHeight="54.0" prefWidth="159.0" text="--">
                <font>
                   <Font name="Dubai Regular" size="30.0" />
@@ -74,37 +68,41 @@
                </font>
             </Text>
             <Slider fx:id="timeMultiplier" layoutX="29.0" layoutY="34.0" majorTickUnit="1.0" max="4.0" minorTickCount="0" prefHeight="38.0" prefWidth="272.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
-            <ImageView fx:id="playButtonIcon" fitHeight="30.0" fitWidth="60.0" layoutX="187.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/Play.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="pauseButtonIcon" fitHeight="30.0" fitWidth="60.0" layoutX="117.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/Pause.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="pauseButton" layoutX="114.0" layoutY="152.0" mnemonicParsing="false" onAction="#onPause" prefHeight="38.0" prefWidth="31.0" styleClass="control-button" />
-            <Button fx:id="playButton" layoutX="184.0" layoutY="158.0" mnemonicParsing="false" onAction="#onPlay" prefHeight="25.0" prefWidth="33.0" styleClass="control-button" />
+            <Button fx:id="pauseButton" layoutX="114.0" layoutY="152.0" mnemonicParsing="false" onAction="#onPause" prefHeight="38.0" prefWidth="31.0" styleClass="cb-control-button">
+               <graphic>
+                  <ImageView fx:id="pauseButtonIcon" fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/Pause.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="playButton" layoutX="167.0" layoutY="152.0" mnemonicParsing="false" onAction="#onPlay" prefHeight="25.0" prefWidth="33.0" styleClass="cb-control-button">
+               <graphic>
+                  <ImageView fx:id="playButtonIcon" fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/Play.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Slider fx:id="zoomSlider" layoutX="29.0" layoutY="102.0" majorTickUnit="1" max="10" prefHeight="38.0" prefWidth="272.0" showTickLabels="true" showTickMarks="true" />
-            <Text layoutX="29.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time Mult. (log10)">
+            <Text layoutX="29.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time Mult. (log10)">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Dubai Regular" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="29.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Camera Zoom">
+            <Text layoutX="29.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Camera Zoom">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Dubai Regular" size="18.0" />
                </font>
             </Text>
             <Text layoutX="181.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Camera Zoom">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Dubai Regular" size="18.0" />
                </font>
             </Text>
             <Text fx:id="timeFeedback" layoutX="181.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="250 s / s" textAlignment="RIGHT" wrappingWidth="118.1904296875">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Dubai Regular" size="18.0" />
                </font>
             </Text>
          </children>
