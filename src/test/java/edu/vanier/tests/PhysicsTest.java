@@ -73,8 +73,6 @@ public class PhysicsTest {
         
         for(int i = 0; i < distances.size(); i++){
             
-            System.out.println( "Mass1 :" + mass1.get(i) + " Mass 2: " + mass2.get(i) + "Dist:" + distances.get(i) );
-            
             double original = Physics.computeForce(distances.get(i),
                     mass1.get(i), mass2.get(i));
             
