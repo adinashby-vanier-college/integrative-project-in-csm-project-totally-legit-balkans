@@ -2,7 +2,6 @@ package edu.vanier.superspace.controllers;
 
 import edu.vanier.superspace.Application;
 import edu.vanier.superspace.simulation.components.TrailRenderer;
-import edu.vanier.superspace.utils.Partials;
 import edu.vanier.superspace.utils.SceneManagement;
 import edu.vanier.superspace.utils.Scenes;
 import edu.vanier.superspace.utils.SimulationSettings;
@@ -29,8 +28,6 @@ public class SettingsFXMLController {
     @FXML
     private Button btnMenuImagePath;
     @FXML
-    private Button btnSimImagePath;
-    @FXML
     private RadioButton rdbDashed;
     @FXML
     private RadioButton rdbDotted;
@@ -46,19 +43,7 @@ public class SettingsFXMLController {
     private RadioButton rdbLight;
     @FXML
     private RadioButton rdbDark;
-    @FXML
-    private RadioButton rdbSmall;
-    @FXML
-    private RadioButton rdbFontMedium;
-    @FXML
-    private RadioButton rdbBig;
-    @FXML
-    private RadioButton rdbCalibri;
-    @FXML
-    private RadioButton rdbArial;
-    @FXML
-    private RadioButton rdbDubai;
-
+    
     /**
      * FXML Controller initializer
      */
@@ -86,16 +71,6 @@ public class SettingsFXMLController {
         if (chosenFile != null) {
             SimulationSettings.getInstance().setMenuBackground(new Image("file:///" + chosenFile.getAbsolutePath()));
         }
-    }
-
-    /**
-     * Changes the simulation image
-     */
-    @FXML @SneakyThrows
-    private void onSimImagePathClicked() {
-        logger.info("Setting image path for simulation...");
-        File chosenFile = this.chooseFile();
-        
     }
 
     /**
@@ -163,54 +138,6 @@ public class SettingsFXMLController {
     }
 
     /**
-     * Changes the disabled values of the radio buttons click.
-     */
-    @FXML
-    private void onRdbSmallClicked() {
-        fontSize(true, false, false);
-    }
-
-    /**
-     * Changes the disabled values of the radio buttons click.
-     */
-    @FXML
-    private void onRdbFontMediumClicked() {
-        fontSize(false, true, false);
-    }
-
-    /**
-     * Changes the disabled values of the radio buttons click.
-     */
-    @FXML
-    private void onRdbBigClicked() {
-        fontSize(false, false, true);
-    }
-
-    /**
-     * Changes the disabled values of the radio buttons click.
-     */
-    @FXML
-    private void onRdbCalibriClicked() {
-        font(true, false, false);
-    }
-
-    /**
-     * Changes the disabled values of the radio buttons click.
-     */
-    @FXML
-    private void onRdbArialClicked() {
-        font(false, true, false);
-    }
-
-    /**
-     * Changes the disabled values of the radio buttons click.
-     */
-    @FXML
-    private void onRdbDubaiClicked() {
-        font(false, false, true);
-    }
-
-    /**
      * Changes the disabled values of the radio buttons.
      */
     private void astralPathStyle(boolean dashed, boolean dotted, boolean full) {
@@ -264,24 +191,6 @@ public class SettingsFXMLController {
         
         changer.changeTheme(rdbLight.getScene());
         
-    }
-
-    /**
-     * Changes the disabled values of the radio buttons.
-     */
-    private void fontSize(boolean small, boolean medium, boolean big) {
-        rdbSmall.setSelected(small);
-        rdbFontMedium.setSelected(medium);
-        rdbBig.setSelected(big);
-    }
-
-    /**
-     * Changes the disabled values of the radio buttons.
-     */
-    private void font(boolean calibri, boolean arial, boolean dubai) {
-        rdbCalibri.setSelected(calibri);
-        rdbArial.setSelected(arial);
-        rdbDubai.setSelected(dubai);
     }
 
     /**
