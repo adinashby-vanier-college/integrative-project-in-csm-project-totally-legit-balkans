@@ -95,7 +95,7 @@ public class MenuBarFXMLController {
      */
     @FXML
     private void onGuide(ActionEvent event) throws IOException, URISyntaxException {
-        URL url = getClass().getResource("/UserGuide/TestUserGuide.pdf");
+        URL url = getClass().getResource("/UserGuide/UserGuide.pdf");
         File file = new File(url.toURI());
 
         Desktop.getDesktop().open(file);

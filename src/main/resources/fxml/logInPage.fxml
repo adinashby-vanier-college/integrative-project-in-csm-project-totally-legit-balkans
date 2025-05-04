@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -8,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="803.0" prefWidth="1381.0" styleClass="pane" stylesheets="@../css/LogInStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.LogInFXMLController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="803.0" prefWidth="1381.0" styleClass="pane" stylesheets="@../css/LogInStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.LogInFXMLController">
    <children>
       <Pane prefHeight="358.0" prefWidth="860.0" styleClass="pane" stylesheets="@../css/LogInStyle.css" StackPane.alignment="CENTER">
          <children>
@@ -36,7 +40,7 @@
                <font>
                   <Font name="Dubai Regular" size="18.0" />
                </font></Label>
-            <Label layoutX="505.0" layoutY="245.0" text="Super Space Simulator">
+            <Label layoutX="517.0" layoutY="246.0" text="Super Space Maker">
                <font>
                   <Font name="Dubai Regular" size="40.0" />
                </font>
