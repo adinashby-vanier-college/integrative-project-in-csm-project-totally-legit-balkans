@@ -102,7 +102,7 @@
                   <Button fx:id="btnReset" disable="true" layoutY="136.0" mnemonicParsing="false" onAction="#onBtnResetPressed" prefHeight="32.0" prefWidth="92.0" styleClass="aa-button" text="Reset" textFill="#9c9c9c" />
                   <Button fx:id="btnRemove" disable="true" layoutX="206.0" layoutY="136.0" mnemonicParsing="false" onAction="#onBtnRemovePressed" prefHeight="32.0" prefWidth="92.0" styleClass="aa-button" text="Remove" textFill="#9c9c9c" />
                   <Button fx:id="btnAddPreset" disable="true" layoutX="104.0" layoutY="145.0" mnemonicParsing="false" onAction="#onBtnAddPreset" prefHeight="32.0" prefWidth="92.0" styleClass="aa-button" text="Add Preset" textFill="#9c9c9c" />
-                  <TextField fx:id="txtFieldVelocityMagnitude" alignment="CENTER" disable="true" layoutX="108.0" layoutY="441.0" onAction="#onSubmitDouble" prefHeight="55.0" prefWidth="181.0" promptText="Enter values (km/h)" styleClass="aa-text-field">
+                  <TextField fx:id="txtFieldVelocityMagnitude" alignment="CENTER" disable="true" layoutX="108.0" layoutY="441.0" onAction="#onSubmitDouble" prefHeight="55.0" prefWidth="181.0" promptText="Enter values (km/s)" styleClass="aa-text-field">
                      <font>
                         <Font name="Dubai Regular" size="10.0" />
                      </font>

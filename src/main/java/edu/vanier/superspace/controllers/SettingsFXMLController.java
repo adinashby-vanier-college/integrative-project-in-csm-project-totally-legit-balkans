@@ -148,7 +148,7 @@ public class SettingsFXMLController {
         if(rdbFull.isSelected()){
             TrailRenderer.skip=0;
         }else if(rdbDotted.isSelected()){
-            TrailRenderer.skip = 1;
+            TrailRenderer.skip = 2;
         }else if(rdbDashed.isSelected()){
             TrailRenderer.skip = 5;
         }
