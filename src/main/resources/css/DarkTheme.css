@@ -276,8 +276,8 @@
 /*Extra*/
 
 .settings-button-back{
-    -fx-background-radius: 0em;
-    -fx-border-radius: 0em;
+    -fx-background-radius: 0.5em;
+    -fx-border-radius: 0.5em;
     -fx-text-fill: #FFFFFF;
 }
 

@@ -22,8 +22,8 @@ public enum Presets{
     SUN("Sun", "Huge star", "Star", 50, 40, Assets.SUN.getFilePath(), false);
 //    EARTHTEST("Earth", "meow", "Terrestrial", 25, 8, Assets.EARTH.getFilePath(), false),
 //    MARSTEST("Mars", "Big", "Terrestrial", 25, 8, Assets.MARS.getFilePath(), false);
-
-
+    
+    
     private String name;
     private String description;
     private String type;
