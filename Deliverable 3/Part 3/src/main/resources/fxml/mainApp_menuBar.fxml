@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+
+<MenuBar styleClass="menu-bar-menu-bar" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.superspace.controllers.MenuBarFXMLController">
+   <menus>
+      <Menu mnemonicParsing="false" text="File">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#onEdit" text="Main Menu" />
+            <MenuItem fx:id="saveButton" disable="true" mnemonicParsing="false" onAction="#onSave" text="Save" />
+            <MenuItem fx:id="saveAsButton" mnemonicParsing="false" onAction="#onSaveAs" text="Save As" />
+            <MenuItem fx:id="loadFromDiskButton" mnemonicParsing="false" onAction="#onLoadFromDisk" text="Load From Disk" />
+            <MenuItem mnemonicParsing="false" onAction="#onExit" text="Exit" />
+         </items>
+      </Menu>
+      <Menu mnemonicParsing="false" text="Settings">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#onRequestPreferencesMenu" text="Preferences" />
+            <MenuItem mnemonicParsing="false" onAction="#onRequestCenterCamera" text="Center Camera" />
+         </items>
+      </Menu>
+      <Menu mnemonicParsing="false" text="Help">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#onGuide" text="Guide" />
+         </items>
+      </Menu>
+   </menus>
+</MenuBar>

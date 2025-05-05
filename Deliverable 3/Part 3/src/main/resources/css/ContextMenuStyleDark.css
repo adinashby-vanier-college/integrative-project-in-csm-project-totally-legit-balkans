@@ -1,0 +1,28 @@
+.context-menu {
+    -fx-background-color: #4A4A4A;
+    -fx-padding: 10;
+    -fx-max-height: 200px;
+    -fx-background-radius: 1em;
+}
+
+.menu-item .label {
+    -fx-fill: white;
+    -fx-font-family: Dubai;
+    -fx-font-size: 16px;;
+    -fx-stroke: #1A1A1A;
+    -fx-stroke-width: .25;
+}
+
+.menu-item {
+    -fx-text-alignment: center;
+}
+
+.menu-item:focused {
+    -fx-background-color: #3A3A3A;
+    -fx-background-radius: 1em;
+}
+
+.context-menu .scroll-arrow:focused {
+    -fx-background-color: #3A3A3A;
+    -fx-background-radius: 1em;
+}
