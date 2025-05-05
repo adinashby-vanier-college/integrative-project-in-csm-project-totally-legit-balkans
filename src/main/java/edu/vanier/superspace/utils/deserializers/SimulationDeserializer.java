@@ -16,10 +16,23 @@ import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Deserializer for a simulation
+ */
 public class SimulationDeserializer implements JsonDeserializer<Simulation>{
-    
-     private final static Logger logger = LoggerFactory.getLogger(SimulationDeserializer.class);
+    /**
+     * Logger data field that logs to the console
+     */
+    private final static Logger logger = LoggerFactory.getLogger(SimulationDeserializer.class);
 
+    /**
+     * Method for deserializing a simulation
+     * @param json the json of the simulation
+     * @param type the type
+     * @param jdc the json deserialization context
+     * @return a simulation instance
+     * @throws JsonParseException thrown when there is a json parsing issue
+     */
     @Override @SneakyThrows
     public Simulation deserialize(JsonElement json, Type type, JsonDeserializationContext jdc) throws JsonParseException {
         JsonObject deserialized = json.getAsJsonObject();
@@ -40,12 +53,10 @@ public class SimulationDeserializer implements JsonDeserializer<Simulation>{
             entities.forEach(Entity::register);
 //            DeserializerHelper.readField(simulation, Simulation.class, deserialized, jdc);
             return simulation;
-        }
-        catch (Exception exception) {
+        } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
 
         return null;
     }
-    
 }

@@ -6,9 +6,17 @@ import com.google.gson.JsonObject;
 import edu.vanier.superspace.utils.serializers.SerializationExclusionStrategy;
 import lombok.SneakyThrows;
 
-
+/**
+ * Helper for the deserializer
+ */
 public class DeserializerHelper {
-    
+    /**
+     * Reads a field
+     * @param object the object
+     * @param objectClass the object class
+     * @param deserialized the deserialized object
+     * @param jdc the json deserialization context
+     */
     @SneakyThrows
     public static void readField(Object object, Class<?> objectClass, JsonObject deserialized, JsonDeserializationContext jdc) {
         for (var field : objectClass.getDeclaredFields()) {

@@ -10,9 +10,18 @@ import edu.vanier.superspace.simulation.components.Component;
 import edu.vanier.superspace.utils.serializers.SerializationExclusionStrategy;
 import lombok.SneakyThrows;
 
-
+/**
+ * Deserializer for the entity class
+ */
 public class EntityDeserializer implements JsonDeserializer<Entity>{
-
+    /**
+     * Deserializes an entity
+     * @param json the json element to be deserialized
+     * @param type the type
+     * @param jdc the json deserialization context
+     * @return the entity value
+     * @throws JsonParseException thrown when there is a json parsing issue
+     */
     @Override @SneakyThrows
     public Entity deserialize(JsonElement json, Type type, JsonDeserializationContext jdc) throws JsonParseException {
         Entity entity = new Entity();
@@ -43,7 +52,5 @@ public class EntityDeserializer implements JsonDeserializer<Entity>{
         }
         
         return null;
-        
     }
-    
 }

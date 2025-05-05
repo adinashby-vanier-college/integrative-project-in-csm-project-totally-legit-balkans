@@ -18,13 +18,23 @@ import java.util.ArrayList;
 import java.util.Vector;
 import lombok.SneakyThrows;
 
+/**
+ * Class is used for the automatic resizing of the border pane in the simulation
+ */
 public class BorderPaneAutomaticResizing {
+    /**
+     * Data fields
+     */
     @Getter
     private static BorderPaneAutomaticResizing instance;
 
     @Getter
     private final BorderPane pane;
 
+    /**
+     * Parameterized constructor
+     * @param pane the border pane
+     */
     public BorderPaneAutomaticResizing(BorderPane pane) {
         instance = this;
         this.pane = pane;
@@ -50,12 +60,21 @@ public class BorderPaneAutomaticResizing {
         }
     }
 
+    /**
+     * Calculates the offset of the top left corner
+     * @return the vector
+     */
     public Vector2 topLeftCornerPositionOffset() {
         double y = Application.getPrimaryStage().getHeight();
         y -= pane.getHeight();
         return Vector2.of(0, y);
     }
 
+    /**
+     * Called when an element is resized
+     * @param oldValue the old value
+     * @param newValue the new value
+     */
     public void onResizeElement(Observable obs, Number oldValue, Number newValue) {
         double height = pane.getHeight();
         double width = pane.getWidth();
